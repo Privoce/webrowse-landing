@@ -21,7 +21,7 @@ const Navbar = () => {
       </div>
       <div className="right">
         <button className="btn login">Log In</button>
-        <button className="btn add">Add to Chrome</button>
+        <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
       </div>
     </NavStyles>
   )
@@ -72,14 +72,18 @@ export const NavStyles = styled.nav`
   }
   .right{
     display: flex;
-    gap:16px ;
+    gap:16px;
+    font-size: 16px;
     .btn{
+      text-decoration: none;
       border-radius: 5px;
       background: #9B51E0;
       border:none;
       font-weight: bold;
       padding: 12px 16px;
       color: #fff;
+      display: flex;
+      align-items: center;
       &.login{
         background: none;
         color:#9B51E0;
