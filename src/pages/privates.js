@@ -3,7 +3,7 @@ import React from 'react'
 export default function Privates() {
     return (
         <>
-            <section>
+            <section style={{ padding: '22px 8px' }}>
                 <div class="en section_container active" section-language="en">
                     <div id="md_en" data-target="out_en" class="agreement_md"><h1>Privacy Policy</h1>
                         <p>Last updated: July 14, 2021</p>
@@ -178,7 +178,7 @@ export default function Privates() {
                     <div id="out_en" class="agreement_output"></div>
                 </div>
             </section>
-            <section>
+            <section style={{ padding: '22px 8px' }}>
                 <div class="en section_container active" section-language="en">
                     <div id="md_en" data-target="out_en" class="agreement_md"><h1>Privacy Policy</h1>
                         <p>Last updated: July 14, 2021</p>

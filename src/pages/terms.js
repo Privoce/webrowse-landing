@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Terms() {
     return (
-        <div class="en section_container active" section-language="en">
+        <div class="en section_container active" section-language="en" style={{ padding: '22px 8px' }}>
             <div id="md_en" data-target="out_en" class="agreement_md">
                 <h1>Terms and Conditions</h1>
                 <p>Last updated: Jan 9, 2021</p>
