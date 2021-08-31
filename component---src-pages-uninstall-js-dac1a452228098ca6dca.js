@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkwebrowse_landing=self.webpackChunkwebrowse_landing||[]).push([[91],{3585:function(n,e,t){t.r(e),t.d(e,{default:function(){return s}});var l=t(7294),i=t(9).ZP.section.withConfig({displayName:"uninstall__StyledWrapper",componentId:"sc-11x4zd7-0"})(["padding:20px 8px;font-size:24px;color:#000;font-weight:800;text-align:center;"]);function s(){return l.createElement(i,null,"Uninstalled Successfully")}}}]);
+//# sourceMappingURL=component---src-pages-uninstall-js-dac1a452228098ca6dca.js.map
