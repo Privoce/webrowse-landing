@@ -1,12 +1,11 @@
 import React from "react"
 import styled from 'styled-components';
 const StyledContainer = styled.section`
-min-height: 100vh;
+    min-height: 100vh;
     padding-top: 72px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1200px;
     margin: 0 auto;
     background-repeat: no-repeat;
     background-image: url('https://static.nicegoodthings.com/works/vera/wb.home.bg.dots.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.dots.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.left.top.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.right.btm.png');

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 const Navbar = () => {
-  const [path, setPath] = useState(null)
+  const [path, setPath] = useState('')
   useEffect(() => {
     setPath(location.pathname)
   }, [])
@@ -16,7 +16,7 @@ const Navbar = () => {
       </div>
       <div className="middle">
         <a className={`link ${path == '/' ? 'curr' : ''}`} href="/">Home</a>
-        <a className={`link ${path == '/howto' ? 'curr' : ''}`} href="/howto">How It Works</a>
+        <a className={`link ${path.startsWith('/howto') ? 'curr' : ''}`} href="/howto">How It Works</a>
       </div>
       <div className="right">
         <button className="btn login">Log In</button>
