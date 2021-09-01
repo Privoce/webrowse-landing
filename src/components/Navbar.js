@@ -1,23 +1,22 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 const Navbar = () => {
-  // const [isOpen, setNav] = useState(false)
-
-  // const toggleNav = () => {
-  //   setNav(isOpen => !isOpen)
-  // }
+  const [path, setPath] = useState(null)
+  useEffect(() => {
+    setPath(location.pathname)
+  }, [])
   return (
     <NavStyles>
       <div className="left">
-        <img src="https://static.nicegoodthings.com/works/vera/webrowse.logo.png" className="logo" alt="webrowse logo" />
+        <img src="https://static.nicegoodthings.com/works/vera/wb-logo.png" className="logo" alt="webrowse logo" />
         <h2 className="title">
           webrowse
         </h2>
-        <div className="links">
-          <a className="link" href="#">Home</a>
-          <a className="link curr" href="#intro">How It Works</a>
-        </div>
+      </div>
+      <div className="middle">
+        <a className={`link ${path == '/' ? 'curr' : ''}`} href="/">Home</a>
+        <a className={`link ${path == '/howto' ? 'curr' : ''}`} href="/howto">How It Works</a>
       </div>
       <div className="right">
         <button className="btn login">Log In</button>
@@ -52,10 +51,12 @@ export const NavStyles = styled.nav`
       text-transform: capitalize;
       font-size: 20px;
       line-height: 25px;
-      color: #9B51E0;
+      color: #056CF2;
       margin-right: 32px;
     }
-    .links{
+    
+  }
+  .middle{
       display: flex;
       gap:20px;
       .link{
@@ -68,7 +69,6 @@ export const NavStyles = styled.nav`
           border-bottom: 1px solid #000;
         }
       }
-    }
   }
   .right{
     display: flex;
@@ -77,7 +77,7 @@ export const NavStyles = styled.nav`
     .btn{
       text-decoration: none;
       border-radius: 5px;
-      background: #9B51E0;
+      background: #056CF2;
       border:none;
       font-weight: bold;
       padding: 12px 16px;
@@ -86,8 +86,8 @@ export const NavStyles = styled.nav`
       align-items: center;
       &.login{
         background: none;
-        color:#9B51E0;
-        border:2px solid #9B51E0
+        color:#056CF2;
+        border:2px solid #056CF2
       }
     }
   }

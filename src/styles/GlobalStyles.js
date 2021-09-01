@@ -47,8 +47,8 @@ html {
 
 body {
   font-family: Mulish, sans-serif;
-    color: #000;
-    background-color: #fff;
+  color: #000;
+  background-color: #fff;
 }
 
 `
