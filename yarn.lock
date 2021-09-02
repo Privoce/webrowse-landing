@@ -8657,6 +8657,11 @@ react-scroll@^1.8.3:
     lodash.throttle "^4.1.1"
     prop-types "^15.7.2"
 
+react-scrollspy-navigation@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-scrollspy-navigation/-/react-scrollspy-navigation-1.0.2.tgz#51f77a48de497b7418036965a1a964259dc41606"
+  integrity sha512-4cuQgTu35GoP9p3wBNL0VLPQSQg04QchVR6oTu+PgBO+dVsUeEuVbxeOAcGrP8DOPqXl4FsodG0CIINna4JtFg==
+
 react-side-effect@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-2.1.1.tgz#66c5701c3e7560ab4822a4ee2742dee215d72eb3"

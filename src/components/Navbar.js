@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
-
+import ScrollSpy from 'react-scrollspy-navigation';
 const Navbar = () => {
-  const [path, setPath] = useState('')
-  useEffect(() => {
-    setPath(location.pathname)
-  }, [])
   return (
     <NavStyles>
       <div className="left">
@@ -15,8 +11,10 @@ const Navbar = () => {
         </h2>
       </div>
       <div className="middle">
-        <a className={`link ${path == '/' ? 'curr' : ''}`} href="/">Home</a>
-        <a className={`link ${path.startsWith('/howto') ? 'curr' : ''}`} href="/howto">How It Works</a>
+        <ScrollSpy className="curr">
+          <a className={`link`} href="#home" ref={React.createRef()}>Home</a>
+          <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a>
+        </ScrollSpy>
       </div>
       <div className="right">
         <button className="btn login">Log In</button>

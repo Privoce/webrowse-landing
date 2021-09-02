@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import Navbar from "../components/Navbar"
 const StyledWrapper = styled.section`
   font-size:24px;
   color:#000;
@@ -11,8 +12,11 @@ const StyledWrapper = styled.section`
 `;
 export default function Uninstall() {
     return (
-        <StyledWrapper>
-            Uninstalled Successfully
-        </StyledWrapper>
+        <>
+            <Navbar />
+            <StyledWrapper>
+                Uninstalled Successfully
+            </StyledWrapper>
+        </>
     )
 }

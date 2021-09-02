@@ -7,7 +7,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "deploy": "gh-pages -d public",
+    "deploy": "yarn build && gh-pages -d public",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -29,6 +29,7 @@
     "react-icons": "^4.2.0",
     "react-intersection-observer": "^8.32.0",
     "react-scroll": "^1.8.3",
+    "react-scrollspy-navigation": "^1.0.2",
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
