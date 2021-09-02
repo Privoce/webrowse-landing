@@ -26,7 +26,7 @@ const StyledTip = styled.section`
     flex-direction: column;
     align-items: center;
     .title{
-        font-weight: 800;
+        font-weight: bold;
       font-size: .36em;
       padding-left: 1.2em;
       background-image: url('https://static.nicegoodthings.com/works/vera/white.logo.png');
@@ -46,8 +46,9 @@ const StyledTip = styled.section`
     flex-direction: column;
     align-items: center;
     > .desc{
+      font-weight: normal;
       font-size: .3em;
-      margin-bottom: .8em;
+      margin-bottom: 1.2em;
     }
     .steps{
       display: flex;
@@ -82,50 +83,50 @@ const StyledTip = styled.section`
   }
 `;
 export default function Landing() {
-    useEffect(() => {
-        document.title = "Webrowse Guiding Page"
-    }, [])
-    return (
-        <StyledTip>
-            <img className="arrow" src="https://api.tbxproject.com/images/action_arrow.svg" alt="arrow" />
-            <div className="header">
-                <h1 className="title">Webrowse</h1>
-                <h2 className="sub_title">
-                    Sync tabs with your teammates!
-                </h2>
+  useEffect(() => {
+    document.title = "Webrowse Guiding Page"
+  }, [])
+  return (
+    <StyledTip>
+      <img className="arrow" src="https://api.tbxproject.com/images/action_arrow.svg" alt="arrow" />
+      <div className="header">
+        <h1 className="title">Webrowse</h1>
+        <h2 className="sub_title">
+          Sync tabs with your teammates!
+        </h2>
+      </div>
+      <div className="content">
+        <div className="desc">Get started in 3 simple steps</div>
+        <ul className="steps">
+          <li className="step">
+            <img src="https://static.nicegoodthings.com/works/vera/4cO1rX.png" alt="step 1" />
+            <div className="tip">
+              <i className="num">1.</i>
+              <span className="desc">
+                Click on the puzzle icon
+              </span>
             </div>
-            <div className="content">
-                <div className="desc">Get started in 3 simple steps</div>
-                <ul className="steps">
-                    <li className="step">
-                        <img src="https://static.nicegoodthings.com/works/vera/4cO1rX.png" alt="step 1" />
-                        <div className="tip">
-                            <i className="num">1.</i>
-                            <span className="desc">
-                                Click on the puzzle icon
-                            </span>
-                        </div>
-                    </li>
-                    <li className="step">
-                        <img src="https://static.nicegoodthings.com/works/vera/v0pny7.png" alt="step 2" />
-                        <div className="tip">
-                            <i className="num">2.</i>
-                            <span className="desc">
-                                Pin Webrowse
-                            </span>
-                        </div>
-                    </li>
-                    <li className="step">
-                        <img src="https://static.nicegoodthings.com/works/vera/xV8kkq.png" alt="step 3" />
-                        <div className="tip">
-                            <i className="num">3.</i>
-                            <span className="desc">
-                                Click on Webrowse to open a shared window
-                            </span>
-                        </div>
-                    </li>
-                </ul>
+          </li>
+          <li className="step">
+            <img src="https://static.nicegoodthings.com/works/vera/v0pny7.png" alt="step 2" />
+            <div className="tip">
+              <i className="num">2.</i>
+              <span className="desc">
+                Pin Webrowse
+              </span>
             </div>
-        </StyledTip>
-    )
+          </li>
+          <li className="step">
+            <img src="https://static.nicegoodthings.com/works/vera/xV8kkq.png" alt="step 3" />
+            <div className="tip">
+              <i className="num">3.</i>
+              <span className="desc">
+                Click on Webrowse to open a shared window
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </StyledTip>
+  )
 }
