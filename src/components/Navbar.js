@@ -62,6 +62,9 @@ export const NavStyles = styled.nav`
         font-size: 14px;
         line-height: 18px;
         text-decoration: none;
+        &:hover{
+          color: #056CF2;
+        }
         &.curr{
           color:#000;
           border-bottom: 1px solid #000;
