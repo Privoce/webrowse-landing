@@ -13,6 +13,12 @@ const StyledContainer = styled.section`
     background-image: url('https://static.nicegoodthings.com/works/vera/wb.home.bg.dots.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.dots.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.left.top.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.right.btm.png');
     background-size: 270px auto,270px auto,120px auto,180px auto;
     background-position: 100% -160px,0 30vh,0 150px,right bottom;
+    @media screen and (max-width: 414px) {
+      padding-top: 0;
+      background-image: url('https://static.nicegoodthings.com/works/vera/wb.home.bg.left.top.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.right.btm.png');
+      background-size: 120px auto,180px auto;
+      background-position: 0 150px,right bottom;
+    }
   >.header{
     margin-top: 180px;
     font-weight: 800;
@@ -21,6 +27,9 @@ const StyledContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media screen and (max-width: 414px) {
+       font-size: 28px;
+    }
     .line{
       position: relative;
       &:last-child:after{
@@ -32,6 +41,12 @@ const StyledContainer = styled.section`
           height: 16px;
           border-radius: 50%;
           background:#056CF2 ;
+          @media screen and (max-width: 414px) {
+            bottom: 30px;
+            right: -12px;
+            width: 10px;
+            height: 10px;
+          }
       }
   }
   }
@@ -70,6 +85,10 @@ const StyledHowTo = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media screen and (max-width: 414px) {
+      text-align: center;
+       padding:50px 10px;
+    }
   }
 `;
 const HomePage = () => {

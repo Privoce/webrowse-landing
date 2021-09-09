@@ -75,6 +75,9 @@ export const NavStyles = styled.nav`
     display: flex;
     gap:16px;
     font-size: 16px;
+    @media screen and (max-width: 414px) {
+       display: none;
+    }
     .btn{
       text-decoration: none;
       border-radius: 5px;

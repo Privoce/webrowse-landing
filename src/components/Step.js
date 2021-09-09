@@ -5,6 +5,10 @@ const StyledWrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   padding:64px 0;
+  @media screen and (max-width: 414px) {
+       flex-direction: column;
+       padding:50px 10px;
+    }
   .intro{
       position: relative;
       flex:1;
