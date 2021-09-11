@@ -66,7 +66,7 @@ export default function Guiding() {
   useEffect(() => {
     document.title = "Login Success - Webrowse";
     const un = new URLSearchParams(location.search).get('name');
-    setName(un)
+    setName(decodeURI(un))
   }, [])
   return (
     <StyledTip>
