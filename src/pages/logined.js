@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 const StyledTip = styled.section`
   position: relative;
   width: 100vw;
