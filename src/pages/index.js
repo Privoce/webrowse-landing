@@ -95,13 +95,13 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
-      <StyledContainer id='home'>
+      <StyledContainer className="viewport" id='home'>
         <h2 className="header">
           <span className="line">Browse websites together</span>
           <span className="line">with your teammates</span>
         </h2>
         <p className="desc">Webrowse helps your team easily collaborate via a shared browsing window during your online meetings. </p>
-        <a className="btn" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
+        <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
       </StyledContainer>
       <StyledHowTo id="howto">
         <div className="title">

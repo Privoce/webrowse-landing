@@ -1,9 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import ScrollSpy from 'react-scrollspy-navigation';
+
 const Navbar = () => {
   return (
-    <NavStyles>
+    <NavStyles className="navbar">
       <div className="left">
         <img src="https://static.nicegoodthings.com/works/vera/wb-logo.png" className="logo" alt="webrowse logo" />
         <h2 className="title">
@@ -17,7 +18,7 @@ const Navbar = () => {
         </ScrollSpy>
       </div>
       <div className="right">
-        <button className="btn login">Log In</button>
+        <a className="btn login" href="#">Log In</a>
         <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
       </div>
     </NavStyles>

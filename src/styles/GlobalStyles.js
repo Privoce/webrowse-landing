@@ -46,6 +46,19 @@ ul{
 
 html {
   /* scroll-behavior: smooth; */
+  &.webrowse{
+    .navbar .right .btn.add,.viewport .add.btn{
+      visibility: hidden;
+    }
+    &.logined{
+      .navbar .right .btn.login{
+        visibility: hidden;
+      }
+      .viewport .add.btn{
+        visibility: visible;
+      }
+    }
+  }
 }
 
 body {
