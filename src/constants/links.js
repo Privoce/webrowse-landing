@@ -1,14 +1,3 @@
-export const mainMenuItems = [
-  {
-    path: "/",
-    text: "about",
-  },
-  {
-    path: "/",
-    text: "packages",
-  },
-  {
-    path: "/",
-    text: "contact",
-  },
-]
+const downloadLink = 'https://chrome.google.com/webstore/detail/vera-cobrowse-doc-figma-p/ccegbnlnelhgaefimiaklaindffpfcmh?hl=en'
+
+export { downloadLink }

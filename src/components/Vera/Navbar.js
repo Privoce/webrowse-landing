@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import ScrollSpy from 'react-scrollspy-navigation';
-import { downloadLink } from './const'
+import { downloadLink } from '../../constants/links'
 
 const Navbar = () => {
   return (

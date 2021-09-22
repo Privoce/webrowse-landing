@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import styled from 'styled-components';
-import Navbar from './Navbar';
-import { downloadLink } from './const'
+import Navbar from '../../components/Vera/Navbar';
+import { downloadLink } from '../../constants/links'
 
 
 const StyledContainer = styled.section`
