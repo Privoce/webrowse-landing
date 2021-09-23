@@ -81,6 +81,9 @@ const StyledHowTo = styled.section`
     align-items: flex-start;
     max-width: 1800px;
     margin: 0 auto;
+    @media screen and (max-width: 414px) {
+      padding:50px 20px 50px 20px;
+    }
     >.title{
       color: #A700C5;
       font-weight: 800;
@@ -100,6 +103,10 @@ const StyledHowTo = styled.section`
       display: flex;
       justify-content: space-between;
       gap: 60px;
+      @media screen and (max-width: 414px) {
+       flex-direction: column;
+       gap:20px;
+      }
       .steps{
         display: flex;
         flex-direction: column;
