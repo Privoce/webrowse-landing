@@ -11,11 +11,11 @@ module.exports = {
     title: "Webrowse",
     titleTemplate: "%s | Webrowse landing page",
     description: "sync tabs with you teammates",
-    siteUrl: "https://thestartup.netlify.com",
+    siteUrl: "https://webrow.se",
     author: "Tristan Yang",
     authorSite: "https://yangerxiao.com",
-    image: "/yellow-metal-design-decoration.jpg",
-    twitterUsername: "@ygc",
+    image: "/image.tpl.png",
+    twitterUsername: "@privoce1",
   },
   plugins: [
     {

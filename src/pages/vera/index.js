@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import styled from 'styled-components';
 import Navbar from '../../components/Vera/Navbar';
+import SEO from '../../components/SEO/vera';
 import { downloadLink } from '../../constants/links'
 
 
@@ -74,7 +75,7 @@ const StyledContainer = styled.section`
   }
 `;
 const StyledHowTo = styled.section`
-    padding: 72px 64px 0 64px;
+    padding: 72px 64px 64px 64px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -166,6 +167,7 @@ const HomePage = () => {
   }
   return (
     <>
+      <SEO />
       <Navbar />
       <StyledContainer className="viewport" id='home'>
         <h2 className="header">

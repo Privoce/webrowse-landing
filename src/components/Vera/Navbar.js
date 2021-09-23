@@ -43,7 +43,7 @@ export const NavStyles = styled.nav`
     display: flex;
     align-items: center;
     .logo{
-      width:32px;
+      width:34px;
       height:32px;
       margin-right: 5px;
     }

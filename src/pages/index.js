@@ -1,6 +1,7 @@
 import React from "react"
 import styled from 'styled-components';
-import Step from '../components/Step'
+import Step from '../components/Step';
+import SEO from '../components/SEO/webrowse'
 import Navbar from '../components/Navbar'
 const StyledContainer = styled.section`
     height: 100vh;
@@ -94,6 +95,7 @@ const StyledHowTo = styled.section`
 const HomePage = () => {
   return (
     <>
+      <SEO />
       <Navbar />
       <StyledContainer className="viewport" id='home'>
         <h2 className="header">
