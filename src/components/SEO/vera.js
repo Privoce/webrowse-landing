@@ -13,7 +13,7 @@ const SEO = ({ title = "", description = "", lang = 'en', image = "", article = 
     title: title || defaultTitle,
     description: description || defaultDescription,
     image: image || defaultImage,
-    url: `${location.origin}${pathname}`,
+    url: `https://webrow.se/vera`,
   }
 
   return (
