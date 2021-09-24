@@ -46,7 +46,7 @@ ul{
 
 html {
   /* scroll-behavior: smooth; */
-  &.webrowse{
+  &.webrowse,&.vera{
     .navbar .right .btn.add,.viewport .add.btn{
       visibility: hidden;
     }
