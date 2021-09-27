@@ -1,27 +1,36 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import ScrollSpy from 'react-scrollspy-navigation';
+import TypeForm from "./TypeForm";
 
 const Navbar = () => {
+  const [typeformVisible, setTypeformVisible] = useState(false);
+  const toggleTypeForm = () => {
+    setTypeformVisible(prev => !prev)
+  }
   return (
-    <NavStyles className="navbar">
-      <div className="left">
-        <img src="https://static.nicegoodthings.com/works/vera/wb-logo.png" className="logo" alt="webrowse logo" />
-        <h2 className="title">
-          webrowse
-        </h2>
-      </div>
-      <div className="middle">
-        <ScrollSpy className="curr">
-          <a className={`link`} href="#home" ref={React.createRef()}>Home</a>
-          <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a>
-        </ScrollSpy>
-      </div>
-      <div className="right">
-        <a className="btn login" href="#">Log In</a>
-        <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
-      </div>
-    </NavStyles>
+    <>
+      <NavStyles className="navbar">
+        <div className="left">
+          <img src="https://static.nicegoodthings.com/works/vera/wb-logo.png" className="logo" alt="webrowse logo" />
+          <h2 className="title">
+            webrowse
+          </h2>
+        </div>
+        <div className="middle">
+          <ScrollSpy className="curr">
+            <a className={`link`} href="#home" ref={React.createRef()}>Home</a>
+            <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a>
+          </ScrollSpy>
+        </div>
+        <div className="right">
+          <a className="btn login" href="#">Log In</a>
+          <button onClick={toggleTypeForm} className="btn typeform">Join Beta Test</button>
+          {/* <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a> */}
+        </div>
+      </NavStyles>
+      {typeformVisible && <TypeForm closeModal={toggleTypeForm} />}
+    </>
   )
 }
 
@@ -80,6 +89,7 @@ export const NavStyles = styled.nav`
        display: none;
     }
     .btn{
+      cursor: pointer;
       text-decoration: none;
       border-radius: 5px;
       background: #056CF2;
