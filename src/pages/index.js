@@ -1,109 +1,293 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from 'styled-components';
+import { FaTwitter, FaGithub, FaFacebook } from 'react-icons/fa'
+import ScrollSpy from 'react-scrollspy-navigation';
+import TypeForm from "../components/TypeForm";
 import Step from '../components/Step';
 import SEO from '../components/SEO/webrowse'
-import Navbar from '../components/Navbar'
+
+// https://static.nicegoodthings.com/project/ext/wb.browser.png
+// https://static.nicegoodthings.com/project/ext/wb.chrome.png
+// https://static.nicegoodthings.com/project/ext/wb.edge.png
+// https://static.nicegoodthings.com/project/ext/wb.right-top-blob.png
+// https://static.nicegoodthings.com/project/ext/wb.left-middle-blob.png
+// https://static.nicegoodthings.com/project/ext/wb.dots.left.btm.png
+// https://static.nicegoodthings.com/project/ext/wb.dots.right.top.png
 const StyledContainer = styled.section`
-    height: 100vh;
-    padding-top: 72px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    background-repeat: no-repeat;
-    background-image: url('https://static.nicegoodthings.com/works/vera/wb.home.bg.dots.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.dots.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.left.top.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.right.btm.png');
-    background-size: 270px auto,270px auto,120px auto,180px auto;
-    background-position: 100% -160px,0 30vh,0 150px,right bottom;
-    @media screen and (max-width: 414px) {
+font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    /* height: 100vh; */
+    padding-top: 156px;
+    background-color:#19181D ;
+    /* background-repeat: no-repeat;
+    background-image:url('https://static.nicegoodthings.com/project/ext/wb.dots.left.btm.png'),url('https://static.nicegoodthings.com/project/ext/wb.dots.right.top.png'), url('https://static.nicegoodthings.com/project/ext/wb.left-middle-blob.png'),url('https://static.nicegoodthings.com/project/ext/wb.right-top-blob.png');
+    background-size: 360px auto,250px auto,auto 1100px,auto 1300px;
+    background-position: 0 bottom,100% top,0 bottom,100% top; */
+    /* @media screen and (max-width: 414px) {
       padding-top: 0;
       background-image: url('https://static.nicegoodthings.com/works/vera/wb.home.bg.left.top.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.right.btm.png');
       background-size: 120px auto,180px auto;
       background-position: 0 150px,right bottom;
+    } */
+    .bg{
+      position: absolute;
+      &.blob{
+        &.left{
+          left:0;
+          top:70%;
+          height: 1100px;
+        }
+        &.right{
+          right:0;
+          top:0;
+          height: 1000px;
+        }
+      }
+      &.dots{
+        opacity: .4;
+        &.left{
+          left:0;
+          top: 70%;
+          width: 360px;
+        }
+        &.right{
+          right:0;
+          top:0;
+          width: 250px;
+        }
+      }
     }
-  >.header{
-    margin-top: 180px;
-    font-weight: 800;
-    font-size: 72px;
-    line-height: 90px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    @media screen and (max-width: 414px) {
-       font-size: 28px;
-    }
-    .line{
-      position: relative;
-      &:last-child:after{
-          content: "";
-          position: absolute;
-          bottom: 20px;
-          right: -20px;
-          width:16px;
-          height: 16px;
-          border-radius: 50%;
-          background:#056CF2 ;
-          @media screen and (max-width: 414px) {
-            bottom: 30px;
-            right: -12px;
-            width: 10px;
-            height: 10px;
+    .navbar{
+      position: absolute;
+      left: 0;
+      top:0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      padding:15px 110px;
+      
+      .left{
+        display: flex;
+        align-items: center;
+        .logo{
+          width:32px;
+          height:32px;
+          margin-right: 8px;
+        }
+        .title{
+          
+          text-transform: capitalize;
+          font-size: 20px;
+          line-height: 25px;
+          color: #fff;
+          margin-right: 32px;
+        }
+        
+      }
+      .middle{
+          display: flex;
+          gap:20px;
+          .link{
+            color:#787878;
+            font-size: 14px;
+            line-height: 18px;
+            text-decoration: none;
+            &:hover{
+              color: #056CF2;
+            }
+            &.curr{
+              border-bottom: 1px solid #787877;
+            }
           }
       }
-  }
-  }
-  .desc{
-    font-weight: 400;
-    font-size: 28px;
-    line-height: 35px;
-    color: #757575;
-    max-width: 740px;
-    text-align: center;
-    margin-bottom: 64px;
-  }
-  .btn{
-    text-decoration: none;
-    color: #fff;
-    font-weight: 800;
-    font-size: 28px;
-    line-height: 35px;
-    padding: 24px 48px;
-    background: linear-gradient(94.32deg, #74D6D7 0%, #056CF2 100%);
-    border-radius: 15px;
-  }
+      .right{
+        display: flex;
+        gap:16px;
+        font-size: 16px;
+        @media screen and (max-width: 414px) {
+          display: none;
+        }
+        .btn{
+          cursor: pointer;
+          text-decoration: none;
+          border-radius: 50px;
+          background: #52EDFF;
+          border:none;
+          font-size: 14px;
+          font-weight: bold;
+          padding: 12px 24px;
+          color: #000;
+          display: flex;
+          align-items: center;
+          &.login{
+            background: none;
+            color:#52EDFF;
+            border:2px solid #52EDFF
+          }
+        }
+      }
+    }
+    .wrapper{
+      width: 960px;
+      height: 600px;
+      background-image: url('https://static.nicegoodthings.com/project/ext/wb.browser.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      >.header{
+        margin-top: 128px;
+        margin-bottom: 32px;
+        font-weight: 800;
+        font-size: 56px;
+        line-height: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @media screen and (max-width: 414px) {
+          font-size: 28px;
+          line-height: 50px;
+        }
+        .line{
+          position: relative;
+          color:#fff;
+        }
+      }
+      .desc{
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 35px;
+        color: #757575;
+        max-width: 740px;
+        text-align: center;
+        margin-bottom: 140px;
+      }
+      .btns{
+        z-index: 10;
+        display: flex;
+        gap: 32px;
+        .btn{
+          cursor: pointer;
+          text-decoration: none;
+          color: #000;
+          font-weight: 800;
+          font-size: 14px;
+          line-height: 1.2;
+          padding: 12px 20px;
+          padding-left: 52px;
+          background: #fff;
+          border-radius: 50px;
+          background-position: 20px center;
+          background-repeat: no-repeat;
+          background-size: 24px;
+          &.chrome{
+            background-image: url('https://static.nicegoodthings.com/project/ext/wb.chrome.png');
+          }
+          &.edge{
+            background-image: url('https://static.nicegoodthings.com/project/ext/wb.edge.png');
+          }
+        }
+      }
+
+    }
 `;
 const StyledHowTo = styled.section`
-    padding-top: 72px ;
+    background-color:#19181D ;
+    padding-top: 72px;
+    padding-bottom: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1200px;
     margin: 0 auto;
-  >.title{
-    font-size: 36px;
-    line-height: 45px;
-    padding:72px 0;
-    font-weight: 800;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    @media screen and (max-width: 414px) {
-      text-align: center;
-       padding:50px 10px;
+    
+    >.title{
+      color: #fff;
+      font-size: 36px;
+      line-height: 45px;
+      padding:72px 0;
+      font-weight: 800;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @media screen and (max-width: 414px) {
+        text-align: center;
+        padding:50px 10px;
+      }
     }
-  }
+    .steps{
+      z-index: 9;
+      max-width: 960px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+`;
+const StyledFooter = styled.footer`
+    background-color:#19181D;
+    padding:0 112px;
+    .wrapper{
+      padding:32px 0;
+      border-top: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      .copyright{
+        color: #787878;
+      }
+      .socials{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+    }
 `;
 const HomePage = () => {
+  const [typeformVisible, setTypeformVisible] = useState(false);
+  const toggleTypeForm = () => {
+    setTypeformVisible(prev => !prev)
+  }
   return (
     <>
       <SEO />
-      <Navbar />
       <StyledContainer className="viewport" id='home'>
-        <h2 className="header">
-          <span className="line">Browse websites together</span>
-          <span className="line">with your teammates</span>
-        </h2>
-        <p className="desc">Webrowse helps your team easily collaborate via a shared browsing window during your online meetings. </p>
-        <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
+        <img className="bg blob left" src="https://static.nicegoodthings.com/project/ext/wb.left-middle-blob.png" alt="blob" />
+        <img className="bg blob right" src="https://static.nicegoodthings.com/project/ext/wb.right-top-blob.png" alt="blob" />
+        <img className="bg dots left" src="https://static.nicegoodthings.com/project/ext/wb.dots.left.btm.png" alt="dots" />
+        <img className="bg dots right" src="https://static.nicegoodthings.com/project/ext/wb.dots.right.top.png" alt="dots" />
+        <nav className="navbar">
+          <div className="left">
+            <img src="https://static.nicegoodthings.com/project/ext/wb.logo.png" className="logo" alt="webrowse logo" />
+            <h2 className="title">
+              webrowse
+            </h2>
+          </div>
+          <div className="middle">
+            <ScrollSpy className="curr">
+              <a className={`link`} href="#home" ref={React.createRef()}>Home</a>
+              <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a>
+            </ScrollSpy>
+          </div>
+          <div className="right">
+            <a className="btn login" href="#">Log In</a>
+            <button onClick={toggleTypeForm} className="btn typeform">Join Beta Test</button>
+            {/* <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a> */}
+          </div>
+        </nav>
+        {typeformVisible && <TypeForm closeModal={toggleTypeForm} />}
+        <div className="wrapper">
+          <h2 className="header">
+            <span className="line">Browse websites together</span>
+            <span className="line">with your teammates</span>
+          </h2>
+          <p className="desc">Webrowse helps your team easily collaborate via a shared browsing window during your online meetings. </p>
+          <div className="btns">
+            <a className="btn chrome" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
+            <a className="btn edge" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Edge</a>
+          </div>
+        </div>
       </StyledContainer>
       <StyledHowTo id="howto">
         <div className="title">
@@ -114,13 +298,38 @@ const HomePage = () => {
             in 4 Simple Steps
           </span>
         </div>
-        <Step />
-        <Step seq={'02'} title="See which tab your teammates are viewing" desc={['Click on “tab status” to view tabs and which tab your teammates are at.', 'Clicking on any tab takes you to the tab you want to view.']} pic="https://static.nicegoodthings.com/works/vera/hucv5k.jpg" />
-        <Step seq="03" title="Enable Follow Mode to View Tabs Together" desc={["Follow mode allows other users to sync tabs in real time with the host.", "When there is a host, enabling follow mode will automatically take you to the tab that the host is on."]} pic="https://static.nicegoodthings.com/works/vera/clhruI.jpg" />
-        <Step seq="04" title="Chat with your teammates when cobrowsing" desc="Turn on voice channel to chat with your teammates" pic="https://static.nicegoodthings.com/works/vera/09LlYp.jpg" />
+        <div className="steps">
+          <Step seq={1} pic="https://static.nicegoodthings.com/project/ext/wb.step.1.png" />
+          <Step seq={'2'} title="See which tab your teammates are viewing" desc={['Click on “tab status” to view tabs and which tab your teammates are at.', 'Clicking on any tab takes you to the tab you want to view.']} pic="https://static.nicegoodthings.com/project/ext/wb.step.2.png" />
+          <Step seq="3" title="Enable Follow Mode to View Tabs Together" desc={["Follow mode allows other users to sync tabs in real time with the host.", "When there is a host, enabling follow mode will automatically take you to the tab that the host is on."]} pic="https://static.nicegoodthings.com/project/ext/wb.step.3.png" />
+          <Step seq="4" title="Chat with your teammates when cobrowsing" desc="Turn on voice channel to chat with your teammates" pic="https://static.nicegoodthings.com/project/ext/wb.step.4.png" />
+
+        </div>
       </StyledHowTo>
+      <StyledFooter>
+        <div className="wrapper">
+          <div className="copyright">© 2021  Privoce. All rights reserved.</div>
+          <ul className="socials">
+            <li className="social">
+              <FaTwitter size={24} color="#787878" />
+            </li>
+            <li className="social">
+              <FaFacebook size={24} color="#787878" />
+            </li>
+            <li className="social">
+              <a href="https://github.com/Privoce/webrowse" target="_blank" rel="noopener noreferrer">
+                <FaGithub size={24} color="#787878" />
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </StyledFooter>
     </>
   )
 }
-
+// https://static.nicegoodthings.com/project/ext/wb.step.1.png
+// https://static.nicegoodthings.com/project/ext/wb.step.4.png
+// https://static.nicegoodthings.com/project/ext/wb.step.3.png
+// https://static.nicegoodthings.com/project/ext/wb.step.2.png
 export default HomePage

@@ -2,48 +2,50 @@ import React from 'react'
 import styled from 'styled-components';
 const StyledWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding:64px 0;
+  padding:0;
+  width: 464px;
+  background: linear-gradient(135deg, #3C8CE7 0%, #00EAFF 100%);
+    border-radius: 20px;
+    overflow: hidden;
   @media screen and (max-width: 414px) {
        flex-direction: column;
        padding:50px 10px;
     }
   .intro{
+    width: 100%;
       position: relative;
-      flex:1;
-      padding-top: 10px;
       display: flex;
       flex-direction: column;
-      &:before{
-          z-index: -1;
-          content: attr(data-seq);
-          position: absolute;
-          top:-38px;
-          left:-5px;
-          font-weight: 900;
-            font-size: 100px;
-            line-height: 117px;
-            color: rgba(230, 233, 239, 0.5);
-
-      }
+      height: 190px;
+      background-color: #282828;
+      padding:30px 32px;
+      gap:13px;
       .title{
         font-weight: 800;
-        font-size: 30px;
-        line-height: 38px;
-        color: #9B51E0;
+        font-size: 18px;
+        line-height: 23px;
+        color: #fff;
       }
       .desc{
-        font-size: 20px;
-        line-height: 32px;
+        font-size: 16px;
+        line-height: 20px;
+        color: #78787C;
+        p{
+            margin-bottom: 20px;
+        }
       }
   }
     .pic{
-        flex:1;
+        width: 100%;
+        height: 290px;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        align-items: center;
         img{
-            max-width: 100%;
+            max-width: 280px;
         }
     }
 `;
@@ -51,6 +53,9 @@ export default function Step({ seq = '01', title = "Invite your teammates via li
     let descs = typeof desc == 'string' ? [desc] : desc;
     return (
         <StyledWrapper className="step">
+            <div className="pic">
+                <img src={pic} alt="step picture" />
+            </div>
             <div className="intro" data-seq={seq}>
                 <h3 className="title">{title}</h3>
                 <div className="desc">
@@ -59,9 +64,7 @@ export default function Step({ seq = '01', title = "Invite your teammates via li
                     })}
                 </div>
             </div>
-            <div className="pic">
-                <img src={pic} alt="step picture" />
-            </div>
+
         </StyledWrapper>
     )
 }
