@@ -1,18 +1,18 @@
 import React, { useState } from "react"
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { FaTwitter, FaGithub, FaFacebook } from 'react-icons/fa'
 import ScrollSpy from 'react-scrollspy-navigation';
 import TypeForm from "../components/TypeForm";
 import Step from '../components/Step';
-import SEO from '../components/SEO/webrowse'
-
-// https://static.nicegoodthings.com/project/ext/wb.browser.png
-// https://static.nicegoodthings.com/project/ext/wb.chrome.png
-// https://static.nicegoodthings.com/project/ext/wb.edge.png
-// https://static.nicegoodthings.com/project/ext/wb.right-top-blob.png
-// https://static.nicegoodthings.com/project/ext/wb.left-middle-blob.png
-// https://static.nicegoodthings.com/project/ext/wb.dots.left.btm.png
-// https://static.nicegoodthings.com/project/ext/wb.dots.right.top.png
+import SEO from '../components/SEO/webrowse';
+const AniF = keyframes`
+  from{
+    opacity:0.4;
+  }
+  to{
+    opacity:0.1;
+  }
+`;
 const StyledContainer = styled.section`
 font-family: Arial, Helvetica, sans-serif;
     position: relative;
@@ -31,6 +31,7 @@ font-family: Arial, Helvetica, sans-serif;
     } */
     .bg{
       position: absolute;
+     
       &.blob{
         &.left{
           left:0;
@@ -44,16 +45,26 @@ font-family: Arial, Helvetica, sans-serif;
         }
       }
       &.dots{
+       
+        animation: ${AniF} 2s ease infinite;
+        animation-direction: alternate;
         opacity: .4;
         &.left{
+          animation-delay: .5s;
           left:0;
           top: 70%;
           width: 360px;
+          @media screen and (max-width: 414px) {
+            width: 180px;
+          }
         }
         &.right{
           right:0;
           top:0;
           width: 250px;
+          @media screen and (max-width: 414px) {
+            width: 150px;
+          }
         }
       }
     }
@@ -67,7 +78,9 @@ font-family: Arial, Helvetica, sans-serif;
       justify-content: space-between;
       background: transparent;
       padding:15px 110px;
-      
+      @media screen and (max-width: 414px) {
+        padding:15px 20px;
+        }
       .left{
         display: flex;
         align-items: center;
@@ -77,14 +90,12 @@ font-family: Arial, Helvetica, sans-serif;
           margin-right: 8px;
         }
         .title{
-          
           text-transform: capitalize;
           font-size: 20px;
           line-height: 25px;
           color: #fff;
           margin-right: 32px;
         }
-        
       }
       .middle{
           display: flex;
@@ -121,6 +132,7 @@ font-family: Arial, Helvetica, sans-serif;
           color: #000;
           display: flex;
           align-items: center;
+          
           &.login{
             background: none;
             color:#52EDFF;
@@ -139,6 +151,9 @@ font-family: Arial, Helvetica, sans-serif;
       flex-direction: column;
       align-items: center;
       margin: 0 auto;
+      @media screen and (max-width: 414px) {
+        width: 360px;
+      }
       >.header{
         margin-top: 128px;
         margin-bottom: 32px;
@@ -149,10 +164,13 @@ font-family: Arial, Helvetica, sans-serif;
         flex-direction: column;
         align-items: center;
         @media screen and (max-width: 414px) {
-          font-size: 28px;
-          line-height: 50px;
+          margin-top: 30px;
+          font-size: 24px;
+          line-height: 1.5;
+          margin-bottom: 20px;
         }
         .line{
+          white-space: nowrap;
           position: relative;
           color:#fff;
         }
@@ -165,12 +183,20 @@ font-family: Arial, Helvetica, sans-serif;
         max-width: 740px;
         text-align: center;
         margin-bottom: 140px;
+        @media screen and (max-width: 414px) {
+          display: none;
+        }
       }
       .btns{
         z-index: 10;
         display: flex;
         gap: 32px;
+        @media screen and (max-width: 414px) {
+          flex-direction: column;
+          gap:10px;
+        }
         .btn{
+          white-space: nowrap;
           cursor: pointer;
           text-decoration: none;
           color: #000;
@@ -224,11 +250,17 @@ const StyledHowTo = styled.section`
       display: flex;
       gap: 32px;
       flex-wrap: wrap;
+      @media screen and (max-width: 414px) {
+        justify-content: center;
+      }
     }
 `;
 const StyledFooter = styled.footer`
     background-color:#19181D;
     padding:0 112px;
+    @media screen and (max-width: 414px) {
+      padding:0 20px;
+    }
     .wrapper{
       padding:32px 0;
       border-top: 1px solid #333;
@@ -328,8 +360,4 @@ const HomePage = () => {
     </>
   )
 }
-// https://static.nicegoodthings.com/project/ext/wb.step.1.png
-// https://static.nicegoodthings.com/project/ext/wb.step.4.png
-// https://static.nicegoodthings.com/project/ext/wb.step.3.png
-// https://static.nicegoodthings.com/project/ext/wb.step.2.png
 export default HomePage

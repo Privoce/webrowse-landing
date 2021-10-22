@@ -11,8 +11,7 @@ const StyledWrapper = styled.div`
     border-radius: 20px;
     overflow: hidden;
   @media screen and (max-width: 414px) {
-       flex-direction: column;
-       padding:50px 10px;
+    width: 340px;
     }
   .intro{
     width: 100%;
@@ -23,6 +22,7 @@ const StyledWrapper = styled.div`
       background-color: #282828;
       padding:30px 32px;
       gap:13px;
+      
       .title{
         font-weight: 800;
         font-size: 18px;
@@ -37,6 +37,12 @@ const StyledWrapper = styled.div`
             margin-bottom: 20px;
         }
       }
+      @media screen and (max-width: 414px) {
+        padding:15px;
+        .desc{
+            font-size: 13px;
+        }
+      }
   }
     .pic{
         width: 100%;
@@ -48,11 +54,17 @@ const StyledWrapper = styled.div`
             max-width: 280px;
         }
     }
+    &.step1 .pic img{
+        max-width: 360px;
+        @media screen and (max-width: 414px) {
+            width: 320px;
+        }
+    }
 `;
-export default function Step({ seq = '01', title = "Invite your teammates via link", desc = "After starting a cobrowse window, click on “copy link” in the left bottom corner and send it to your teammates.", pic = "https://static.nicegoodthings.com/works/vera/LnV15n.jpg" }) {
+export default function Step({ seq = '1', title = "Invite your teammates via link", desc = "After starting a cobrowse window, click on “copy link” in the left bottom corner and send it to your teammates.", pic = "https://static.nicegoodthings.com/works/vera/LnV15n.jpg" }) {
     let descs = typeof desc == 'string' ? [desc] : desc;
     return (
-        <StyledWrapper className="step">
+        <StyledWrapper className={`step step${seq}`}>
             <div className="pic">
                 <img src={pic} alt="step picture" />
             </div>
