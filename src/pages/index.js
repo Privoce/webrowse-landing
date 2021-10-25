@@ -4,6 +4,7 @@ import { FaTwitter, FaGithub, FaFacebook } from 'react-icons/fa'
 import ScrollSpy from 'react-scrollspy-navigation';
 import TypeForm from "../components/TypeForm";
 import Step from '../components/Step';
+import AnimateBrowser from '../components/AnimateBrowser'
 import SEO from '../components/SEO/webrowse';
 const AniF = keyframes`
   from{
@@ -11,6 +12,17 @@ const AniF = keyframes`
   }
   to{
     opacity:0.1;
+  }
+`;
+const FadeIn = keyframes`
+  from{
+    opacity:0.1;
+    transform:translateY(-10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+
   }
 `;
 const StyledContainer = styled.section`
@@ -31,7 +43,7 @@ font-family: Arial, Helvetica, sans-serif;
     } */
     .bg{
       position: absolute;
-     
+      pointer-events: none;
       &.blob{
         &.left{
           left:0;
@@ -45,7 +57,6 @@ font-family: Arial, Helvetica, sans-serif;
         }
       }
       &.dots{
-       
         animation: ${AniF} 2s ease infinite;
         animation-direction: alternate;
         opacity: .4;
@@ -142,17 +153,22 @@ font-family: Arial, Helvetica, sans-serif;
       }
     }
     .wrapper{
+      position: relative;
       width: 960px;
       height: 600px;
-      background-image: url('https://static.nicegoodthings.com/project/ext/wb.browser.png');
+      /* background-image: url('https://static.nicegoodthings.com/project/ext/wb.browser.png');
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: contain; */
       display: flex;
       flex-direction: column;
       align-items: center;
       margin: 0 auto;
       @media screen and (max-width: 414px) {
         width: 360px;
+      }
+      .header,.desc,.download{
+        opacity: 0;
+        animation: ${FadeIn} .5s ease-in forwards;
       }
       >.header{
         margin-top: 128px;
@@ -163,6 +179,7 @@ font-family: Arial, Helvetica, sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
+        animation-delay: 3s;
         @media screen and (max-width: 414px) {
           margin-top: 30px;
           font-size: 24px;
@@ -182,42 +199,41 @@ font-family: Arial, Helvetica, sans-serif;
         color: #757575;
         max-width: 740px;
         text-align: center;
-        margin-bottom: 140px;
+        margin-bottom: 98px;
+        animation-delay: 3.4s;
         @media screen and (max-width: 414px) {
           display: none;
         }
       }
-      .btns{
+      .download{
         z-index: 10;
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 32px;
+        animation-delay: 4s;
         @media screen and (max-width: 414px) {
-          flex-direction: column;
           gap:10px;
         }
         .btn{
-          white-space: nowrap;
+          width: fit-content;
           cursor: pointer;
           text-decoration: none;
-          color: #000;
-          font-weight: 800;
-          font-size: 14px;
-          line-height: 1.2;
-          padding: 12px 20px;
-          padding-left: 52px;
-          background: #fff;
           border-radius: 50px;
-          background-position: 20px center;
-          background-repeat: no-repeat;
-          background-size: 24px;
-          &.chrome{
-            background-image: url('https://static.nicegoodthings.com/project/ext/wb.chrome.png');
-          }
-          &.edge{
-            background-image: url('https://static.nicegoodthings.com/project/ext/wb.edge.png');
-          }
+          background: #52EDFF;
+          border:none;
+          font-size: 14px;
+          font-weight: bold;
+          padding: 18px 24px;
+          color: #000;
+        }
+        .links{
+          color: #787878;
+          text-decoration: none;
         }
       }
+     
 
     }
 `;
@@ -276,6 +292,51 @@ const StyledFooter = styled.footer`
       }
     }
 `;
+const StyledDownloads = styled.section`
+padding:80px 0 160px 0;
+    background-color:#19181D;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:48px ;
+    >.title{
+      /* font-weight: bold; */
+      font-size: 36px;
+      line-height: 45px;
+    }
+    .browsers{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 96px;
+      .bro .link{
+        color:inherit;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        img{
+          width:64px ;
+          height: 64px;
+
+        }
+        .name{
+          font-size: 14px;
+          line-height: 16px;
+          text-align: center;
+          @media screen and (max-width: 414px) {
+            width: 64px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+`;
+
 const HomePage = () => {
   const [typeformVisible, setTypeformVisible] = useState(false);
   const toggleTypeForm = () => {
@@ -310,14 +371,15 @@ const HomePage = () => {
         </nav>
         {typeformVisible && <TypeForm closeModal={toggleTypeForm} />}
         <div className="wrapper">
+          <AnimateBrowser />
           <h2 className="header">
             <span className="line">Browse websites together</span>
             <span className="line">with your teammates</span>
           </h2>
           <p className="desc">Webrowse helps your team easily collaborate via a shared browsing window during your online meetings. </p>
-          <div className="btns">
-            <a className="btn chrome" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
-            <a className="btn edge" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Edge</a>
+          <div className="download">
+            <a className="btn" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
+            <a href="#links" className="links">Other Browsers Extensions</a>
           </div>
         </div>
       </StyledContainer>
@@ -338,16 +400,45 @@ const HomePage = () => {
 
         </div>
       </StyledHowTo>
+      <StyledDownloads id="links">
+        <h2 className="title">Supported Browsers</h2>
+        <ul className="browsers">
+          <li className="bro">
+            <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
+              <img src="https://static.nicegoodthings.com/project/ext/wb.chrome.png" alt="chrome browser icon" />
+              <span className="name">Chrome</span>
+            </a>
+          </li>
+          <li className="bro">
+            <a className="link" href="#" target="_blank" rel="noopener noreferrer">
+              <img src="https://static.nicegoodthings.com/project/ext/wb.edge.png" alt="chrome browser icon" />
+              <span className="name">Edge</span>
+            </a>
+          </li>
+          <li className="bro">
+            <a className="link" href="#" target="_blank" rel="noopener noreferrer">
+              <img src="https://static.nicegoodthings.com/project/vera/wb.firefox.png" alt="chrome browser icon" />
+              <span className="name">Firefox</span>
+            </a>
+          </li>
+          <li className="bro">
+            <a className="link" href="#" target="_blank" rel="noopener noreferrer">
+              <img src="https://static.nicegoodthings.com/project/vera/wb.safari.png" alt="chrome browser icon" />
+              <span className="name">Coming soon</span>
+            </a>
+          </li>
+        </ul>
+      </StyledDownloads>
       <StyledFooter>
         <div className="wrapper">
           <div className="copyright">© 2021  Privoce. All rights reserved.</div>
           <ul className="socials">
-            <li className="social">
+            {/* <li className="social">
               <FaTwitter size={24} color="#787878" />
             </li>
             <li className="social">
               <FaFacebook size={24} color="#787878" />
-            </li>
+            </li> */}
             <li className="social">
               <a href="https://github.com/Privoce/webrowse" target="_blank" rel="noopener noreferrer">
                 <FaGithub size={24} color="#787878" />
