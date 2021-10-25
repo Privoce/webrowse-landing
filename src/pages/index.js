@@ -26,21 +26,10 @@ const FadeIn = keyframes`
   }
 `;
 const StyledContainer = styled.section`
-font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     position: relative;
-    /* height: 100vh; */
     padding-top: 156px;
     background-color:#19181D ;
-    /* background-repeat: no-repeat;
-    background-image:url('https://static.nicegoodthings.com/project/ext/wb.dots.left.btm.png'),url('https://static.nicegoodthings.com/project/ext/wb.dots.right.top.png'), url('https://static.nicegoodthings.com/project/ext/wb.left-middle-blob.png'),url('https://static.nicegoodthings.com/project/ext/wb.right-top-blob.png');
-    background-size: 360px auto,250px auto,auto 1100px,auto 1300px;
-    background-position: 0 bottom,100% top,0 bottom,100% top; */
-    /* @media screen and (max-width: 414px) {
-      padding-top: 0;
-      background-image: url('https://static.nicegoodthings.com/works/vera/wb.home.bg.left.top.png'),url('https://static.nicegoodthings.com/works/vera/wb.home.bg.right.btm.png');
-      background-size: 120px auto,180px auto;
-      background-position: 0 150px,right bottom;
-    } */
     .bg{
       position: absolute;
       pointer-events: none;
@@ -156,9 +145,6 @@ font-family: Arial, Helvetica, sans-serif;
       position: relative;
       width: 960px;
       height: 600px;
-      /* background-image: url('https://static.nicegoodthings.com/project/ext/wb.browser.png');
-      background-repeat: no-repeat;
-      background-size: contain; */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -245,7 +231,6 @@ const StyledHowTo = styled.section`
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    
     >.title{
       color: #fff;
       font-size: 36px;
@@ -264,6 +249,7 @@ const StyledHowTo = styled.section`
       z-index: 9;
       max-width: 960px;
       display: flex;
+      justify-content: center;
       gap: 32px;
       flex-wrap: wrap;
       @media screen and (max-width: 414px) {
@@ -293,7 +279,7 @@ const StyledFooter = styled.footer`
     }
 `;
 const StyledDownloads = styled.section`
-padding:80px 0 160px 0;
+    padding:80px 0 160px 0;
     background-color:#19181D;
     color: #fff;
     display: flex;
@@ -405,20 +391,20 @@ const HomePage = () => {
         <ul className="browsers">
           <li className="bro">
             <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
-              <img src="https://static.nicegoodthings.com/project/ext/wb.chrome.png" alt="chrome browser icon" />
+              <img src="https://static.nicegoodthings.com/project/vera/wb.chrome.png" alt="chrome browser icon" />
               <span className="name">Chrome</span>
             </a>
           </li>
           <li className="bro">
-            <a className="link" href="#" target="_blank" rel="noopener noreferrer">
-              <img src="https://static.nicegoodthings.com/project/ext/wb.edge.png" alt="chrome browser icon" />
+            <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
+              <img src="https://static.nicegoodthings.com/project/vera/wb.edge.png" alt="chrome browser icon" />
               <span className="name">Edge</span>
             </a>
           </li>
           <li className="bro">
             <a className="link" href="#" target="_blank" rel="noopener noreferrer">
               <img src="https://static.nicegoodthings.com/project/vera/wb.firefox.png" alt="chrome browser icon" />
-              <span className="name">Firefox</span>
+              <span className="name">Coming soon</span>
             </a>
           </li>
           <li className="bro">
