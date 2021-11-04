@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkwebrowse_landing=self.webpackChunkwebrowse_landing||[]).push([[270],{1286:function(e,n,o){o.r(n),o.d(n,{downloadLink:function(){return a}});var a="https://chrome.google.com/webstore/detail/vera-cobrowse-doc-figma-p/ccegbnlnelhgaefimiaklaindffpfcmh?hl=en"}}]);
-//# sourceMappingURL=component---src-pages-vera-const-js-4a958d927033c481aea3.js.map
