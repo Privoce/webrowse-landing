@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import styled, { keyframes } from 'styled-components';
 import { FaTwitter, FaGithub } from 'react-icons/fa'
-import { MdKeyboardArrowDown } from 'react-icons/md'
 import ScrollSpy from 'react-scrollspy-navigation';
 import TypeForm from "../components/TypeForm";
 import SEO from '../components/SEO/webrowse';
@@ -11,17 +10,6 @@ const AniF = keyframes`
   }
   to{
     opacity:0.1;
-  }
-`;
-const FadeIn = keyframes`
-  from{
-    opacity:0.1;
-    transform:translateY(-10px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-
   }
 `;
 const StyledContainer = styled.section`
@@ -143,7 +131,6 @@ const StyledContainer = styled.section`
     .wrapper{
       position: relative;
       max-width: 1300px;
-      /* height: 600px; */
       margin: 0 auto;
       .pricing,.plans{
         color: #fff;
@@ -157,13 +144,44 @@ const StyledContainer = styled.section`
         }
       }
       .pricing{
+        .select_plan{
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 78px;
+          .txt{
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 30px;
+          }
+          .toggle{
+            cursor: pointer;
+            padding: 0 4px;
+            display: flex;
+            align-items: center;
+            width: 40px;
+            height: 28px;
+            background-color: #fff;
+            border-radius: 20px;
+            .circle{
+              width: 18px;
+              height: 18px;
+              border-radius: 50%;
+              background-color:#19181d;
+              transition: all .2s ease-in-out;
+            }
+          }
+          &.ann .toggle .circle{
+            transform: translateX(14px);
+          }
+        }
         >.desc{
           font-weight: 600;
           font-size: 24px;
           line-height: 30px;
           text-align: center;
           color: rgba(255, 255, 255, 0.5);
-          margin-bottom: 64px;
+          margin-bottom: 44px;
         }
         .cols{
           display: flex;
@@ -177,6 +195,7 @@ const StyledContainer = styled.section`
             border: 2px solid #FFFFFF;
             border-radius: 20px;
             padding: 20px;
+            padding-bottom: 80px;
             width: 326px;
             .head{
               font-weight: 800;
@@ -235,11 +254,27 @@ const StyledContainer = styled.section`
               }
             }
             &.pro{
+              position: relative;
               border-width: 5px;
               border-color: #5088e3;
               .btn{
                 color: #000;
                 background: #52EDFF;
+              }
+              &.ann:after{
+                content: "Save 33%";
+                position: absolute;
+                top: 0;
+                right: 0;
+                font-weight: 800;
+                font-size: 24px;
+                line-height: 30px;
+                padding:4px 20px;
+                padding-left: 25px;
+                background-color: #5088e3;
+                border-bottom-left-radius: 20px;
+                border-top-right-radius: 10px;
+                /* border-radius: 20px; */
               }
             }
           }
@@ -323,68 +358,41 @@ const StyledContainer = styled.section`
             }
           }
         }
-        .tables{
-          display: flex;
-          flex-direction: column;
-          gap: 45px;
-          width: 100%;
-          .table{
+        .table{
+            width: 100%;
             position: relative;
             padding: 20px 30px;
             width: 100%;
             background: rgba(40, 40, 40, 0.8);
-            border: 4px solid #FFFFFF;
             border-radius: 20px;
-            transition: all .5s ease-in-out;
-            .arrow{
-              cursor: pointer;
-              position: absolute;
-              top: 20px;
-              right: 33px;
-              transition: all .5s ease-in-out;
-            }
-            .head{
+            table{
+              width: 100%;
+            .header{
               font-weight: bold;
               font-size: 36px;
               line-height: 45px;
               margin-bottom: 10px;
             }
-            .list{
+            .row{
               display: flex;
-              flex-direction: column;
-              height: 0;
-              overflow: hidden;
-              
-              .item{
-                display: flex;
-                justify-content: space-between;
-                font-weight: normal;
-                font-size: 24px;
-                line-height: 30px;
-                padding: 12px 0;
-                padding-right: 80px;
-                &:not(:last-child){
-                  border-bottom:1px solid #828282 ;
-                }
-                .desc{
-                  text-align: left;
-                  align-self: flex-start;
-                  width: 370px;
-                }
-
+              justify-content: space-between;
+              font-weight: normal;
+              font-size: 24px;
+              line-height: 30px;
+              padding: 25px 0;
+              &:not(:last-child){
+                border-bottom:1px solid #828282 ;
               }
+            .feat{
+              width: 500px;
             }
-            &.expand{
-              .list{
-                height: auto;
-              }
-              .arrow{
-                transform: rotate(-90deg);
-                transform-origin: center;
-              }
+            .val{
+              width: 230px;
+              text-align: center;
             }
           }
         }
+      }
       }
     }
 `;
@@ -409,16 +417,18 @@ const StyledFooter = styled.footer`
       }
     }
 `;
-
-const HomePage = () => {
+const Prices = {
+  mon: 8,
+  ann: 12
+}
+const PricingPage = () => {
+  const [plan, setPlan] = useState('mon')
   const [typeformVisible, setTypeformVisible] = useState(false);
   const toggleTypeForm = () => {
     setTypeformVisible(prev => !prev)
   }
-  const toggleTable = ({ currentTarget }) => {
-    console.log({ currentTarget });
-    let tableEle = currentTarget.parentElement;
-    tableEle.classList.toggle('expand')
+  const handleSelectPlan = () => {
+    setPlan(prev => prev == 'mon' ? 'ann' : 'mon')
   }
   return (
     <>
@@ -452,6 +462,13 @@ const HomePage = () => {
           <div className="pricing">
             <h2 className="title">Pricing</h2>
             <p className="desc">Pick the perfect plan for your team</p>
+            <div className={`select_plan ${plan}`}>
+              <span className="txt">Monthly</span>
+              <div className="toggle" onClick={handleSelectPlan}>
+                <div className="circle"></div>
+              </div>
+              <span className="txt">Annual</span>
+            </div>
             <ul className="cols">
               <li className="col free">
                 <h4 className="head">Free</h4>
@@ -467,10 +484,10 @@ const HomePage = () => {
                   </ul>
                 </div>
               </li>
-              <li className="col pro">
+              <li className={`col pro ${plan}`}>
                 <h4 className="head">Pro</h4>
                 <p className="desc">Fast and easy way to get started cobrowing with your team</p>
-                <span className="price"><em>$8</em>/mo</span>
+                <span className="price"><em>${Prices[plan]}</em>/mo</span>
                 <button className="btn">Start 14-day free trial</button>
                 <div className="feats">
                   <h5 className="title">Key Features</h5>
@@ -512,7 +529,7 @@ const HomePage = () => {
                 </li>
                 <li className="box pro">
                   <h5 className="head">Pro</h5>
-                  <span className="price"><em>$8</em>/mo</span>
+                  <span className="price"><em>${Prices[plan]}</em>/mo</span>
                   <button className="btn">Start Free Trial</button>
                 </li>
                 <li className="box">
@@ -522,61 +539,42 @@ const HomePage = () => {
                 </li>
               </ul>
             </div>
-            <div className="tables">
-              <div className="table expand">
-                <MdKeyboardArrowDown onClick={toggleTable} className="arrow" size="35" color="#52edff" />
-                <h4 className="head">Key Features</h4>
-                <ul className="list">
-                  <li className="item">
-                    <span className="desc">Lorem ipsum</span>
-                    <span className="num">3</span>
-                    <span className="num">7</span>
-                    <span className="num">6</span>
-                  </li>
-                  <li className="item">
-                    <span className="desc">Lorem ipsum</span>
-                    <span className="num">3</span>
-                    <span className="num">7</span>
-                    <span className="num">6</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="table">
-                <MdKeyboardArrowDown onClick={toggleTable} className="arrow collapse" size="35" color="#52edff" />
-                <h4 className="head">App Integration</h4>
-                <ul className="list">
-                  <li className="item">
-                    <span className="desc">Lorem ipsum</span>
-                    <span className="num">3</span>
-                    <span className="num">7</span>
-                    <span className="num">6</span>
-                  </li>
-                  <li className="item">
-                    <span className="desc">Lorem ipsum</span>
-                    <span className="num">3</span>
-                    <span className="num">7</span>
-                    <span className="num">6</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="table">
-                <MdKeyboardArrowDown onClick={toggleTable} className="arrow collapse" size="35" color="#52edff" />
-                <h4 className="head">App Integration</h4>
-                <ul className="list">
-                  <li className="item">
-                    <span className="desc">Lorem ipsum</span>
-                    <span className="num">3</span>
-                    <span className="num">7</span>
-                    <span className="num">6</span>
-                  </li>
-                  <li className="item">
-                    <span className="desc">Lorem ipsum</span>
-                    <span className="num">3</span>
-                    <span className="num">7</span>
-                    <span className="num">6</span>
-                  </li>
-                </ul>
-              </div>
+            <div className="table">
+              <table >
+                <thead className="header">Key Features</thead>
+                <tbody>
+                  <tr className="row">
+                    <td className="feat">Number of Participants</td>
+                    <td className="val">5</td>
+                    <td className="val">Unlimited</td>
+                    <td className="val">Unlimited</td>
+                  </tr>
+                  <tr className="row">
+                    <td className="feat">Number of Tabs</td>
+                    <td className="val">10</td>
+                    <td className="val">Unlimited</td>
+                    <td className="val">Unlimited</td>
+                  </tr>
+                  <tr className="row">
+                    <td className="feat">Number of Initiators</td>
+                    <td className="val">1</td>
+                    <td className="val">1</td>
+                    <td className="val">Unlimited</td>
+                  </tr>
+                  <tr className="row">
+                    <td className="feat">Co-hosting</td>
+                    <td className="val">-</td>
+                    <td className="val">2</td>
+                    <td className="val">Unlimited</td>
+                  </tr>
+                  <tr className="row">
+                    <td className="feat">Voice Channel</td>
+                    <td className="val">10</td>
+                    <td className="val">Unlimited</td>
+                    <td className="val">Unlimited</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
@@ -603,4 +601,4 @@ const HomePage = () => {
     </>
   )
 }
-export default HomePage
+export default PricingPage
