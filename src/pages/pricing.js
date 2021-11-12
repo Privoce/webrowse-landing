@@ -16,7 +16,8 @@ const StyledContainer = styled.section`
     font-family: Arial, Helvetica, sans-serif;
     position: relative;
     padding-top: 156px;
-    background-color:#19181D ;
+    padding-bottom: 80px;
+    background:#19181D;
     .bg{
       position: absolute;
       pointer-events: none;
@@ -417,6 +418,75 @@ const StyledFooter = styled.footer`
       }
     }
 `;
+const StyledNewsletter = styled.section`
+  width: 100%;
+  padding: 48px 0;
+  background: #212026;
+  
+  .wrapper{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1400px;
+    .info{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      .title{
+        color: #fff;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 38px;
+      }
+      .desc{
+        color:  rgba(228, 231, 236, 0.7);
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+    .subscribe{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      .submit{
+        display: flex;
+        align-items: center;
+        gap:16px ;
+        input{
+          padding: 10px 14px;
+          font-size: 16px;
+          line-height: 24px;
+          width: 280px;
+          border: none;
+          background: #FFFFFF;
+          border: 1px solid #D0D5DD;
+          box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+          border-radius: 8px;
+        }
+        .btn{
+          border: none;
+          padding: 10px 18px;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+          color:#19181D ;
+          background: #1FE1F9;
+          box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+          border-radius: 8px;
+        }
+      }
+      .tip{
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        color: #667085;
+      }
+    }
+  }
+
+`
 const Prices = {
   mon: 8,
   ann: 12
@@ -433,7 +503,7 @@ const PricingPage = () => {
   return (
     <>
       <SEO />
-      <StyledContainer className="viewport" id='home'>
+      <StyledContainer className="viewport" id='pricing'>
         <img className="bg blob left" src="https://static.nicegoodthings.com/project/ext/wb.left-middle-blob.png" alt="blob" />
         <img className="bg blob right" src="https://static.nicegoodthings.com/project/ext/wb.right-top-blob.png" alt="blob" />
         <img className="bg dots left" src="https://static.nicegoodthings.com/project/ext/wb.dots.left.btm.png" alt="dots" />
@@ -578,6 +648,22 @@ const PricingPage = () => {
             </div>
           </div>
         </section>
+        <StyledNewsletter className="newsletter">
+          <div className="wrapper">
+
+            <div className="info">
+              <h3 className="title">Get notified</h3>
+              <p className="desc">Stay up to date with the latest news, announcements, and articles.</p>
+            </div>
+            <div className="subscribe">
+              <div className="submit">
+                <input type="email" name="email" id="email" placeholder="Enter your email" />
+                <button className="btn">Subscribe</button>
+              </div>
+              <span className="tip">No Spam. Ever.</span>
+            </div>
+          </div>
+        </StyledNewsletter>
       </StyledContainer>
       <StyledFooter>
         <div className="wrapper">
