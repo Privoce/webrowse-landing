@@ -1,6 +1,8 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import styled, { keyframes } from 'styled-components';
 import { FaTwitter, FaGithub } from 'react-icons/fa'
+import { IoAddCircleOutline } from 'react-icons/io5'
+import { FiMinusCircle } from 'react-icons/fi'
 import ScrollSpy from 'react-scrollspy-navigation';
 import TypeForm from "../components/TypeForm";
 import SEO from '../components/SEO/webrowse';
@@ -397,6 +399,72 @@ const StyledContainer = styled.section`
       }
     }
 `;
+const StyledFAQ = styled.section`
+ background-color:#19181D;
+ color: #fff;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ padding:140px 0;
+ .header{
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  margin-bottom: 20px;
+ }
+ .desc{
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  margin-bottom: 64px;
+ }
+ .list{
+   display: flex;
+   flex-direction: column;
+   width: 768px;
+   .ask{
+     border-top: 1px solid #E4E7EC;
+     padding-top: 24px;
+     padding-bottom: 24px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .toggle{
+      cursor: pointer;
+      &.collapse{
+        display: none;
+      }
+      &.expand{
+        display: block;
+      }
+    }
+
+    &.expand {
+      padding-bottom: 0;
+      .expand{
+        display: none;
+      }
+      .collapse{
+        display: block;
+      }
+    }
+    &.expand + .ans{
+      display: block;
+    }
+   }
+   .ans{
+     display: none;
+     color: #667085;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+      padding-bottom: 32px;
+   }
+ }
+`;
 const StyledFooter = styled.footer`
     background-color:#19181D;
     padding:0 112px;
@@ -490,8 +558,19 @@ const StyledNewsletter = styled.section`
 const Prices = {
   mon: 8,
   ann: 12
-}
+};
+const Questions = [{
+  ask: 'Is there a free trial available?',
+  ans: 'Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.'
+}, {
+  ask: 'Is there a free trial available?',
+  ans: 'Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.'
+}, {
+  ask: 'Is there a free trial available?',
+  ans: 'Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.'
+},]
 const PricingPage = () => {
+  const faqsRef = useRef(null)
   const [plan, setPlan] = useState('mon')
   const [typeformVisible, setTypeformVisible] = useState(false);
   const toggleTypeForm = () => {
@@ -499,6 +578,13 @@ const PricingPage = () => {
   }
   const handleSelectPlan = () => {
     setPlan(prev => prev == 'mon' ? 'ann' : 'mon')
+  }
+  const handleFaqToggle = ({ currentTarget }) => {
+    [...faqsRef.current.querySelectorAll('.ask')].forEach(node => {
+      node.classList.remove('expand')
+    })
+    console.log({ currentTarget });
+    currentTarget.parentElement.classList.toggle('expand');
   }
   return (
     <>
@@ -648,6 +734,18 @@ const PricingPage = () => {
             </div>
           </div>
         </section>
+        <StyledFAQ>
+          <h3 className="header">Frequently asked questions</h3>
+          <p className="desc">Everything you need to know about the product and billing.</p>
+          <dl className="list" ref={faqsRef}>
+            {Questions.map(({ ask, ans }, idx) => {
+              return <>
+                <dt key={idx} className={`ask ${idx == 0 ? 'expand' : ''}`}>{ask} <FiMinusCircle onClick={handleFaqToggle} className="collapse toggle" color="#98A2B3" />  <IoAddCircleOutline onClick={handleFaqToggle} className="expand toggle" color="#1FE1F9" /></dt>
+                <dd key={idx} className="ans">{ans}</dd>
+              </>
+            })}
+          </dl>
+        </StyledFAQ>
         <StyledNewsletter className="newsletter">
           <div className="wrapper">
 
@@ -663,6 +761,7 @@ const PricingPage = () => {
               <span className="tip">No Spam. Ever.</span>
             </div>
           </div>
+
         </StyledNewsletter>
       </StyledContainer>
       <StyledFooter>
