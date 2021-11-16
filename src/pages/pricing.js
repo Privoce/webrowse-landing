@@ -220,9 +220,8 @@ const StyledContainer = styled.section`
               }
             }
             .btn{
-              border: none;
-              outline: none;
-              cursor: pointer;
+              color: #222;
+              text-decoration: none;
               padding: 12px 24px;
               background: #FFFFFF;
               border-radius: 50px;
@@ -258,8 +257,9 @@ const StyledContainer = styled.section`
             }
             &.pro{
               position: relative;
-              border-width: 5px;
-              border-color: #5088e3;
+              border-width: 6px;
+                border-color:transparent ;
+                background: linear-gradient(rgba(40, 40, 40), rgba(40, 40, 40)) padding-box,linear-gradient(153.06deg, #3C8CE7 4.31%, #63EDE6 56.27%) border-box;
               .btn{
                 color: #000;
                 background: #52EDFF;
@@ -274,10 +274,10 @@ const StyledContainer = styled.section`
                 line-height: 30px;
                 padding:4px 20px;
                 padding-left: 25px;
-                background-color: #5088e3;
+                /* background: transparent; */
+                background: linear-gradient(90deg, #5695e4 10%, #61ade4 70%);
                 border-bottom-left-radius: 20px;
                 border-top-right-radius: 10px;
-                /* border-radius: 20px; */
               }
             }
           }
@@ -352,8 +352,10 @@ const StyledContainer = styled.section`
                 line-height: 14px;
               }
               &.pro{
-                border-width: 4px;
-              border-color: #5088e3;
+                /* position: relative; */
+                border-width: 5px;
+                border-color:transparent ;
+                background: linear-gradient(rgba(40, 40, 40), rgba(40, 40, 40)) padding-box,linear-gradient(153.06deg, #3C8CE7 4.31%, #63EDE6 56.27%) border-box;
                 .btn{
                   background: #52EDFF;
                 }
@@ -556,19 +558,31 @@ const StyledNewsletter = styled.section`
 
 `
 const Prices = {
-  mon: 8,
-  ann: 12
+  mon: 12,
+  ann: 8
 };
 const Questions = [{
   ask: 'Is there a free trial available?',
-  ans: 'Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.'
+  ans: `Yes, you can try our Pro plan for for free for 14 days. If you'd like, we can also provide a free, personalized 30-minute onboarding call to get you up and running.`
 }, {
-  ask: 'Is there a free trial available?',
-  ans: 'Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.'
+  ask: 'What is included in my free trial?',
+  ans: 'The 14 day free trial includes access to all features in the Pro plan.'
 }, {
-  ask: 'Is there a free trial available?',
-  ans: 'Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.'
-},]
+  ask: 'What happens after my free trial ends?',
+  ans: 'After the 14 day trial, you will be automatically be charged for the plan you have selected. You can always cancel before the end of your trial period for no charge. We will notify you of the end of your trial ending as that date is approaching.'
+}, {
+  ask: 'Can I change my subscription plan later?',
+  ans: 'Yes. You can change your subscription plan at any time. Any upgrade to a higher subscription will take place immediately. Any downgrade to a lower subscription will take place at the next billing date. If you purchased an annual subscription, please get in contact with us to change your plan.'
+},
+{
+  ask: 'How does billing work?',
+  ans: 'You can either be billed monthly or annually. We have a discount on annual billing! Our accepted payment method is credit card, debit card, and G Pay.'
+},
+{
+  ask: 'What is the difference between an initiator, host, and participant?',
+  ans: 'An initiator has the ability to start the cobrowsing session. Participants refer to any user in the cobrowsing session. The host is the primary user whose windows and tabs the participants follow. Typically the initiator is the host by default, however host privileges can be transferred between participants.'
+},
+]
 const PricingPage = () => {
   const faqsRef = useRef(null)
   const [plan, setPlan] = useState('mon')
@@ -630,41 +644,42 @@ const PricingPage = () => {
                 <h4 className="head">Free</h4>
                 <p className="desc">Fast and easy way to get started cobrowing with your team</p>
                 <span className="price"><em>$0</em>/mo</span>
-                <button className="btn">Add to Chrome</button>
+                <a href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn" target="_blank" className="btn">Add to Chrome</a>
                 <div className="feats">
                   <h5 className="title">Key Features</h5>
                   <ul className="list">
-                    <li className="item">Up to 10 users</li>
-                    <li className="item">Up to 5 tabs</li>
+                    <li className="item">Up to 10 participants</li>
                     <li className="item">Up to 5 tabs</li>
                   </ul>
                 </div>
               </li>
               <li className={`col pro ${plan}`}>
                 <h4 className="head">Pro</h4>
-                <p className="desc">Fast and easy way to get started cobrowing with your team</p>
+                <p className="desc">Advanced cobrowsing for professional teams</p>
                 <span className="price"><em>${Prices[plan]}</em>/mo</span>
-                <button className="btn">Start 14-day free trial</button>
+                <a href="https://checkout.stripe.com/pay/cs_live_a10u7NygrJrUgl6VPHM7J9rXuXQ793S2Iu0TC5uby5QaNsWoiF1yGOEVSv#fidkdWxOYHwnPyd1blppbHNgWjA0TVBpfUhCQmpQQVd8ZjZvXH9KQzVrZ3xJVnV8c2RzYWx%2FUTZKTFJyY0NEPHBQQEJhMU9gMz1DPVVfNUxMY2A9ZGZHf2BVZmxuS3czQDdkTzE3bHJQTFN3NTUzNXAwTk1XNycpJ3VpbGtuQH11anZgYUxhJz8nZ0xcNDIzPDN3MlR8NG5UM2pqJ3gl" target="_blank" className="btn">Start 14-day free trial</a>
                 <div className="feats">
                   <h5 className="title">Key Features</h5>
                   <ul className="list">
-                    <li className="item">Up to 10 users</li>
-                    <li className="item">Up to 5 tabs</li>
-                    <li className="item">Up to 5 tabs</li>
+                    <li className="item">Unlimited Participants</li>
+                    <li className="item">Unlimited Participants Tabs</li>
+                    <li className="item">Co-hosting</li>
+                    <li className="item">Voice Channel</li>
                   </ul>
                 </div>
               </li>
               <li className="col enterprise">
                 <h4 className="head">Enterprise</h4>
-                <p className="desc">Fast and easy way to get started cobrowing with your team</p>
+                <p className="desc">A cobrowsing experience that scales with the size of your organization</p>
                 <span className="price"><em>Let's Talk</em></span>
-                <button className="btn">Contact Us</button>
+                <a className="btn">Contact Us</a>
                 <div className="feats">
                   <h5 className="title">Key Features</h5>
                   <ul className="list">
-                    <li className="item">Up to 10 users</li>
-                    <li className="item">Up to 5 tabs</li>
-                    <li className="item">Up to 5 tabs</li>
+                    <li className="item">Unlimited Participants</li>
+                    <li className="item">Unlimited Participants Tabs</li>
+                    <li className="item">Unlimited Saved Windows</li>
+                    <li className="item">Unlimited Initiators</li>
                   </ul>
                 </div>
               </li>
