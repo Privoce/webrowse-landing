@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react"
 import styled, { keyframes } from 'styled-components';
-import { FaTwitter, FaGithub } from 'react-icons/fa'
+import { FaGithub } from 'react-icons/fa'
 import { IoAddCircleOutline } from 'react-icons/io5'
 import { FiMinusCircle } from 'react-icons/fi'
 import ScrollSpy from 'react-scrollspy-navigation';
@@ -525,6 +525,7 @@ const StyledNewsletter = styled.section`
         align-items: center;
         gap:16px ;
         input{
+          outline: none;
           padding: 10px 14px;
           font-size: 16px;
           line-height: 24px;
@@ -536,6 +537,8 @@ const StyledNewsletter = styled.section`
           border-radius: 8px;
         }
         .btn{
+          cursor: pointer;
+          width: fit-content;
           border: none;
           padding: 10px 18px;
           font-weight: 500;
@@ -763,20 +766,20 @@ const PricingPage = () => {
         </StyledFAQ>
         <StyledNewsletter className="newsletter">
           <div className="wrapper">
-
             <div className="info">
               <h3 className="title">Get notified</h3>
               <p className="desc">Stay up to date with the latest news, announcements, and articles.</p>
             </div>
             <div className="subscribe">
-              <div className="submit">
-                <input type="email" name="email" id="email" placeholder="Enter your email" />
-                <button className="btn">Subscribe</button>
-              </div>
+              <form action="https://www.getrevue.co/profile/privoce/add_subscriber" method="post" id="revue-form" name="revue-form" target="_blank">
+                <div className="submit">
+                  <input required type="email" name="member[email]" id="member_email" placeholder="Enter your email" />
+                  <input className="btn" type="submit" value="Subscribe" name="member[subscribe]" id="member_submit" />
+                </div>
+              </form>
               <span className="tip">No Spam. Ever.</span>
             </div>
           </div>
-
         </StyledNewsletter>
       </StyledContainer>
       <StyledFooter>
