@@ -65,7 +65,7 @@ body {
   /* width: fit-content; */
   font-family: Mulish, sans-serif;
   color: #000;
-  background-color: #fff;
+  background-color: #19181D;
 }
 
 `

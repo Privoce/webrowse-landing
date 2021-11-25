@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react"
 import styled, { keyframes } from 'styled-components';
-import { FaGithub } from 'react-icons/fa'
 import { IoAddCircleOutline } from 'react-icons/io5'
 import { FiMinusCircle } from 'react-icons/fi'
 import ScrollSpy from 'react-scrollspy-navigation';
 import TypeForm from "../components/TypeForm";
 import SEO from '../components/SEO/webrowse';
+import WebrowseFooter from "../components/WebrowseFooter";
 const AniF = keyframes`
   from{
     opacity:0.4;
@@ -467,99 +467,7 @@ const StyledFAQ = styled.section`
    }
  }
 `;
-const StyledFooter = styled.footer`
-    background-color:#19181D;
-    padding:0 112px;
-    @media screen and (max-width: 414px) {
-      padding:0 20px;
-    }
-    .wrapper{
-      padding:32px 0;
-      border-top: 1px solid #333;
-      display: flex;
-      justify-content: space-between;
-      .copyright{
-        color: #787878;
-      }
-      .socials{
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-    }
-`;
-const StyledNewsletter = styled.section`
-  width: 100%;
-  padding: 48px 0;
-  background: #212026;
-  
-  .wrapper{
-    display: flex;
-    justify-content: space-between;
-    max-width: 1400px;
-    .info{
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-      .title{
-        color: #fff;
-        font-weight: 600;
-        font-size: 30px;
-        line-height: 38px;
-      }
-      .desc{
-        color:  rgba(228, 231, 236, 0.7);
-        font-weight: normal;
-        font-size: 20px;
-        line-height: 30px;
-      }
-    }
-    .subscribe{
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
-      .submit{
-        display: flex;
-        align-items: center;
-        gap:16px ;
-        input{
-          outline: none;
-          padding: 10px 14px;
-          font-size: 16px;
-          line-height: 24px;
-          width: 280px;
-          border: none;
-          background: #FFFFFF;
-          border: 1px solid #D0D5DD;
-          box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-          border-radius: 8px;
-        }
-        .btn{
-          cursor: pointer;
-          width: fit-content;
-          border: none;
-          padding: 10px 18px;
-          font-weight: 500;
-          font-size: 16px;
-          line-height: 24px;
-          color:#19181D ;
-          background: #1FE1F9;
-          box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-          border-radius: 8px;
-        }
-      }
-      .tip{
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 20px;
-        color: #667085;
-      }
-    }
-  }
 
-`
 const Prices = {
   mon: 12,
   ann: 8
@@ -588,7 +496,7 @@ const Questions = [{
 ]
 const PricingPage = () => {
   const faqsRef = useRef(null)
-  const [plan, setPlan] = useState('mon')
+  const [plan, setPlan] = useState('ann')
   const [typeformVisible, setTypeformVisible] = useState(false);
   const toggleTypeForm = () => {
     setTypeformVisible(prev => !prev)
@@ -666,7 +574,7 @@ const PricingPage = () => {
                   <ul className="list">
                     <li className="item">Unlimited Participants</li>
                     <li className="item">Unlimited Participants Tabs</li>
-                    <li className="item">Co-hosting</li>
+                    {/* <li className="item">Co-hosting</li> */}
                     <li className="item">Voice Channel</li>
                   </ul>
                 </div>
@@ -719,13 +627,13 @@ const PricingPage = () => {
                 <tbody>
                   <tr className="row">
                     <td className="feat">Number of Participants</td>
-                    <td className="val">5</td>
+                    <td className="val">10</td>
                     <td className="val">Unlimited</td>
                     <td className="val">Unlimited</td>
                   </tr>
                   <tr className="row">
                     <td className="feat">Number of Tabs</td>
-                    <td className="val">10</td>
+                    <td className="val">5</td>
                     <td className="val">Unlimited</td>
                     <td className="val">Unlimited</td>
                   </tr>
@@ -735,12 +643,12 @@ const PricingPage = () => {
                     <td className="val">1</td>
                     <td className="val">Unlimited</td>
                   </tr>
-                  <tr className="row">
+                  {/* <tr className="row">
                     <td className="feat">Co-hosting</td>
                     <td className="val">-</td>
                     <td className="val">2</td>
                     <td className="val">Unlimited</td>
-                  </tr>
+                  </tr> */}
                   <tr className="row">
                     <td className="feat">Voice Channel</td>
                     <td className="val">10</td>
@@ -764,43 +672,8 @@ const PricingPage = () => {
             })}
           </dl>
         </StyledFAQ>
-        <StyledNewsletter className="newsletter">
-          <div className="wrapper">
-            <div className="info">
-              <h3 className="title">Get notified</h3>
-              <p className="desc">Stay up to date with the latest news, announcements, and articles.</p>
-            </div>
-            <div className="subscribe">
-              <form action="https://www.getrevue.co/profile/privoce/add_subscriber" method="post" id="revue-form" name="revue-form" target="_blank">
-                <div className="submit">
-                  <input required type="email" name="member[email]" id="member_email" placeholder="Enter your email" />
-                  <input className="btn" type="submit" value="Subscribe" name="member[subscribe]" id="member_submit" />
-                </div>
-              </form>
-              <span className="tip">No Spam. Ever.</span>
-            </div>
-          </div>
-        </StyledNewsletter>
       </StyledContainer>
-      <StyledFooter>
-        <div className="wrapper">
-          <div className="copyright">© 2021  Privoce. All rights reserved.</div>
-          <ul className="socials">
-            {/* <li className="social">
-              <FaTwitter size={24} color="#787878" />
-            </li>
-            <li className="social">
-              <FaFacebook size={24} color="#787878" />
-            </li> */}
-            <li className="social">
-              <a href="https://github.com/Privoce/webrowse" target="_blank" rel="noopener noreferrer">
-                <FaGithub size={24} color="#787878" />
-              </a>
-            </li>
-          </ul>
-
-        </div>
-      </StyledFooter>
+      <WebrowseFooter />
     </>
   )
 }

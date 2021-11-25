@@ -6,6 +6,7 @@ import TypeForm from "../components/TypeForm";
 import Step from '../components/Step';
 import AnimateBrowser from '../components/AnimateBrowser'
 import SEO from '../components/SEO/webrowse';
+import WebrowseFooter from "../components/WebrowseFooter";
 const AniF = keyframes`
   from{
     opacity:0.4;
@@ -257,27 +258,6 @@ const StyledHowTo = styled.section`
       }
     }
 `;
-const StyledFooter = styled.footer`
-    background-color:#19181D;
-    padding:0 112px;
-    @media screen and (max-width: 414px) {
-      padding:0 20px;
-    }
-    .wrapper{
-      padding:32px 0;
-      border-top: 1px solid #333;
-      display: flex;
-      justify-content: space-between;
-      .copyright{
-        color: #787878;
-      }
-      .socials{
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-    }
-`;
 const StyledDownloads = styled.section`
     padding:80px 0 160px 0;
     background-color:#19181D;
@@ -415,25 +395,7 @@ const HomePage = () => {
           </li>
         </ul>
       </StyledDownloads>
-      <StyledFooter>
-        <div className="wrapper">
-          <div className="copyright">© 2021  Privoce. All rights reserved.</div>
-          <ul className="socials">
-            {/* <li className="social">
-              <FaTwitter size={24} color="#787878" />
-            </li>
-            <li className="social">
-              <FaFacebook size={24} color="#787878" />
-            </li> */}
-            <li className="social">
-              <a href="https://github.com/Privoce/webrowse" target="_blank" rel="noopener noreferrer">
-                <FaGithub size={24} color="#787878" />
-              </a>
-            </li>
-          </ul>
-
-        </div>
-      </StyledFooter>
+      <WebrowseFooter />
     </>
   )
 }
