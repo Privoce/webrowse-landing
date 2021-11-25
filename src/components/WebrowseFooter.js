@@ -26,13 +26,12 @@ const StyledFooter = styled.footer`
 
 const StyledNewsletter = styled.section`
   width: 100%;
-  padding: 48px 0;
+  padding: 48px 112px;
   background: #212026;
-  
   .wrapper{
     display: flex;
     justify-content: space-between;
-    max-width: 1400px;
+    width: 100%;
     margin:0 auto;
     .info{
       display: flex;
@@ -95,7 +94,6 @@ const StyledNewsletter = styled.section`
       }
     }
   }
-
 `
 export default function WebrowseFooter() {
     return (

@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import styled, { keyframes } from 'styled-components';
-import { FaTwitter, FaGithub, FaFacebook } from 'react-icons/fa'
 import ScrollSpy from 'react-scrollspy-navigation';
 import TypeForm from "../components/TypeForm";
 import Step from '../components/Step';
@@ -363,7 +362,6 @@ const HomePage = () => {
           <Step seq={'2'} title="See which tab your teammates are viewing" desc={['Click on “tab status” to view tabs and which tab your teammates are at.', 'Clicking on any tab takes you to the tab you want to view.']} pic="https://static.nicegoodthings.com/project/ext/wb.step.2.png" />
           <Step seq="3" title="Enable Follow Mode to View Tabs Together" desc={["Follow mode allows other users to sync tabs in real time with the host.", "When there is a host, enabling follow mode will automatically take you to the tab that the host is on."]} pic="https://static.nicegoodthings.com/project/ext/wb.step.3.png" />
           <Step seq="4" title="Chat with your teammates when cobrowsing" desc="Turn on voice channel to chat with your teammates" pic="https://static.nicegoodthings.com/project/ext/wb.step.4.png" />
-
         </div>
       </StyledHowTo>
       <StyledDownloads id="links">
