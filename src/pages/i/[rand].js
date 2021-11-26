@@ -14,17 +14,19 @@ const StyledWrapper = styled.section`
 
   }
 `;
-export default function InvitePage() {
+export default function InvitePage({ rand }) {
     const [link, setLink] = useState("");
     const [err, setErr] = useState("")
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const params = new URLSearchParams(location.search)
-                const rand = params.get('r') || '';
                 const resp = await fetch(`https://vera.nicegoodthings.com/invite/${rand}`);
                 const obj = await resp.json();
-
+                console.log({ obj });
+                if (!obj) {
+                    setErr("空数据");
+                    return;
+                }
                 setLink(JSON.stringify(obj))
                 const { data = "" } = obj;
                 const [roomId, winId] = data.split('|');
@@ -38,8 +40,10 @@ export default function InvitePage() {
             }
 
         }
-        fetchData()
-    }, [])
+        if (rand) {
+            fetchData()
+        }
+    }, [rand])
     if (err) {
         return <StyledWrapper style={{ color: '#fff' }}>
             <div className="tip">
