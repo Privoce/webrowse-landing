@@ -190,6 +190,9 @@ const StyledContainer = styled.section`
           display: flex;
           list-style: none;
           gap: 72px;
+          @media screen and (max-width: 414px) {
+            flex-direction: column;
+          }
           .col{
             display: flex;
             flex-direction: column;
@@ -286,6 +289,9 @@ const StyledContainer = styled.section`
       .plans{
         margin-top: 220px;
         padding-bottom: 84px;
+        @media screen and (max-width: 414px) {
+          display: none;
+        }
         >.title{
           font-size: 36px;
           line-height: 45px;
@@ -420,10 +426,18 @@ const StyledFAQ = styled.section`
   line-height: 30px;
   margin-bottom: 64px;
  }
+ @media screen and (max-width: 414px) {
+   .header,.desc{
+     width: 90%;
+   }
+  }
  .list{
    display: flex;
    flex-direction: column;
    width: 768px;
+   @media screen and (max-width: 414px) {
+      width: 90%;
+    }
    .ask{
      border-top: 1px solid #E4E7EC;
      padding-top: 24px;

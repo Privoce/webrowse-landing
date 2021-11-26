@@ -28,11 +28,18 @@ const StyledNewsletter = styled.section`
   width: 100%;
   padding: 48px 112px;
   background: #212026;
+  @media screen and (max-width: 414px) {
+    padding: 48px 20px;
+  }
   .wrapper{
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin:0 auto;
+    @media screen and (max-width: 414px) {
+      flex-direction: column;
+      gap: 20px;
+    }
     .info{
       display: flex;
       flex-direction: column;
@@ -60,6 +67,10 @@ const StyledNewsletter = styled.section`
         display: flex;
         align-items: center;
         gap:16px ;
+        @media screen and (max-width: 414px) {
+          flex-direction: column;
+          align-items: flex-start;
+        }
         input{
           outline: none;
           padding: 10px 14px;
@@ -96,43 +107,43 @@ const StyledNewsletter = styled.section`
   }
 `
 export default function WebrowseFooter() {
-    return (
-        <>
-            <StyledNewsletter className="newsletter">
-                <div className="wrapper">
-                    <div className="info">
-                        <h3 className="title">Get notified</h3>
-                        <p className="desc">Stay up to date with the latest news, announcements, and articles.</p>
-                    </div>
-                    <div className="subscribe">
-                        <form action="https://www.getrevue.co/profile/privoce/add_subscriber" method="post" id="revue-form" name="revue-form" target="_blank">
-                            <div className="submit">
-                                <input required type="email" name="member[email]" id="member_email" placeholder="Enter your email" />
-                                <input className="btn" type="submit" value="Subscribe" name="member[subscribe]" id="member_submit" />
-                            </div>
-                        </form>
-                        <span className="tip">No Spam. Ever.</span>
-                    </div>
-                </div>
-            </StyledNewsletter>
-            <StyledFooter>
-                <div className="wrapper">
-                    <div className="copyright">© 2021  Privoce. All rights reserved.</div>
-                    <ul className="socials">
-                        {/* <li className="social">
+  return (
+    <>
+      <StyledNewsletter className="newsletter">
+        <div className="wrapper">
+          <div className="info">
+            <h3 className="title">Get notified</h3>
+            <p className="desc">Stay up to date with the latest news, announcements, and articles.</p>
+          </div>
+          <div className="subscribe">
+            <form action="https://www.getrevue.co/profile/privoce/add_subscriber" method="post" id="revue-form" name="revue-form" target="_blank">
+              <div className="submit">
+                <input required type="email" name="member[email]" id="member_email" placeholder="Enter your email" />
+                <input className="btn" type="submit" value="Subscribe" name="member[subscribe]" id="member_submit" />
+              </div>
+            </form>
+            <span className="tip">No Spam. Ever.</span>
+          </div>
+        </div>
+      </StyledNewsletter>
+      <StyledFooter>
+        <div className="wrapper">
+          <div className="copyright">© 2021  Privoce. All rights reserved.</div>
+          <ul className="socials">
+            {/* <li className="social">
                     <FaTwitter size={24} color="#787878" />
                     </li>
                     <li className="social">
                     <FaFacebook size={24} color="#787878" />
                     </li> */}
-                        <li className="social">
-                            <a href="https://github.com/Privoce/webrowse" target="_blank" rel="noopener noreferrer">
-                                <FaGithub size={24} color="#787878" />
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </StyledFooter>
-        </>
-    )
+            <li className="social">
+              <a href="https://github.com/Privoce/webrowse" target="_blank" rel="noopener noreferrer">
+                <FaGithub size={24} color="#787878" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </StyledFooter>
+    </>
+  )
 }
