@@ -1,0 +1,6 @@
+{
+    "componentChunkName": "component---src-pages-i-[rand]-js",
+    "path": "/i/[rand]/",
+    "result": {"pageContext":{}},
+    "staticQueryHashes": [],
+    "matchPath": "/i/:rand"}
