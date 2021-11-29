@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import ScrollSpy from 'react-scrollspy-navigation';
 import TypeForm from "../components/TypeForm";
 import Step from '../components/Step';
+import btn_css from '../constants/ButtonCss'
 import AnimateBrowser from '../components/AnimateBrowser'
 import SEO from '../components/SEO/webrowse';
 import WebrowseFooter from "../components/WebrowseFooter";
@@ -121,17 +122,7 @@ const StyledContainer = styled.section`
           display: none;
         }
         .btn{
-          cursor: pointer;
-          text-decoration: none;
-          border-radius: 50px;
-          background: #52EDFF;
-          border:none;
-          font-size: 14px;
-          font-weight: bold;
-          padding: 12px 24px;
-          color: #000;
-          display: flex;
-          align-items: center;
+          ${btn_css}
           &.login{
             background: none;
             color:#52EDFF;
@@ -274,9 +265,9 @@ const StyledDownloads = styled.section`
       flex-wrap: wrap;
       justify-content: center;
       gap: 96px;
-      .bro .link{
+      .bro{
         color:inherit;
-        text-decoration: none;
+        
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -295,6 +286,14 @@ const StyledDownloads = styled.section`
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+          }
+        }
+        .link{
+          margin-top: 8px;
+          text-transform: capitalize;
+          ${btn_css}
+          &.soon{
+            background: rgba(255, 255, 255, 0.2);
           }
         }
       }
@@ -325,6 +324,7 @@ const HomePage = () => {
             <ScrollSpy className="curr">
               <a className={`link`} href="#home" ref={React.createRef()}>Home</a>
               <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a>
+              <a className={`link`} href="https://discord.gg/9SrEhwXz" target="_blank" >Discord</a>
             </ScrollSpy>
           </div>
           <div className="right">
@@ -367,27 +367,31 @@ const HomePage = () => {
         <h2 className="title">Supported Browsers</h2>
         <ul className="browsers">
           <li className="bro">
+            <img src="https://static.nicegoodthings.com/project/vera/wb.chrome.png" alt="chrome browser icon" />
+            <span className="name">Chrome</span>
             <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
-              <img src="https://static.nicegoodthings.com/project/vera/wb.chrome.png" alt="chrome browser icon" />
-              <span className="name">Chrome</span>
+              download
             </a>
           </li>
           <li className="bro">
+            <img src="https://static.nicegoodthings.com/project/vera/wb.edge.png" alt="chrome browser icon" />
+            <span className="name">Edge</span>
             <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
-              <img src="https://static.nicegoodthings.com/project/vera/wb.edge.png" alt="chrome browser icon" />
-              <span className="name">Edge</span>
+              download
             </a>
           </li>
           <li className="bro">
+            <img src="https://static.nicegoodthings.com/project/vera/wb.firefox.png" alt="chrome browser icon" />
+            <span className="name">Coming soon</span>
             <a className="link" href="#" target="_blank" rel="noopener noreferrer">
-              <img src="https://static.nicegoodthings.com/project/vera/wb.firefox.png" alt="chrome browser icon" />
-              <span className="name">Coming soon</span>
+              download
             </a>
           </li>
           <li className="bro">
-            <a className="link" href="#" target="_blank" rel="noopener noreferrer">
-              <img src="https://static.nicegoodthings.com/project/vera/wb.safari.png" alt="chrome browser icon" />
-              <span className="name">Coming soon</span>
+            <img src="https://static.nicegoodthings.com/project/vera/wb.safari.png" alt="chrome browser icon" />
+            <span className="name">Coming soon</span>
+            <a className="link soon" href="#" rel="noopener noreferrer">
+              Coming soon
             </a>
           </li>
         </ul>
