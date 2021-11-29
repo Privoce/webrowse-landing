@@ -544,6 +544,7 @@ const PricingPage = () => {
             <ScrollSpy className="curr">
               <a className={`link`} href="#home" ref={React.createRef()}>Home</a>
               <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a>
+              <a className={`link`} href="https://discord.gg/9SrEhwXz" target="_blank" >Discord</a>
             </ScrollSpy>
           </div>
           <div className="right">
