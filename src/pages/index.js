@@ -132,7 +132,6 @@ const StyledContainer = styled.section`
           color: #000;
           display: flex;
           align-items: center;
-          
           &.login{
             background: none;
             color:#52EDFF;
