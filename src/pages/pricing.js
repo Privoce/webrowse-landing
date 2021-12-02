@@ -583,7 +583,7 @@ const PricingPage = () => {
                 <h4 className="head">Pro</h4>
                 <p className="desc">Advanced cobrowsing for professional teams</p>
                 <span className="price"><em>${Prices[plan]}</em>/mo</span>
-                <a href="https://checkout.stripe.com/pay/cs_live_a10u7NygrJrUgl6VPHM7J9rXuXQ793S2Iu0TC5uby5QaNsWoiF1yGOEVSv#fidkdWxOYHwnPyd1blppbHNgWjA0TVBpfUhCQmpQQVd8ZjZvXH9KQzVrZ3xJVnV8c2RzYWx%2FUTZKTFJyY0NEPHBQQEJhMU9gMz1DPVVfNUxMY2A9ZGZHf2BVZmxuS3czQDdkTzE3bHJQTFN3NTUzNXAwTk1XNycpJ3VpbGtuQH11anZgYUxhJz8nZ0xcNDIzPDN3MlR8NG5UM2pqJ3gl" target="_blank" className="btn">Start 14-day free trial</a>
+                <a href="https://buy.stripe.com/bIY17696r7Qy1kQ6oo" target="_blank" className="btn">Start 14-day free trial</a>
                 <div className="feats">
                   <h5 className="title">Key Features</h5>
                   <ul className="list">
