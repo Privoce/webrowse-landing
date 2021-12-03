@@ -152,7 +152,7 @@ export default function InvitePage() {
                 }
                 const { roomId, winId, win, activeUsers } = obj;
                 setLink(`https://nicegoodthings.com/transfer/wb/${roomId}?wid=${winId}&extid=${extId}`)
-                setTitle(win.title)
+                setTitle(win?.title || "Temporary Window")
                 setloading(false)
             } catch (error) {
                 setErr("API 有误")
