@@ -13,13 +13,22 @@ position: relative;
   justify-content: center;
   gap: 32px;
   .tip{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     color: #44494F;
     font-weight: bold;
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
+    gap: 10px;
     em{
         font-weight: 600;
+    }
+    .warning{
+        color: orange;
+        font-size: 20px;
+        line-height: 28px;
     }
   }
   .btn{
@@ -125,7 +134,8 @@ const checkExtensionInstalled = (extid) => {
 export default function InvitePage() {
     const [rand, setRand] = useState('');
     const [loading, setloading] = useState(true);
-    const [installed, setInstalled] = useState(true)
+    const [installed, setInstalled] = useState(true);
+    const [disallow, setDisallow] = useState(false);
     const [link, setLink] = useState("");
     const [title, setTitle] = useState("");
     const [err, setErr] = useState("");
@@ -153,7 +163,11 @@ export default function InvitePage() {
                 const { roomId, winId, win, activeUsers } = obj;
                 setLink(`https://nicegoodthings.com/transfer/wb/${roomId}?wid=${winId}&extid=${extId}`)
                 setTitle(win?.title || "Temporary Window")
-                setloading(false)
+                setloading(false);
+                // 检查参与人数的限制
+                if (win.user && win.user.level == 0 && activeUsers.length >= 5) {
+                    setDisallow(true);
+                }
             } catch (error) {
                 setErr("API 有误")
             }
@@ -173,9 +187,10 @@ export default function InvitePage() {
     return (
         loading ? null : <StyledWrapper>
             <div className="tip">
-                You're invited to join <em>{title}</em>
+                <p>You're invited to join <em>{title}</em></p>
+                {disallow && <p className="warning">Active users over the limit, contact the inviter please.</p>}
             </div>
-            <a className={`btn ${installed ? "" : 'disable'}`} href={link} rel="noopener noreferrer">Join Now</a>
+            <a className={`btn ${(!installed || disallow) ? "disable" : ''}`} href={link} rel="noopener noreferrer">Join Now</a>
             {!installed && <StyledDownloads id="links">
                 <h2 className="title">Install Webrowse Extension First</h2>
                 <ul className="browsers">
