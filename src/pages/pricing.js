@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react"
 import styled, { keyframes } from 'styled-components';
 import { IoAddCircleOutline } from 'react-icons/io5'
 import { FiMinusCircle } from 'react-icons/fi'
-import ScrollSpy from 'react-scrollspy-navigation';
 import TypeForm from "../components/TypeForm";
 import SEO from '../components/SEO/webrowse';
 import WebrowseFooter from "../components/WebrowseFooter";
@@ -541,11 +540,9 @@ const PricingPage = () => {
             </h2>
           </div>
           <div className="middle">
-            <ScrollSpy className="curr">
-              <a className={`link`} href="#home" ref={React.createRef()}>Home</a>
-              <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a>
-              <a className={`link`} href="https://discord.gg/9SrEhwXz" target="_blank" >Discord</a>
-            </ScrollSpy>
+            <a className={`link`} href="/#home" >Home</a>
+            <a className={`link curr`} href="/pricing" >Pricing</a>
+            <a className={`link`} href="https://discord.gg/9SrEhwXz" target="_blank" >Discord</a>
           </div>
           <div className="right">
             <a className="btn login" href="#">Log In</a>

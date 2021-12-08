@@ -2,11 +2,14 @@ import React, { useState } from "react"
 import styled, { keyframes } from 'styled-components';
 import ScrollSpy from 'react-scrollspy-navigation';
 import TypeForm from "../components/TypeForm";
-import Step from '../components/Step';
+import WhatCanDo from "../components/home/WhatCanDo";
+import WorksForYou from "../components/home/WorksForYou";
 import btn_css from '../constants/ButtonCss'
 import AnimateBrowser from '../components/AnimateBrowser'
 import SEO from '../components/SEO/webrowse';
 import WebrowseFooter from "../components/WebrowseFooter";
+import Downloads from "../components/home/Downloads";
+import Improves from "../components/home/Improves";
 const AniF = keyframes`
   from{
     opacity:0.4;
@@ -155,7 +158,6 @@ const StyledContainer = styled.section`
         display: flex;
         flex-direction: column;
         align-items: center;
-        animation-delay: 3s;
         @media screen and (max-width: 414px) {
           margin-top: 30px;
           font-size: 24px;
@@ -176,7 +178,7 @@ const StyledContainer = styled.section`
         max-width: 740px;
         text-align: center;
         margin-bottom: 98px;
-        animation-delay: 3.4s;
+        animation-delay: .4s;
         @media screen and (max-width: 414px) {
           display: none;
         }
@@ -188,7 +190,7 @@ const StyledContainer = styled.section`
         justify-content: center;
         align-items: center;
         gap: 32px;
-        animation-delay: 4s;
+        animation-delay: 1s;
         @media screen and (max-width: 414px) {
           gap:10px;
         }
@@ -209,96 +211,9 @@ const StyledContainer = styled.section`
           text-decoration: none;
         }
       }
-     
+    }
+`;
 
-    }
-`;
-const StyledHowTo = styled.section`
-    background-color:#19181D ;
-    padding-top: 72px;
-    padding-bottom: 90px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    >.title{
-      color: #fff;
-      font-size: 36px;
-      line-height: 45px;
-      padding:72px 0;
-      font-weight: 800;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      @media screen and (max-width: 414px) {
-        text-align: center;
-        padding:50px 10px;
-      }
-    }
-    .steps{
-      z-index: 9;
-      max-width: 960px;
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      @media screen and (max-width: 414px) {
-        justify-content: center;
-      }
-    }
-`;
-const StyledDownloads = styled.section`
-    padding:80px 0 160px 0;
-    background-color:#19181D;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap:48px ;
-    >.title{
-      /* font-weight: bold; */
-      font-size: 36px;
-      line-height: 45px;
-    }
-    .browsers{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 96px;
-      .bro{
-        color:inherit;
-        
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        img{
-          width:64px ;
-          height: 64px;
-
-        }
-        .name{
-          font-size: 14px;
-          line-height: 16px;
-          text-align: center;
-          @media screen and (max-width: 414px) {
-            width: 64px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-          }
-        }
-        .link{
-          margin-top: 8px;
-          text-transform: capitalize;
-          ${btn_css}
-          &.soon{
-            background: rgba(255, 255, 255, 0.2);
-          }
-        }
-      }
-    }
-`;
 
 const HomePage = () => {
   const [typeformVisible, setTypeformVisible] = useState(false);
@@ -323,7 +238,8 @@ const HomePage = () => {
           <div className="middle">
             <ScrollSpy className="curr">
               <a className={`link`} href="#home" ref={React.createRef()}>Home</a>
-              <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a>
+              <a className={`link`} href="/pricing" >Pricing</a>
+              {/* <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a> */}
               <a className={`link`} href="https://discord.gg/9SrEhwXz" target="_blank" >Discord</a>
             </ScrollSpy>
           </div>
@@ -347,55 +263,10 @@ const HomePage = () => {
           </div>
         </div>
       </StyledContainer>
-      <StyledHowTo id="howto">
-        <div className="title">
-          <span>
-            Learn how to cobrowse with your teammates
-          </span>
-          <span>
-            in 4 Simple Steps
-          </span>
-        </div>
-        <div className="steps">
-          <Step seq={1} pic="https://static.nicegoodthings.com/project/ext/wb.step.1.png" />
-          <Step seq={'2'} title="See which tab your teammates are viewing" desc={['Click on “tab status” to view tabs and which tab your teammates are at.', 'Clicking on any tab takes you to the tab you want to view.']} pic="https://static.nicegoodthings.com/project/ext/wb.step.2.png" />
-          <Step seq="3" title="Enable Follow Mode to View Tabs Together" desc={["Follow mode allows other users to sync tabs in real time with the host.", "When there is a host, enabling follow mode will automatically take you to the tab that the host is on."]} pic="https://static.nicegoodthings.com/project/ext/wb.step.3.png" />
-          <Step seq="4" title="Chat with your teammates when cobrowsing" desc="Turn on voice channel to chat with your teammates" pic="https://static.nicegoodthings.com/project/ext/wb.step.4.png" />
-        </div>
-      </StyledHowTo>
-      <StyledDownloads id="links">
-        <h2 className="title">Supported Browsers</h2>
-        <ul className="browsers">
-          <li className="bro">
-            <img src="https://static.nicegoodthings.com/project/vera/wb.chrome.png" alt="chrome browser icon" />
-            <span className="name">Chrome</span>
-            <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
-              download
-            </a>
-          </li>
-          <li className="bro">
-            <img src="https://static.nicegoodthings.com/project/vera/wb.edge.png" alt="chrome browser icon" />
-            <span className="name">Edge</span>
-            <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
-              download
-            </a>
-          </li>
-          <li className="bro">
-            <img src="https://static.nicegoodthings.com/project/vera/wb.firefox.png" alt="chrome browser icon" />
-            <span className="name">Coming soon</span>
-            <a className="link" href="#" target="_blank" rel="noopener noreferrer">
-              download
-            </a>
-          </li>
-          <li className="bro">
-            <img src="https://static.nicegoodthings.com/project/vera/wb.safari.png" alt="chrome browser icon" />
-            <span className="name">Coming soon</span>
-            <a className="link soon" href="#" rel="noopener noreferrer">
-              Coming soon
-            </a>
-          </li>
-        </ul>
-      </StyledDownloads>
+      <WhatCanDo />
+      <WorksForYou />
+      <Improves />
+      <Downloads />
       <WebrowseFooter />
     </>
   )
