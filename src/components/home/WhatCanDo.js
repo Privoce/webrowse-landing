@@ -111,7 +111,7 @@ export default function WhatCanDo() {
                 <div className="demo">
                     <img src="https://static.nicegoodthings.com/project/ext/home.demo.png" alt="demo image" />
                     <div className="desc top_left">
-                        <h5 className="head">Rename & Share</h5>
+                        <h5 className="head">Rename & Share a Window</h5>
                         <div className="txt">Rename a window and get a sharable link. Turn window into Workspace.</div>
                     </div>
                     <div className="desc top_right">
