@@ -1,15 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, } from "react"
 import styled, { keyframes } from 'styled-components';
-import ScrollSpy from 'react-scrollspy-navigation';
-import TypeForm from "../components/TypeForm";
 import WhatCanDo from "../components/home/WhatCanDo";
 import WorksForYou from "../components/home/WorksForYou";
-import btn_css from '../constants/ButtonCss'
 import AnimateBrowser from '../components/AnimateBrowser'
 import SEO from '../components/SEO/webrowse';
 import WebrowseFooter from "../components/WebrowseFooter";
 import Downloads from "../components/home/Downloads";
 import Improves from "../components/home/Improves";
+import Navbar from "../components/Navbar";
 const AniF = keyframes`
   from{
     opacity:0.4;
@@ -68,68 +66,6 @@ const StyledContainer = styled.section`
           width: 250px;
           @media screen and (max-width: 414px) {
             width: 150px;
-          }
-        }
-      }
-    }
-    .navbar{
-      position: absolute;
-      left: 0;
-      top:0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: transparent;
-      padding:15px 110px;
-      @media screen and (max-width: 414px) {
-        padding:15px 20px;
-        }
-      .left{
-        display: flex;
-        align-items: center;
-        .logo{
-          width:32px;
-          height:32px;
-          margin-right: 8px;
-        }
-        .title{
-          text-transform: capitalize;
-          font-size: 20px;
-          line-height: 25px;
-          color: #fff;
-          margin-right: 32px;
-        }
-      }
-      .middle{
-          display: flex;
-          gap:20px;
-          .link{
-            color:#787878;
-            font-size: 14px;
-            line-height: 18px;
-            text-decoration: none;
-            &:hover{
-              color: #056CF2;
-            }
-            &.curr{
-              border-bottom: 1px solid #787877;
-            }
-          }
-      }
-      .right{
-        display: flex;
-        gap:16px;
-        font-size: 16px;
-        @media screen and (max-width: 414px) {
-          display: none;
-        }
-        .btn{
-          ${btn_css}
-          &.login{
-            background: none;
-            color:#52EDFF;
-            border:2px solid #52EDFF
           }
         }
       }
@@ -216,10 +152,6 @@ const StyledContainer = styled.section`
 
 
 const HomePage = () => {
-  const [typeformVisible, setTypeformVisible] = useState(false);
-  const toggleTypeForm = () => {
-    setTypeformVisible(prev => !prev)
-  }
   return (
     <>
       <SEO />
@@ -228,28 +160,7 @@ const HomePage = () => {
         <img className="bg blob right" src="https://static.nicegoodthings.com/project/ext/wb.right-top-blob.png" alt="blob" />
         <img className="bg dots left" src="https://static.nicegoodthings.com/project/ext/wb.dots.left.btm.png" alt="dots" />
         <img className="bg dots right" src="https://static.nicegoodthings.com/project/ext/wb.dots.right.top.png" alt="dots" />
-        <nav className="navbar">
-          <div className="left">
-            <img src="https://static.nicegoodthings.com/project/ext/wb.logo.png" className="logo" alt="webrowse logo" />
-            <h2 className="title">
-              webrowse
-            </h2>
-          </div>
-          <div className="middle">
-            <ScrollSpy className="curr">
-              <a className={`link`} href="#home" ref={React.createRef()}>Home</a>
-              <a className={`link`} href="/pricing" >Pricing</a>
-              {/* <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a> */}
-              <a className={`link`} href="https://discord.gg/9SrEhwXz" target="_blank" >Discord</a>
-            </ScrollSpy>
-          </div>
-          <div className="right">
-            <a className="btn login" href="#">Log In</a>
-            <button onClick={toggleTypeForm} className="btn typeform">Join Beta Test</button>
-            {/* <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a> */}
-          </div>
-        </nav>
-        {typeformVisible && <TypeForm closeModal={toggleTypeForm} />}
+        <Navbar />
         <div className="wrapper">
           <AnimateBrowser />
           <h2 className="header">

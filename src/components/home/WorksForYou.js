@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import styled, { keyframes } from 'styled-components';
-import { Controller, Autoplay } from 'swiper'
+import { Controller, Autoplay, EffectFade } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/effect-fade';
 const FloatingV = keyframes`
     0% {
 		transform: translateY(0px);
@@ -79,23 +80,73 @@ margin:180px 0;
             width: 100%;
         .slide{
             width: 100%;
-            height: 100%;
+            height: 520px;
             display: flex;
-            padding: 50px 0 0 60px;
+            padding: 0 0 0 60px;
             justify-content: space-between;
             &.slide_1{
-                background-color: rgba(149, 122, 255, 0.16);
+                background: linear-gradient(128.79deg, #7630E3 0%, #DBA6CC 100%);
+                .right {
+                    .floater{
+                        width: 296px;
+                        &.seq_1{
+                            bottom: 40px;
+                            right: 256px;
+                        }
+                    }
+                    .bg{
+                        width: 480px;
+                        right: 0;
+                        bottom: 0;
+                    }
+                }
             }
             &.slide_2{
-                background-color: rgba(24, 182, 170, 0.16);
+                background: linear-gradient(307.33deg, #FFA995 0%, #FF0C46 100%);
+                .right{
+                    .bg{
+                        width: 192px;
+                        top: 44px;
+                        right: 50px;
+                    }
+                    .floater{
+                        width:360px;
+                        &.seq_1{
+                            bottom:258px;
+                            right: 232px;
+                        }
+                        &.seq_2{
+                            bottom:150px;
+                            right: 166px;
+                            animation-delay: 1s;
+                        }
+                        &.seq_3{
+                            bottom: 40px;
+                            right: 232px;
+                            animation-delay: 2s;
+                        }
+                    }
+                }
             }
             &.slide_3{
-                background-color: rgba(255, 94, 133, 0.16);
+                background: linear-gradient(128.79deg, #ACCBEE 0%, #E7F0FD 100%);
+                .right{
+                    .bg{
+                        width: 493px;
+                        top: 61px;
+                        right: 61px;
+                    }
+                    .floater{
+                        width: 297px;
+                        right: 155px;
+                        bottom: 56px;
+                    }
+                }
             }
             .left{
-                padding-top: 14px;
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
                 gap: 32px;
                 color: #fff;
                 width: 440px;
@@ -113,70 +164,52 @@ margin:180px 0;
                 }
             }
             .right{
+                flex: 1;
                 position: relative;
-                width: 584px;
                 img{
                     width: 100%;
                 }
                 .bg{
+                    position: absolute;
                     animation: ${Fade} 4s ease-in-out infinite alternate;
                 }
                 .floater{
                     position: absolute;
-                    width:360px;
                     animation: ${FloatingV} 6s ease-in-out infinite alternate;
-                    &.seq_1{
-                        top:120px;
-                        left: -20px;
-                    }
-                    &.seq_2{
-                        top:230px;
-                        left: 40px;
-                        animation-delay: 1s;
-                    }
-                    &.seq_3{
-                        top:340px;
-                        left: -20px;
-                        animation-delay: 2s;
-                    }
                 }
             }
         }}
     }
 `;
 const Slides = [{
+    title: "Team Collaboration",
+    content: `Turn any web app instantly collaborative. Convene over GitHub, Notion, Figma, and more in real time. Seamlessly integrate with leading productivity apps. Or use multiple tabs to open them all at once.`,
+    pic: {
+        bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.1.png?s',
+        floaters: [
+            `https://static.nicegoodthings.com/project/ext/slide.1.floater.1.png?e`,
+        ]
+    }
+}, {
     title: "Courses & Education",
     content: `Turn passive training sessions into active ones by seamlessly granting control to your audience at the right time. 
     Interview, Homework, 1 on 1, Team Meeting, anything you want.`,
     pic: {
-        bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.1.png',
+        bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.2.png',
         floaters: [
-            `https://static.nicegoodthings.com/project/ext/slide.1.floater.1.png`,
-            `https://static.nicegoodthings.com/project/ext/slide.1.floater.2.png`,
-            `https://static.nicegoodthings.com/project/ext/slide.1.floater.3.png`
+            `https://static.nicegoodthings.com/project/ext/slide.2.floater.1.png`,
+            `https://static.nicegoodthings.com/project/ext/slide.2.floater.2.png`,
+            `https://static.nicegoodthings.com/project/ext/slide.2.floater.3.png`
         ]
     }
 }, {
-    title: "Team Collaboration",
-    content: `Turn any web app instantly collaborative. Convene over GitHub, Notion, Figma, and more in real time. Seamlessly integrate with leading productivity apps. Or use multiple tabs to open them all at once.`,
-    pic: {
-        bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.1.png',
-        floaters: [
-            `https://static.nicegoodthings.com/project/ext/slide.1.floater.1.png`,
-            `https://static.nicegoodthings.com/project/ext/slide.1.floater.2.png`,
-            `https://static.nicegoodthings.com/project/ext/slide.1.floater.3.png`
-        ]
-    }
-}, {
-    title: "Solo Mode",
+    title: "Workspace",
     content: `When you are not in a meeting, you can even use it as a tab groups bookmark tool for your own use.
     Unlike Browesers naive tab group, you don’t have to add or update your bookmarks, it sync automatically save and update for you.`,
     pic: {
-        bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.1.png',
+        bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.3.png',
         floaters: [
-            `https://static.nicegoodthings.com/project/ext/slide.1.floater.1.png`,
-            `https://static.nicegoodthings.com/project/ext/slide.1.floater.2.png`,
-            `https://static.nicegoodthings.com/project/ext/slide.1.floater.3.png`
+            `https://static.nicegoodthings.com/project/ext/slide.3.floater.1.png`,
         ]
     }
 },]
@@ -198,6 +231,7 @@ export default function WorksForYou() {
                     <li className={`dot ${activeIdx == 2 ? 'active' : ''}`} onClick={handleSlideNav.bind(null, 2)}></li>
                 </ul>
                 <Swiper
+                    effect="fade"
                     autoplay={{
                         delay: 6000
                     }}
@@ -206,7 +240,7 @@ export default function WorksForYou() {
                     onSlideChange={({ activeIndex }) => {
                         setActiveIdx(activeIndex)
                     }}
-                    modules={[Autoplay, Controller]}
+                    modules={[EffectFade, Autoplay, Controller]}
                     onSwiper={setControlledSwiper}
                 >
                     {Slides.map((s, idx) => {

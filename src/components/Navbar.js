@@ -1,111 +1,146 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import ScrollSpy from 'react-scrollspy-navigation';
-import TypeForm from "./TypeForm";
-
-const Navbar = () => {
-  const [typeformVisible, setTypeformVisible] = useState(false);
-  const toggleTypeForm = () => {
-    setTypeformVisible(prev => !prev)
+import { AuthingGuard } from '@authing/react-ui-components'
+// 引入 css 文件
+import '@authing/react-ui-components/lib/index.min.css';
+import GuardConfig, { appId } from '../constants/guardConfig'
+const Navbar = ({ curr = 'home', updateUser = null }) => {
+  const [user, setUser] = useState(null);
+  const [guardVisible, setGuardVisible] = useState(false);
+  // 及时地同步给父组件
+  useEffect(() => {
+    updateUser && updateUser(user)
+  }, [user]);
+  const handleGuardLoad = async (authClient) => {
+    let currUser = await authClient.getCurrentUser();
+    console.log({ currUser });
+    // const { userInfo, session } = authingResp;
+    if (currUser) {
+      setGuardVisible(false);
+      setUser(currUser);
+    }
+  };
+  const handleGuardLogin = async (user) => {
+    console.log('login', { user });
+    setUser(user);
+    setGuardVisible(false);
+  };
+  const handleGuardClose = () => {
+    setGuardVisible(false);
+  };
+  const handleRegComplete = (user) => {
+    setUser(user);
+    setGuardVisible(false);
+  };
+  const handleLogin = () => {
+    setGuardVisible(true)
   }
   return (
     <>
+      <AuthingGuard
+        visible={guardVisible}
+        onRegisterInfoCompleted={handleRegComplete}
+        // onRegister={handleReg}
+        onClose={handleGuardClose}
+        onLogin={handleGuardLogin}
+        onLoad={handleGuardLoad}
+        appId={appId}
+        config={GuardConfig}
+      />
       <NavStyles className="navbar">
         <div className="left">
-          <img src="https://static.nicegoodthings.com/works/vera/wb-logo.png" className="logo" alt="webrowse logo" />
+          <img src="https://static.nicegoodthings.com/project/ext/wb.logo.png" className="logo" alt="webrowse logo" />
           <h2 className="title">
             webrowse
           </h2>
         </div>
         <div className="middle">
-          <ScrollSpy className="curr">
-            <a className={`link`} href="#home" ref={React.createRef()}>Home</a>
-            <a className={`link`} href="#howto" ref={React.createRef()}>How It Works</a>
-          </ScrollSpy>
+          <a className={`link ${curr == 'home' ? 'curr' : ""}`} href="/#home" >Home</a>
+          <a className={`link ${curr == 'pricing' ? 'curr' : ""}`} href="/pricing" >Pricing</a>
+          <a className={`link`} href="https://discord.gg/9SrEhwXz" target="_blank" >Discord</a>
         </div>
         <div className="right">
-          <a className="btn login" href="#">Log In</a>
-          <button onClick={toggleTypeForm} className="btn typeform">Join Beta Test</button>
+          {user ? <a className="btn login" href="#">{user.username}</a> : <button className="btn login" onClick={handleLogin}>Log In</button>}
+          <a href="https://cron.com/han/bs4y4zus" target="_blank" className="btn typeform">Request Demo</a>
           {/* <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a> */}
         </div>
       </NavStyles>
-      {typeformVisible && <TypeForm closeModal={toggleTypeForm} />}
     </>
   )
 }
 
 export const NavStyles = styled.nav`
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  width: 100%;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #FFFFFF;
-  box-shadow: 0px 4px 12px rgba(185, 185, 185, 0.25);
-  padding:15px 28px;
-  .left{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
     display: flex;
     align-items: center;
-    .logo{
-      width:32px;
-      height:32px;
-      margin-right: 5px;
-    }
-    .title{
-      text-transform: capitalize;
-      font-size: 20px;
-      line-height: 25px;
-      color: #056CF2;
-      margin-right: 32px;
-    }
-    
-  }
-  .middle{
-      display: flex;
-      gap:20px;
-      .link{
-        color:#616161;
-        font-size: 14px;
-        line-height: 18px;
-        text-decoration: none;
-        &:hover{
-          color: #056CF2;
-        }
-        &.curr{
-          color:#000;
-          border-bottom: 1px solid #000;
-        }
-      }
-  }
-  .right{
-    display: flex;
-    gap:16px;
-    font-size: 16px;
+    justify-content: space-between;
+    background: transparent;
+    padding:15px 110px;
     @media screen and (max-width: 414px) {
-       display: none;
-    }
-    .btn{
-      cursor: pointer;
-      text-decoration: none;
-      border-radius: 5px;
-      background: #056CF2;
-      border:none;
-      font-weight: bold;
-      padding: 12px 16px;
-      color: #fff;
+      padding:15px 20px;
+      }
+    .left{
       display: flex;
       align-items: center;
-      &.login{
-        background: none;
-        color:#056CF2;
-        border:2px solid #056CF2
+      .logo{
+        width:32px;
+        height:32px;
+        margin-right: 8px;
+      }
+      .title{
+        text-transform: capitalize;
+        font-size: 20px;
+        line-height: 25px;
+        color: #fff;
+        margin-right: 32px;
       }
     }
-  }
+    .middle{
+        display: flex;
+        gap:20px;
+        .link{
+          color:#787878;
+          font-size: 14px;
+          line-height: 18px;
+          text-decoration: none;
+          &:hover{
+            color: #056CF2;
+          }
+          &.curr{
+            border-bottom: 1px solid #787877;
+          }
+        }
+    }
+    .right{
+      display: flex;
+      gap:16px;
+      font-size: 16px;
+      @media screen and (max-width: 414px) {
+        display: none;
+      }
+      .btn{
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 50px;
+        background: #52EDFF;
+        border:none;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 12px 24px;
+        color: #000;
+        display: flex;
+        align-items: center;
+        
+        &.login{
+          background: none;
+          color:#52EDFF;
+          border:2px solid #52EDFF
+        }
+      }
+    }
 `
 
 export default Navbar

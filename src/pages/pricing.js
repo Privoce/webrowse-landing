@@ -2,8 +2,9 @@ import React, { useRef, useState } from "react"
 import styled, { keyframes } from 'styled-components';
 import { IoAddCircleOutline } from 'react-icons/io5'
 import { FiMinusCircle } from 'react-icons/fi'
-import TypeForm from "../components/TypeForm";
 import SEO from '../components/SEO/webrowse';
+import NavBar from '../components/Navbar';
+import PaymentButton from '../components/PaymentButton'
 import WebrowseFooter from "../components/WebrowseFooter";
 const AniF = keyframes`
   from{
@@ -53,79 +54,6 @@ const StyledContainer = styled.section`
           width: 250px;
           @media screen and (max-width: 414px) {
             width: 150px;
-          }
-        }
-      }
-    }
-    .navbar{
-      position: absolute;
-      left: 0;
-      top:0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: transparent;
-      padding:15px 110px;
-      @media screen and (max-width: 414px) {
-        padding:15px 20px;
-        }
-      .left{
-        display: flex;
-        align-items: center;
-        .logo{
-          width:32px;
-          height:32px;
-          margin-right: 8px;
-        }
-        .title{
-          text-transform: capitalize;
-          font-size: 20px;
-          line-height: 25px;
-          color: #fff;
-          margin-right: 32px;
-        }
-      }
-      .middle{
-          display: flex;
-          gap:20px;
-          .link{
-            color:#787878;
-            font-size: 14px;
-            line-height: 18px;
-            text-decoration: none;
-            &:hover{
-              color: #056CF2;
-            }
-            &.curr{
-              border-bottom: 1px solid #787877;
-            }
-          }
-      }
-      .right{
-        display: flex;
-        gap:16px;
-        font-size: 16px;
-        @media screen and (max-width: 414px) {
-          display: none;
-        }
-        .btn{
-          cursor: pointer;
-          text-decoration: none;
-          border-radius: 50px;
-          background: #52EDFF;
-          border:none;
-          font-size: 14px;
-          font-weight: bold;
-          padding: 12px 24px;
-          color: #000;
-          display: flex;
-          align-items: center;
-          
-          &.login{
-            background: none;
-            color:#52EDFF;
-            border:2px solid #52EDFF
           }
         }
       }
@@ -222,6 +150,8 @@ const StyledContainer = styled.section`
               }
             }
             .btn{
+              cursor: pointer;
+              border: none;
               color: #222;
               text-decoration: none;
               padding: 12px 24px;
@@ -482,8 +412,14 @@ const StyledFAQ = styled.section`
 `;
 
 const Prices = {
-  mon: 12,
-  ann: 8
+  mon: {
+    count: 12,
+    pid: 'price_1JrkyKGGoUDRyc3jD71s4HkW'
+  },
+  ann: {
+    count: 8,
+    pid: 'price_1JzO1gGGoUDRyc3jXCY8WMmH'
+  }
 };
 const Questions = [{
   ask: 'Is there a free trial available?',
@@ -508,12 +444,9 @@ const Questions = [{
 },
 ]
 const PricingPage = () => {
-  const faqsRef = useRef(null)
+  const faqsRef = useRef(null);
+  const [currentUser, setCurrentUser] = useState(null)
   const [plan, setPlan] = useState('ann')
-  const [typeformVisible, setTypeformVisible] = useState(false);
-  const toggleTypeForm = () => {
-    setTypeformVisible(prev => !prev)
-  }
   const handleSelectPlan = () => {
     setPlan(prev => prev == 'mon' ? 'ann' : 'mon')
   }
@@ -532,25 +465,7 @@ const PricingPage = () => {
         <img className="bg blob right" src="https://static.nicegoodthings.com/project/ext/wb.right-top-blob.png" alt="blob" />
         <img className="bg dots left" src="https://static.nicegoodthings.com/project/ext/wb.dots.left.btm.png" alt="dots" />
         <img className="bg dots right" src="https://static.nicegoodthings.com/project/ext/wb.dots.right.top.png" alt="dots" />
-        <nav className="navbar">
-          <div className="left">
-            <img src="https://static.nicegoodthings.com/project/ext/wb.logo.png" className="logo" alt="webrowse logo" />
-            <h2 className="title">
-              webrowse
-            </h2>
-          </div>
-          <div className="middle">
-            <a className={`link`} href="/#home" >Home</a>
-            <a className={`link curr`} href="/pricing" >Pricing</a>
-            <a className={`link`} href="https://discord.gg/9SrEhwXz" target="_blank" >Discord</a>
-          </div>
-          <div className="right">
-            <a className="btn login" href="#">Log In</a>
-            <button onClick={toggleTypeForm} className="btn typeform">Join Beta Test</button>
-            {/* <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a> */}
-          </div>
-        </nav>
-        {typeformVisible && <TypeForm closeModal={toggleTypeForm} />}
+        <NavBar curr="pricing" updateUser={setCurrentUser} />
         <section className="wrapper">
           <div className="pricing">
             <h2 className="title">Pricing</h2>
@@ -579,8 +494,8 @@ const PricingPage = () => {
               <li className={`col pro ${plan}`}>
                 <h4 className="head">Pro</h4>
                 <p className="desc">Advanced cobrowsing for professional teams</p>
-                <span className="price"><em>${Prices[plan]}</em>/mo</span>
-                <a href="https://buy.stripe.com/bIY17696r7Qy1kQ6oo" target="_blank" className="btn">Start 14-day free trial</a>
+                <span className="price"><em>${Prices[plan].count}</em>/mo</span>
+                <PaymentButton priceId={Prices[plan].pid} user={currentUser} />
                 <div className="feats">
                   <h5 className="title">Key Features</h5>
                   <ul className="list">
@@ -593,7 +508,7 @@ const PricingPage = () => {
               </li>
               <li className="col enterprise">
                 <h4 className="head">Enterprise</h4>
-                <p className="desc">A cobrowsing experience that scales with the size of your organization</p>
+                <p className="desc">Fast and easy way to get started cobrowing with your team</p>
                 <span className="price"><em>Let's Talk</em></span>
                 <a className="btn">Contact Us</a>
                 <div className="feats">
@@ -623,8 +538,9 @@ const PricingPage = () => {
                 </li>
                 <li className="box pro">
                   <h5 className="head">Pro</h5>
-                  <span className="price"><em>${Prices[plan]}</em>/mo</span>
-                  <button className="btn">Start Free Trial</button>
+                  <span className="price"><em>${Prices[plan].count}</em>/mo</span>
+                  <PaymentButton priceId={Prices[plan].pid} user={currentUser} txt={`Start Free Trial`} />
+                  {/* <button className="btn">Start Free Trial</button> */}
                 </li>
                 <li className="box">
                   <h5 className="head">Enterprise</h5>
@@ -675,14 +591,15 @@ const PricingPage = () => {
         <StyledFAQ>
           <h3 className="header">Frequently asked questions</h3>
           <p className="desc">Everything you need to know about the product and billing.</p>
-          <dl className="list" ref={faqsRef}>
+          <div className="list">
             {Questions.map(({ ask, ans }, idx) => {
-              return <>
-                <dt key={idx} className={`ask ${idx == 0 ? 'expand' : ''}`}>{ask} <FiMinusCircle onClick={handleFaqToggle} className="collapse toggle" color="#98A2B3" />  <IoAddCircleOutline onClick={handleFaqToggle} className="expand toggle" color="#1FE1F9" /></dt>
-                <dd key={idx} className="ans">{ans}</dd>
-              </>
+              return <dl key={ask} className="list" ref={faqsRef}>
+                <dt className={`ask ${idx == 0 ? 'expand' : ''}`}>{ask} <FiMinusCircle onClick={handleFaqToggle} className="collapse toggle" color="#98A2B3" />  <IoAddCircleOutline onClick={handleFaqToggle} className="expand toggle" color="#1FE1F9" /></dt>
+                <dd className="ans">{ans}</dd>
+              </dl>
             })}
-          </dl>
+
+          </div>
         </StyledFAQ>
       </StyledContainer>
       <WebrowseFooter />

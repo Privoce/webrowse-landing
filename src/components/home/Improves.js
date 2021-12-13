@@ -8,6 +8,7 @@ const StyledSection = styled.section`
     gap: 80px;
     z-index: 999;
     .title{
+        text-align: center;
         width: 500px;
         color: #fff;
         /* font-weight: bold; */
