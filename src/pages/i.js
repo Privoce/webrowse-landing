@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import btn_css from '../constants/ButtonCss'
-
+import { FetchInviteData } from '../constants/APIs'
 const StyledWrapper = styled.section`
 position: relative;
   width:100vw;
@@ -153,7 +153,7 @@ export default function InvitePage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const resp = await fetch(`https://vera.nicegoodthings.com/invite/${rand}`);
+                const resp = await fetch(`${FetchInviteData}${rand}`);
                 const obj = await resp.json();
                 console.log({ obj });
                 if (!obj) {
@@ -161,7 +161,7 @@ export default function InvitePage() {
                     return;
                 }
                 const { roomId, winId, win, activeUsers } = obj;
-                setLink(`https://nicegoodthings.com/transfer/wb/${roomId}?wid=${winId}&extid=${extId}`)
+                setLink(`https://webrow.se/transfer?r=${roomId}&w=${winId}`)
                 setTitle(win?.title || "Temporary Window")
                 setloading(false);
                 // 检查参与人数的限制
