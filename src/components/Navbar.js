@@ -60,7 +60,7 @@ const Navbar = ({ curr = 'home', updateUser = null }) => {
           <a className={`link`} href="https://discord.gg/9SrEhwXz" target="_blank" >Discord</a>
         </div>
         <div className="right">
-          {user ? <a className="btn login" href="#">{user.username}</a> : <button className="btn login" onClick={handleLogin}>Log In</button>}
+          {user ? <a className="btn login" href="https://portal-china.authing.cn/u">{user.username}</a> : <button className="btn login" onClick={handleLogin}>Log In</button>}
           <a href="https://cron.com/han/bs4y4zus" target="_blank" className="btn typeform">Request Demo</a>
           {/* <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a> */}
         </div>
@@ -81,7 +81,7 @@ export const NavStyles = styled.nav`
     padding:15px 110px;
     @media screen and (max-width: 414px) {
       padding:15px 20px;
-      }
+    }
     .left{
       display: flex;
       align-items: center;
