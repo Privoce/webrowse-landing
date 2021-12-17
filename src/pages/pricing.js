@@ -410,11 +410,10 @@ const StyledFAQ = styled.section`
    }
  }
 `;
-
 const Prices = {
   mon: {
     count: 12,
-    pid: 'price_1JrkyKGGoUDRyc3jD71s4HkW'
+    pid: 'price_1K6tQBGGoUDRyc3jJrnb7WfJ'
   },
   ann: {
     count: 8,
@@ -571,12 +570,6 @@ const PricingPage = () => {
                     <td className="val">1</td>
                     <td className="val">Unlimited</td>
                   </tr>
-                  {/* <tr className="row">
-                    <td className="feat">Co-hosting</td>
-                    <td className="val">-</td>
-                    <td className="val">2</td>
-                    <td className="val">Unlimited</td>
-                  </tr> */}
                   <tr className="row">
                     <td className="feat">Voice Channel</td>
                     <td className="val">10</td>

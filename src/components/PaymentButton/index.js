@@ -37,7 +37,9 @@ export default function PaymentButton({ priceId = null, user, txt = "Start 14-da
             setGuardVisible(true)
             return
         }
-        if (!priceId) return;
+        if (!priceId || subCreating) return;
+        console.log(priceId);
+        // return;
         const { id, username, email } = currUser;
         setSubCreating(true)
         const resp = await fetch(SubscriptionCreate, {
@@ -46,17 +48,17 @@ export default function PaymentButton({ priceId = null, user, txt = "Start 14-da
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                priceId: priceId,
+                priceId,
                 user: {
                     id, username, email
                 }
             }),
         });
         const data = await resp.json();
-        setSubCreating(false)
         if (data && data.session_url) {
             location.href = data.session_url
         }
+        setSubCreating(false)
         // console.log({ priceId });
     }
     return (
