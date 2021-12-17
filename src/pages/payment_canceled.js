@@ -10,12 +10,12 @@ const StyledWrapper = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 32px;
+    gap: 80px;
     .tip{
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: orange;
+        color: #000;
         font-weight: bold;
         font-weight: 500;
         font-size: 40px;
@@ -23,15 +23,21 @@ const StyledWrapper = styled.section`
         em{
             font-weight: 600;
         }
+        .desc{
+            color:#666;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+        }
     }
     .back{
         background-color: #52E9FB;
         border-radius: 20px;
-        color: #fff;
+        color: #000;
         font-weight: bold;
-        font-size: 12px;
-        line-height: 18px;
-        padding: 4px 12px;
+        font-size: 14px;
+        line-height: 14px;
+        padding: 12px 24px;
         text-decoration: none;
     }
     footer{
@@ -56,9 +62,10 @@ export default function PaymentCancel() {
     return (
         <StyledWrapper>
             <div className="tip">
-                <p>Payment <em>Canceled</em></p>
+                <p>Payment Canceled</p>
+                <div className="desc">You may close this window now</div>
             </div>
-            <a className="back" href="http://webrow.se" rel="noopener noreferrer">Back Home</a>
+            <a className="back" href="/" rel="noopener noreferrer">Back Home</a>
             <footer>
                 <img className="logo" src="https://static.nicegoodthings.com/project/ext/webrowse.logo.png" alt="logo" />
                 <span className="title">Webrowse</span>

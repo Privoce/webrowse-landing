@@ -21,7 +21,6 @@ const StyledDownloads = styled.section`
       gap: 96px;
       .bro{
         color:inherit;
-        
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -54,39 +53,39 @@ const StyledDownloads = styled.section`
     }
 `;
 export default function Downloads() {
-    return (
-        <StyledDownloads id="links">
-            <h2 className="title">Supported Browsers</h2>
-            <ul className="browsers">
-                <li className="bro">
-                    <img src="https://static.nicegoodthings.com/project/vera/wb.chrome.png" alt="chrome browser icon" />
-                    <span className="name">Chrome</span>
-                    <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
-                        download
-                    </a>
-                </li>
-                <li className="bro">
-                    <img src="https://static.nicegoodthings.com/project/vera/wb.edge.png" alt="chrome browser icon" />
-                    <span className="name">Edge</span>
-                    <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
-                        download
-                    </a>
-                </li>
-                <li className="bro">
-                    <img src="https://static.nicegoodthings.com/project/vera/wb.firefox.png" alt="chrome browser icon" />
-                    <span className="name">Firefox</span>
-                    <a className="link soon" href="#" rel="noopener noreferrer">
-                        Coming soon
-                    </a>
-                </li>
-                <li className="bro">
-                    <img src="https://static.nicegoodthings.com/project/vera/wb.safari.png" alt="chrome browser icon" />
-                    <span className="name">Safari</span>
-                    <a className="link soon" href="#" rel="noopener noreferrer">
-                        Coming soon
-                    </a>
-                </li>
-            </ul>
-        </StyledDownloads>
-    )
+  return (
+    <StyledDownloads id="links">
+      <h2 className="title">Supported Browsers</h2>
+      <ul className="browsers">
+        <li className="bro">
+          <img src="https://static.nicegoodthings.com/project/vera/wb.chrome.png" alt="chrome browser icon" />
+          <span className="name">Chrome</span>
+          <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
+            download
+          </a>
+        </li>
+        <li className="bro">
+          <img src="https://static.nicegoodthings.com/project/vera/wb.edge.png" alt="chrome browser icon" />
+          <span className="name">Edge</span>
+          <a className="link" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related" target="_blank" rel="noopener noreferrer">
+            download
+          </a>
+        </li>
+        <li className="bro">
+          <img src="https://static.nicegoodthings.com/project/vera/wb.firefox.png" alt="chrome browser icon" />
+          <span className="name">Firefox</span>
+          <a className="link soon" href="#" rel="noopener noreferrer">
+            Coming soon
+          </a>
+        </li>
+        <li className="bro">
+          <img src="https://static.nicegoodthings.com/project/vera/wb.safari.png" alt="chrome browser icon" />
+          <span className="name">Safari</span>
+          <a className="link soon" href="#" rel="noopener noreferrer">
+            Coming soon
+          </a>
+        </li>
+      </ul>
+    </StyledDownloads>
+  )
 }

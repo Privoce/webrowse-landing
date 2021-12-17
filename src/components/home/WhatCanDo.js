@@ -22,6 +22,10 @@ margin:180px 0;
         justify-content: center;
         align-items: center;
         padding:194px 318px;
+        @media screen and (max-width: 414px) {
+            max-width:100%;
+            padding:20px;
+        }
         .demo{
             position: relative;
             max-width: 580px;
@@ -36,6 +40,9 @@ margin:180px 0;
                 gap: 8px;
                 color: #fff;
                 max-width: 300px;
+                @media screen and (max-width: 414px) {
+                    display:none;
+                }
                 &:after{
                     content: "";
                     position: absolute;

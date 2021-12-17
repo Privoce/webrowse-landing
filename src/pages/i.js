@@ -71,7 +71,7 @@ const StyledDownloads = styled.section`
     align-items: center;
     gap:64px ;
     >.title{
-        color: #1C1C1E;
+        color: #667085;
       /* font-weight: bold; */
       font-weight: 500;
         font-size: 18px;
@@ -92,7 +92,6 @@ const StyledDownloads = styled.section`
         img{
           width:64px ;
           height: 64px;
-
         }
         .name{
           font-size: 14px;
@@ -109,9 +108,11 @@ const StyledDownloads = styled.section`
           margin-top: 8px;
           text-transform: capitalize;
           ${btn_css}
-          &.soon{
-            background: rgba(255, 255, 255, 0.2);
-          }
+            background: #FFFFFF;
+            box-shadow: 0px 2px 5px rgba(60, 66, 87, 0.08), 0px 0px 0px 1px rgba(60, 66, 87, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.12);
+            &.soon{
+                box-shadow:none;
+            }
         }
       }
     }

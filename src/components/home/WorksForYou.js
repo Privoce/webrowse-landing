@@ -31,7 +31,7 @@ const Fade = keyframes`
 	}
 `;
 const StyledSection = styled.section`
-margin:180px 0;
+    margin:180px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,6 +55,10 @@ margin:180px 0;
         align-items: center;
         padding:0;
         overflow: hidden;
+        @media screen and (max-width: 414px) {
+            max-width:100%;
+            flex-direction:column;
+        }
         .nav{
             position: absolute;
             left: 60px;
@@ -177,6 +181,11 @@ margin:180px 0;
                     position: absolute;
                     animation: ${FloatingV} 6s ease-in-out infinite alternate;
                 }
+                @media screen and (max-width: 414px) {
+                    .bg,.floater{
+                        display:none;
+                    }
+                }
             }
         }}
     }
@@ -185,9 +194,9 @@ const Slides = [{
     title: "Team Collaboration",
     content: `Turn any web app instantly collaborative. Convene over GitHub, Notion, Figma, and more in real time. Seamlessly integrate with leading productivity apps. Or use multiple tabs to open them all at once.`,
     pic: {
-        bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.1.png?s',
+        bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.1.png?2',
         floaters: [
-            `https://static.nicegoodthings.com/project/ext/slide.1.floater.1.png?e`,
+            `https://static.nicegoodthings.com/project/ext/slide.1.floater.1.png?2`,
         ]
     }
 }, {
@@ -197,9 +206,9 @@ const Slides = [{
     pic: {
         bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.2.png',
         floaters: [
-            `https://static.nicegoodthings.com/project/ext/slide.2.floater.1.png`,
-            `https://static.nicegoodthings.com/project/ext/slide.2.floater.2.png`,
-            `https://static.nicegoodthings.com/project/ext/slide.2.floater.3.png`
+            `https://static.nicegoodthings.com/project/ext/slide.2.floater.1.png?2`,
+            `https://static.nicegoodthings.com/project/ext/slide.2.floater.2.png?2`,
+            `https://static.nicegoodthings.com/project/ext/slide.2.floater.3.png?2`
         ]
     }
 }, {
@@ -207,9 +216,9 @@ const Slides = [{
     content: `When you are not in a meeting, you can even use it as a tab groups bookmark tool for your own use.
     Unlike Browesers naive tab group, you don’t have to add or update your bookmarks, it sync automatically save and update for you.`,
     pic: {
-        bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.3.png',
+        bg: 'https://static.nicegoodthings.com/project/ext/webrowse.slide.bg.3.png?2',
         floaters: [
-            `https://static.nicegoodthings.com/project/ext/slide.3.floater.1.png`,
+            `https://static.nicegoodthings.com/project/ext/slide.3.floater.1.png?2`,
         ]
     }
 },]
@@ -223,7 +232,7 @@ export default function WorksForYou() {
     }
     return (
         <StyledSection>
-            <h3 className="title">Every workflow works for you</h3>
+            <h3 className="title">Remote collaborations made simple</h3>
             <div className="box">
                 <ul className="nav">
                     <li className={`dot ${activeIdx == 0 ? 'active' : ''}`} onClick={handleSlideNav.bind(null, 0)}></li>
