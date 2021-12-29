@@ -30,7 +30,7 @@ const FadeIn = keyframes`
 const StyledContainer = styled.section`
     font-family: Arial, Helvetica, sans-serif;
     position: relative;
-    padding-top: 156px;
+    padding-top: 240px;
     background-color:#19181D ;
     .bg{
       position: absolute;

@@ -17,7 +17,7 @@ const AniF = keyframes`
 const StyledContainer = styled.section`
     font-family: Arial, Helvetica, sans-serif;
     position: relative;
-    padding-top: 156px;
+    padding-top: 240px;
     padding-bottom: 80px;
     background:#19181D;
     .bg{
@@ -254,15 +254,17 @@ const StyledContainer = styled.section`
             gap: 52px;
             list-style: none;
             .box{
+              position: relative;
               width: 210px;
+              height: 194px;
               display: flex;
               flex-direction: column;
-              justify-content: space-between;
+              justify-content: center;
               align-items: center;
               background: rgba(40, 40, 40, 0.8);
               border: 2px solid #FFFFFF;
               border-radius: 20px;
-              padding: 10px 42px 26px 42px;
+              /* padding: 10px 42px 26px 42px; */
               .head{
                 font-weight: 800;
                 font-size: 32px;
@@ -271,12 +273,17 @@ const StyledContainer = styled.section`
               .price{
                 font-size: 24px;
                 line-height: 60px;
-                margin-bottom: 7px;
                 em{
                   font-size: 200%;
                 }
               }
               .btn{
+                text-decoration: none;
+                cursor: pointer;
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                transform: translate3d(-50%,50%,0);
                 white-space: nowrap;
                 color: #19181D;
                 padding: 11px 24px;
@@ -350,10 +357,16 @@ const StyledFAQ = styled.section`
   margin-bottom: 20px;
  }
  .desc{
+  color: rgba(255, 255, 255, 0.5);
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
   margin-bottom: 64px;
+  a{
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  }
  }
  @media screen and (max-width: 414px) {
    .header,.desc{
@@ -509,7 +522,7 @@ const PricingPage = () => {
                 <h4 className="head">Enterprise</h4>
                 <p className="desc">Fast and easy way to get started cobrowing with your team</p>
                 <span className="price"><em>Let's Talk</em></span>
-                <a className="btn">Contact Us</a>
+                <a className="btn" href="mailto:han@privoce.com">Contact Us</a>
                 <div className="feats">
                   <h5 className="title">Key Features</h5>
                   <ul className="list">
@@ -544,7 +557,7 @@ const PricingPage = () => {
                 <li className="box">
                   <h5 className="head">Enterprise</h5>
                   <span className="price">-</span>
-                  <button className="btn">Contact Us</button>
+                  <a href="mailto:han@privoce.com" className="btn">Contact Us</a>
                 </li>
               </ul>
             </div>
@@ -581,9 +594,9 @@ const PricingPage = () => {
             </div>
           </div>
         </section>
-        <StyledFAQ>
+        <StyledFAQ id="faq">
           <h3 className="header">Frequently asked questions</h3>
-          <p className="desc">Everything you need to know about the product and billing.</p>
+          <p className="desc">Have other questions? Get in touch with our team via <a href="mailto:han@privoce.com">han@privoce.com</a></p>
           <div className="list">
             {Questions.map(({ ask, ans }, idx) => {
               return <dl key={ask} className="list" ref={faqsRef}>
