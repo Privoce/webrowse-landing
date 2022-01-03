@@ -9,8 +9,8 @@ const path = require(`path`)
 module.exports = {
   siteMetadata: {
     title: "Webrowse",
-    titleTemplate: "%s | Webrowse landing page",
-    description: "sync tabs with you teammates",
+    titleTemplate: "%s | Sync tabs with your teammates!",
+    description: "Turn any web app collaborative instantly. Create a shared workspace among your team with browser tabs synced in real time.s",
     siteUrl: "https://webrow.se",
     author: "Tristan Yang",
     authorSite: "https://yangerxiao.com",
@@ -18,13 +18,13 @@ module.exports = {
     twitterUsername: "@privoce1",
   },
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: path.join(__dirname, `src`, `images`),
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `images`,
+    //     path: path.join(__dirname, `src`, `images`),
+    //   },
+    // },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,

@@ -13,6 +13,7 @@ const SEO = ({ title, description, lang, image, article }) => {
     titleTemplate,
     defaultDescription,
     authorSite,
+    siteUrl,
     defaultImage,
     twitterUsername,
   } = site.siteMetadata
@@ -21,7 +22,7 @@ const SEO = ({ title, description, lang, image, article }) => {
     title: title || defaultTitle,
     description: description || defaultDescription,
     image: `${authorSite}${image || defaultImage}`,
-    url: `${authorSite}${pathname}`,
+    url: `${siteUrl}${pathname}`,
   }
 
   return (
@@ -30,6 +31,7 @@ const SEO = ({ title, description, lang, image, article }) => {
       title={seo.title}
       titleTemplate={titleTemplate}
     >
+      //required
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
       {seo.url && <meta property="og:url" content={seo.url} />}
@@ -39,6 +41,8 @@ const SEO = ({ title, description, lang, image, article }) => {
         <meta property="og:description" content={seo.description} />
       )}
       {seo.image && <meta property="og:image" content={seo.image} />}
+      
+      //twitter
       <meta name="twitter:card" content="summary_large_image" />
       {twitterUsername && (
         <meta name="twitter:creator" content={twitterUsername} />
@@ -48,6 +52,8 @@ const SEO = ({ title, description, lang, image, article }) => {
         <meta name="twitter:description" content={seo.description} />
       )}
       {seo.image && <meta name="twitter:image" content={seo.image} />}
+      <meta name="twitter:image:alt" content="webrowse social media banner" />
+      <meta name="keywords" content="web, chrome extension, collaboration, remote work"/>
     </Helmet>
   )
 }
@@ -77,6 +83,7 @@ const query = graphql`
         titleTemplate
         defaultDescription: description
         authorSite: authorSite
+        siteUrl: siteUrl
         defaultImage: image
         twitterUsername
       }
