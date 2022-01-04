@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 const defaultTitle = 'Webrowse - surf web together, share google chrome tabs';
 const defaultDescription = 'Turn any web app collaborative instantly. Create a shared workspace among your team with browser tabs synced in real time.'
+const defaultKeywords = 'web, chrome extension, collaboration, remote work'
 const defaultImage = 'https://static.nicegoodthings.com/project/ext/og.png';
 const titleTemplate = "%s | Webrowse Landing Page";
 const twitterUsername = '@privoce1'
@@ -10,6 +11,7 @@ const SEO = ({ title = "", description = "", lang = 'en', image = "", article = 
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
+    keywords: keywords || defaultKeywords,
     image: image || defaultImage,
     url: `https://webrow.se`,
   }
@@ -21,6 +23,7 @@ const SEO = ({ title = "", description = "", lang = 'en', image = "", article = 
       titleTemplate={titleTemplate}
     >
       <meta name="description" content={seo.description} />
+      <meta name="keywords" content={seo.keywords} />
       <meta name="image" content={seo.image} />
       <link rel="icon"
         type="image/png"
