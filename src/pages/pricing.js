@@ -471,7 +471,7 @@ const PricingPage = () => {
   }
   return (
     <>
-      <SEO />
+      <SEO title="Pricing page" />
       <StyledContainer className="viewport" id='pricing'>
         <img className="bg blob left" src="https://static.nicegoodthings.com/project/ext/wb.left-middle-blob.png" alt="blob" />
         <img className="bg blob right" src="https://static.nicegoodthings.com/project/ext/wb.right-top-blob.png" alt="blob" />

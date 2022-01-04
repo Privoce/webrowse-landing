@@ -1,27 +1,17 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
-import { useLocation } from "@reach/router"
-import { useStaticQuery, graphql } from "gatsby"
-
-const SEO = ({ title, description, lang, image, article }) => {
-  const { pathname } = useLocation()
-  const { site } = useStaticQuery(query)
-
-  const {
-    defaultTitle,
-    titleTemplate,
-    defaultDescription,
-    authorSite,
-    defaultImage,
-    twitterUsername,
-  } = site.siteMetadata
-
+const defaultTitle = 'Webrowse - surf web together, share google chrome tabs';
+const defaultDescription = 'Turn any web app collaborative instantly. Create a shared workspace among your team with browser tabs synced in real time.'
+const defaultImage = 'https://static.nicegoodthings.com/project/ext/og.png';
+const titleTemplate = "%s | Webrowse Landing Page";
+const twitterUsername = '@privoce1'
+const SEO = ({ title = "", description = "", lang = 'en', image = "", article = false }) => {
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: `${authorSite}${image || defaultImage}`,
-    url: `${authorSite}${pathname}`,
+    image: image || defaultImage,
+    url: `https://webrow.se`,
   }
 
   return (
@@ -32,8 +22,11 @@ const SEO = ({ title, description, lang, image, article }) => {
     >
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
+      <link rel="icon"
+        type="image/png"
+        href="https://static.nicegoodthings.com/project/ext/webrowse.logo.png" />
       {seo.url && <meta property="og:url" content={seo.url} />}
-      {(article ? true : null) && <meta property="og:type" content="article" />}
+      {article && <meta property="og:type" content="article" />}
       {seo.title && <meta property="og:title" content={seo.title} />}
       {seo.description && (
         <meta property="og:description" content={seo.description} />
@@ -48,6 +41,26 @@ const SEO = ({ title, description, lang, image, article }) => {
         <meta name="twitter:description" content={seo.description} />
       )}
       {seo.image && <meta name="twitter:image" content={seo.image} />}
+      <script type="application/ld+json">
+        {
+          `{
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Webrowse",
+        "operatingSystem": "CHROME",
+        "applicationCategory": "BrowserApplication",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "ratingCount": "1"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0"
+
+        }
+    }`}
+      </script>
     </Helmet>
   )
 }
@@ -68,18 +81,3 @@ SEO.defaultProps = {
   lang: `en`,
   article: false,
 }
-
-const query = graphql`
-  query SEO {
-    site {
-      siteMetadata {
-        defaultTitle: title
-        titleTemplate
-        defaultDescription: description
-        authorSite: authorSite
-        defaultImage: image
-        twitterUsername
-      }
-    }
-  }
-`
