@@ -1,4 +1,6 @@
 const GuardConfig = {
+    registerMethods: ['email'],
+    loginMethods: ['password'],
     mode: 'modal',
     logo: 'https://static.nicegoodthings.com/project/ext/wb.logo.png',
     title: 'Webrowse',

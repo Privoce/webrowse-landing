@@ -9,7 +9,7 @@ const path = require(`path`)
 module.exports = {
   siteMetadata: {
     title: "Webrowse",
-    titleTemplate: "%s | Webrowse landing page",
+    titleTemplate: "%s",
     description: "sync tabs with you teammates",
     siteUrl: "https://webrow.se",
     author: "Tristan Yang",
