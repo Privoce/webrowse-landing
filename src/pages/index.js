@@ -8,6 +8,8 @@ import WebrowseFooter from "../components/WebrowseFooter";
 import Downloads from "../components/home/Downloads";
 import Improves from "../components/home/Improves";
 import Navbar from "../components/Navbar";
+import Privacy from '../components/home/Privacy';
+
 const AniF = keyframes`
   from{
     opacity:0.4;
@@ -183,6 +185,7 @@ const HomePage = () => {
       <WorksForYou />
       <Improves />
       <Downloads />
+      <Privacy />
       <WebrowseFooter />
     </>
   )
