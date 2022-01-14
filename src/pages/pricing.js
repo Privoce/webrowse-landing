@@ -415,11 +415,11 @@ const StyledFAQ = styled.section`
    }
    .ans{
      display: none;
-     color: #667085;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 24px;
-      padding-bottom: 32px;
+     color: rgba(255, 255, 255, 0.5);
+     font-weight: normal;
+     font-size: 16px;
+     line-height: 24px;
+     padding-bottom: 32px;
    }
  }
 `;

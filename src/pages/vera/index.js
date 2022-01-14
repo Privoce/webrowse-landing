@@ -36,6 +36,7 @@ const StyledContainer = styled.section`
     }
     .line{
       position: relative;
+      color: #fff;
       &:last-child:after{
           content: "";
           position: absolute;
@@ -139,6 +140,7 @@ const StyledHowTo = styled.section`
                 line-height: 25px;
                 padding-left: 20px;
                 white-space: pre-wrap;
+                color: #fff;
                 a,strong{
                   color: #A700C5;
                 }
