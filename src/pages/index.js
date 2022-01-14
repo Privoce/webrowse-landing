@@ -111,9 +111,9 @@ const StyledContainer = styled.section`
         font-size: 24px;
         line-height: 35px;
         color: #757575;
-        max-width: 740px;
+        max-width: 960px;
         text-align: center;
-        margin-bottom: 98px;
+        margin-bottom: 38px;
         animation-delay: .4s;
         @media screen and (max-width: 414px) {
           display: none;
@@ -167,7 +167,12 @@ const HomePage = () => {
             <span className="line">Browse websites together</span>
             <span className="line">with your teammates</span>
           </h2>
-          <p className="desc">Webrowse helps your team easily collaborate via a shared browsing window during your online meetings. </p>
+          <p className="desc">
+            Webrowse helps your team to seamlessly collaborate in real time <br/>
+            via a shared browsing window during your online meetings.<br/>
+            Webrowse syncronizes your browser tabs that creates for an experience<br/>
+            that is more interactive, organized, and secure than screen sharing.
+          </p>
           <div className="download">
             <a className="btn" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
             <a href="#links" className="links">Other Browsers Extensions</a>
