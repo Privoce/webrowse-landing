@@ -22,6 +22,7 @@
     "framer-motion": "^5.5.5",
     "gatsby": "^4.4.0",
     "gatsby-plugin-google-gtag": "^4.4.0",
+    "gatsby-plugin-image": "^2.5.1",
     "gatsby-plugin-react-helmet": "^5.4.0",
     "gatsby-plugin-sitemap": "^5.4.0",
     "gatsby-plugin-styled-components": "^5.4.0",
