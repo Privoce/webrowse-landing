@@ -1,10 +1,5 @@
 import React from "react"
 import { useStaticQuery, Link, graphql } from "gatsby"
-import {
-  mainMenuItems,
-  footerMenuItems,
-  socialMenuItems,
-} from "../constants/menu-items"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
@@ -15,7 +10,10 @@ const Footer = ({ Logo }) => {
         site {
           siteMetadata {
             title
-            author
+            author {
+              name
+              summary
+            }
             authorSite
           }
         }
@@ -49,57 +47,6 @@ const Footer = ({ Logo }) => {
           </div>
         ) : null}
 
-        {mainMenuItems || socialMenuItems || footerMenuItems ? (
-          <div className="menus-cont">
-            {/* If main menu items are being imported, render this */}
-            {mainMenuItems && (
-              <ul className="footer-menu">
-                {/* First we want to filter out the Home menu item, then display the rest of them */}
-                {mainMenuItems
-                  .filter(item => {
-                    return item.title !== "home"
-                  })
-                  .map((item, index) => (
-                    <li key={`menuItem${index}`}>
-                      <Link to={item.path}>{item.title}</Link>
-                    </li>
-                  ))}
-              </ul>
-            )}
-
-            {/* If footer menu items are being imported, render this */}
-            {footerMenuItems && (
-              <ul className="footer-menu">
-                {footerMenuItems.map((item, index) => (
-                  <li key={`footerMenuItem${index}`}>
-                    <Link to={item.path}>{item.title}</Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {/* If social menu items are being imported, render this */}
-            {socialMenuItems && (
-              <ul className="footer-menu socials">
-                {socialMenuItems.map((item, index) => {
-                  return (
-                    <li key={index}>
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {item.icon}
-                        <span className="sr-only">{item.name}</span>
-                      </a>
-                    </li>
-                  )
-                })}
-              </ul>
-            )}
-          </div>
-        ) : null}
-
         <div className="copy-cont">
           <ul className="copy">
             <li>&copy; {new Date().getFullYear()}</li>
@@ -112,7 +59,7 @@ const Footer = ({ Logo }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {footerData.author}
+                  {footerData.author?.name}
                 </a>
               </li>
             )}
