@@ -1,0 +1,30 @@
+name: ci-gh-pages build
+ 
+on:
+  push:
+    branches:
+      - main
+  #schedule:   
+   # - cron: '0 5 * * *'   #国际标准时间，北京时间+8，即下午1点钟
+ 
+jobs:
+  run-csjs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main  #采用main分支下的
+           
+      - name: Setup Node.js
+        uses: actions/setup-node@v2  #安装node.js
+        with:
+          node-version: '16'
+      
+      - name: Install Dependency       
+        run: |
+          npm install
+          
+      - name: Deploy with gh-pages
+        run: |
+         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+         npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+        env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
