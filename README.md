@@ -20,7 +20,7 @@ surf web together, share google chrome tabs
   
 * 最后就可以在 `index.md` 文件里编写文章了
 
-### `Markdonw` 文章简单示例
+### `Markdown` 文章简单示例
 
 ```markdown
 ---
