@@ -12,72 +12,69 @@ const StyledTip = styled.section`
   position: relative;
   width: 100vw;
   height: 100vh;
-  display: grid;
-  grid-template-rows: .2fr auto 1fr 50px;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 100px;
   color:#fff;
   font-weight: 800;
-  background: linear-gradient(126.42deg, #4ECCC6 4.74%, #9B51E0 71.29%);
-  .header{
-    grid-row: 2;
-    margin-bottom: 1.22em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .title{
-        font-weight: bold;
-      font-size: .36em;
-      padding-left: 1.2em;
-      background-image: url('https://static.nicegoodthings.com/works/vera/white.logo.png');
-      background-size: 1em;
-      background-repeat: no-repeat;
-      margin-bottom: .2em;
-    }
-    .sub_title{
-        font-weight: 200;
-      font-weight: normal;
-      font-size: .32em;
-    }
-  }
+  background: linear-gradient(135deg, #3C8CE7 0%, #00EAFF 100%);
   .content{
     grid-row: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1.4em;
     > .desc{
-      font-weight: normal;
-      font-size: .3em;
-      margin-bottom: 1.2em;
+      font-weight: bold;
+      font-size: .36em;
+      line-height: 0.44em;
     }
     .steps{
       display: flex;
       justify-content: space-around;
-      gap: 20px;
+      gap: .95em;
       .step{
-        width:2em;
+        width:2.4em;
         img{
           filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.29));
-          border-radius: 10px;
+          border-radius: .1em;
           width:100%;
         }
         .tip{
+          font-weight: normal;
           margin-top: .2em;
           text-align: center;
           line-height: 1.4;
           display: flex;
           flex-direction: column;
+          gap: .5em;
           font-size: .2em;
         }
       }
     }
   }
+  .logo{
+    margin-top: 100px;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .2em;
+    line-height: .2em;
+    color: #44494F;
+    img{
+      width: 32px;
+      height: 32px;
+    }
+  }
   .arrow{
     position: absolute;
     top: .2em;
-    right: 20px;
-    height: 50%;
-    width: 30%;
+    right: 50px;
+    /* height: 50%; */
+    width: 222px;
     animation: ${AniF} 1s ease infinite;
    animation-direction: alternate;
   }
@@ -88,13 +85,7 @@ export default function Guiding() {
   }, [])
   return (
     <StyledTip>
-      <img className="arrow" src="https://api.tbxproject.com/images/action_arrow.svg" alt="arrow" />
-      <div className="header">
-        <h1 className="title">Webrowse</h1>
-        <h2 className="sub_title">
-          Sync tabs with your teammates!
-        </h2>
-      </div>
+      <img className="arrow" src="https://static.nicegoodthings.com/project/ext/arrow.up.png" alt="arrow" />
       <div className="content">
         <div className="desc">Get started in 3 simple steps</div>
         <ul className="steps">
@@ -103,7 +94,7 @@ export default function Guiding() {
             <div className="tip">
               <i className="num">1.</i>
               <span className="desc">
-                Click on the puzzle icon
+                Click on the top-left puzzle icon
               </span>
             </div>
           </li>
@@ -126,6 +117,10 @@ export default function Guiding() {
             </div>
           </li>
         </ul>
+      </div>
+      <div className="logo">
+        <img src="https://static.nicegoodthings.com/project/ext/webrowse.grident.logo.png" alt="logo" />
+        Webrowse
       </div>
     </StyledTip>
   )
