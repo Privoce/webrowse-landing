@@ -19,20 +19,22 @@ const StyledTip = styled.section`
     align-items: center;
     .title{
       color: #056CF2;
-      font-weight: bold;
-      font-size: .36em;
-      padding-left: 1.2em;
-      background-image: url('https://static.nicegoodthings.com/works/vera/webrowse.logo.png');
-      background-size: 1em;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 36px;
+      line-height: 139.8%;
+      padding-left: 80px;
+      background-image: url('https://static.nicegoodthings.com/project/ext/webrowse.logo.v2.png');
+      background-size: contain;
       background-repeat: no-repeat;
       margin-bottom: .2em;
     }
     .sub_title{
       margin-top: 22px;
       color:  #606368;
-      font-weight: 200;
       font-weight: normal;
-      font-size: .32em;
+      font-size: 24px;
+      line-height: 139.8%;
     }
   }
   .content{
@@ -43,6 +45,7 @@ const StyledTip = styled.section`
     color: #056CF2;
     .pic{
       width: 345px;
+      margin-bottom: 30px;
     }
     .welcome{
       display: flex;
@@ -55,10 +58,10 @@ const StyledTip = styled.section`
   }
   .arrow{
     position: absolute;
-    top: .2em;
-    right: 20px;
-    height: 50%;
-    width: 30%;
+    top: 10px;
+    right: 100px;
+    /* height: 50%; */
+    width: 220px;
   }
 `;
 export default function Guiding() {
@@ -70,7 +73,7 @@ export default function Guiding() {
   }, [])
   return (
     <StyledTip>
-      <img className="arrow" src="https://api.tbxproject.com/images/action_arrow.svg" alt="arrow" />
+      <img className="arrow" src="https://static.nicegoodthings.com/project/ext/webrowse.logined.line.arrow.png" alt="arrow" />
       <div className="header">
         <h1 className="title">Webrowse</h1>
         <h2 className="sub_title">
