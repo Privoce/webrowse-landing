@@ -120,7 +120,7 @@ const StyledDownloads = styled.section`
 const extId = `nnbkebemeehfhiimeghnkdocfbeogenn`;
 const checkExtensionInstalled = (extid) => {
     extid = extid || 'ccegbnlnelhgaefimiaklaindffpfcmh';
-    const checkUrl = `chrome-extension://${extid}/assets/icon/logo.png`;
+    const checkUrl = `chrome-extension://nnbkebemeehfhiimeghnkdocfbeogenn/assets/favicon.png`;
     return new Promise((resolve) => {
         let img = document.createElement('img');
         img.src = checkUrl;
