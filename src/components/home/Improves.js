@@ -9,7 +9,7 @@ const StyledSection = styled.section`
     z-index: 999;
     .title{
         text-align: center;
-        width: 500px;
+        //width: 500px;
         color: #fff;
         /* font-weight: bold; */
         font-size: 36px;
