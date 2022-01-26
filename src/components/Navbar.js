@@ -4,6 +4,8 @@ import { AuthingGuard } from '@authing/react-ui-components'
 // 引入 css 文件
 import '@authing/react-ui-components/lib/index.min.css';
 import GuardConfig, { appId } from '../constants/guardConfig';
+import Logo from '../images/logo.png';
+
 const Navbar = ({ curr = 'home', updateUser = null }) => {
   const [user, setUser] = useState(null);
   const [guardVisible, setGuardVisible] = useState(false);
@@ -58,10 +60,7 @@ const Navbar = ({ curr = 'home', updateUser = null }) => {
         <div className="head">
 
           <div className="left">
-            <img src="https://static.nicegoodthings.com/project/ext/wb.logo.png" className="logo" alt="webrowse logo" />
-            <h2 className="title">
-              webrowse
-            </h2>
+            <img src={Logo} className="logo" alt="webrowse logo" />
           </div>
           <div className="middle">
             <a className={`link ${curr == 'home' ? 'curr' : ""}`} href="/#home" >Home</a>
@@ -123,16 +122,12 @@ const NavStyles = styled.nav`
       justify-content: space-between;
       background: transparent;
       padding:15px 110px;
-      @media screen and (max-width: 414px) {
-        padding:15px 20px;
-      }
       .left{  
         display: flex;
         align-items: center;
         .logo{
-          width:32px;
-          height:32px;
-          margin-right: 8px;
+          width: 203px;
+          height: 36px;
         }
         .title{
           text-transform: capitalize;
@@ -182,6 +177,15 @@ const NavStyles = styled.nav`
             background: none;
             color:#52EDFF;
             border:2px solid #52EDFF
+          }
+        }
+      }
+      @media screen and (max-width: 414px) {
+        padding:15px 10px;
+        .left {
+          .logo {
+            width: 160px;
+            height: auto;
           }
         }
       }

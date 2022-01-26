@@ -34,7 +34,12 @@ const StyledContainer = styled.section`
     position: relative;
     padding-top: 240px;
     background-color:#19181D ;
-    .bg{
+  
+  img {
+    max-width: 100%;
+  }
+
+  .bg{
       position: absolute;
       pointer-events: none;
       &.blob{
@@ -82,6 +87,7 @@ const StyledContainer = styled.section`
       margin: 0 auto;
       @media screen and (max-width: 414px) {
         width: 360px;
+        height: auto;
       }
       .header,.desc,.download{
         opacity: 0;
