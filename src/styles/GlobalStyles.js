@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 :root {
@@ -40,6 +40,9 @@ const GlobalStyles = createGlobalStyle`
 * {
     box-sizing: border-box;
 }
+h1,h2,h3,h4,h5{
+  color: inherit;
+}
 ul{
   list-style: none;
 }
@@ -68,5 +71,5 @@ body {
   background-color: #19181D;
 }
 
-`
-export default GlobalStyles
+`;
+export default GlobalStyles;
