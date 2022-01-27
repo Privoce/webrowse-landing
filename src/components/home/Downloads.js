@@ -11,6 +11,7 @@ const StyledDownloads = styled.section`
     gap:48px ;
     >.title{
       /* font-weight: bold; */
+      color: #fff;
       font-size: 36px;
       line-height: 45px;
     }
