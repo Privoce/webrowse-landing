@@ -68,7 +68,7 @@ const Navbar = ({ curr = 'home', updateUser = null }) => {
             <a className={`link`} href="https://discord.gg/2wKtHnXMVV" target="_blank" >Discord</a>
           </div>
           <div className="right">
-            {user ? <a className="btn login" href="https://portal-china.authing.cn/u">{user.username}</a> : <button className="btn login" onClick={handleLogin}>Log In</button>}
+            {user ? <a className="btn login" href="/passport">{user.username}</a> : <button className="btn login" onClick={handleLogin}>Log In</button>}
             <a href="https://calendly.com/hansu/han-meeting" target="_blank" className="btn typeform">Request Demo</a>
             {/* <a className="btn add" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a> */}
           </div>
