@@ -84,7 +84,7 @@ const Navbar = ({ curr = "home", updateUser = null }) => {
           </div>
           <div className="right">
             {user ? (
-              <a className="btn login" href="https://portal-china.authing.cn/u">
+              <a className="btn login" href="/passport">
                 {user.username}
               </a>
             ) : (
