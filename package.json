@@ -18,6 +18,7 @@
     "@stripe/react-stripe-js": "^1.7.0",
     "@stripe/stripe-js": "^1.22.0",
     "@typeform/embed": "^1.27.0",
+    "authing-js-sdk": "^4.23.18",
     "babel-plugin-styled-components": "^2.0.2",
     "framer-motion": "^6.2.3",
     "gatsby": "^4.6.0",
