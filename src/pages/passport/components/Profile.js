@@ -73,7 +73,9 @@ const StyledProfile = styled.div`
 export default function Profile() {
   const [authing, setAuthing] = useState(null)
 
-  const {state: {user = {}}, dispatch} = useContext(PassportContext);
+  const {state, dispatch} = useContext(PassportContext);
+
+  const user = state?.user;
 
   useEffect(() => {
     if (!user?.token) return;
@@ -128,7 +130,7 @@ export default function Profile() {
         <div className="title">Avatar</div>
         <img
           onClick={handlerUpload}
-          src={user.avatar}
+          src={user.avatar || 'https://static.nicegoodthings.com/project/ext/webrowse.logo.png'}
           alt="avatar" className="img" />
       </div>
       <div className="item">
