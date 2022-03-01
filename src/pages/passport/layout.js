@@ -111,7 +111,7 @@ const renderComponent = (key, params) => {
 
 const Layout = () => {
   const [curr, setCurr] = useState("profile")
-  const {state: {user = {}}, dispatch } = useContext(PassportContext)
+  const { dispatch } = useContext(PassportContext)
 
   const handleNavClick = (evt) => {
     const { key } = evt.target.dataset
