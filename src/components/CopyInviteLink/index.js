@@ -5,7 +5,7 @@
  * @contact: laoona.com
  * @description: #
  */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled, { keyframes } from "styled-components"
 import { IconLink, IconCopy } from "./Icon"
 
@@ -85,22 +85,29 @@ const Styles = styled.div`
   }
 `
 
-const CopyInviteLink = () => {
-  const copyToClipboard = (txt) => {
-    const input = document.createElement("textarea")
-    document.body.appendChild(input)
-    input.value = txt
-    input.focus()
-    input.select()
-    document.execCommand("Copy")
-    input.remove()
-  }
+const copyToClipboard = (txt) => {
+  const input = document.createElement("textarea")
+  document.body.appendChild(input);
+  input.style.cssText = 'position: fixed; z-index: -9999999';
+  input.value = txt
+  // input.focus()
+  input.select()
+  document.execCommand("Copy")
+  input.remove()
+};
 
+const CopyInviteLink = () => {
   const [copied, setCopied] = useState(false)
+  const [link, setLink] = useState('')
+
+  useEffect(() => {
+    let _link = new URLSearchParams(location.search).get('link');
+    setLink(decodeURIComponent(_link));
+  });
 
   const handleCopy = () => {
-    copyToClipboard("copyied")
-    setCopied(true)
+    copyToClipboard(link);
+    setCopied(true);
   }
 
   return <Styles>
@@ -108,7 +115,7 @@ const CopyInviteLink = () => {
       <i className="icon">
         <IconLink />
       </i>
-      <span className="link">webrow.se/i#r23736</span>
+      <span className="link">{link}</span>
       <i
         className={`icon ${copied ? "copy" : ""}`}
         onAnimationEnd={() => setCopied(false)}
