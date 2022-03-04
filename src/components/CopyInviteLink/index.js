@@ -5,14 +5,26 @@
  * @contact: laoona.com
  * @description: #
  */
-import React from 'react';
-import styled from 'styled-components';
-import { IconLink, IconCopy } from "./Icon";
+import React, { useState } from "react"
+import styled, { keyframes } from "styled-components"
+import { IconLink, IconCopy } from "./Icon"
+
+const AniBubbles = keyframes`
+  0% {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-40px) translateX(-50%);
+    opacity: 0;
+  }
+`
 
 const Styles = styled.div`
   display: flex;
   justify-content: center;
-  
+
   .bar {
     margin: 40px 0;
     display: flex;
@@ -24,11 +36,16 @@ const Styles = styled.div`
     min-width: 336px;
     padding: 0 20px;
   }
-  
+
   .icon {
     font-size: 24px;
     color: #fff;
+
+    :last-of-type {
+      cursor: pointer;
+    }
   }
+
   .link {
     position: relative;
     flex: 1;
@@ -36,6 +53,7 @@ const Styles = styled.div`
     text-align: center;
     color: #fff;
     font-size: 24px;
+
     :after {
       content: '';
       position: absolute;
@@ -47,20 +65,58 @@ const Styles = styled.div`
       margin-top: -12px;
     }
   }
-`;
+
+  .copy {
+    position: relative;
+
+    :after {
+      animation: ${AniBubbles} 1s;
+      animation-fill-mode: both;
+
+      left: 50%;
+      transform: translateX(-50%);
+      content: 'copid';
+      position: absolute;
+      background-color: rgba(0, 0, 0, .75);
+      font-size: 18px;
+      padding: 2px 20px;
+      border-radius: 20px;
+    }
+  }
+`
 
 const CopyInviteLink = () => {
+  const copyToClipboard = (txt) => {
+    const input = document.createElement("textarea")
+    document.body.appendChild(input)
+    input.value = txt
+    input.focus()
+    input.select()
+    document.execCommand("Copy")
+    input.remove()
+  }
+
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = () => {
+    copyToClipboard("copyied")
+    setCopied(true)
+  }
+
   return <Styles>
-    <div className='bar'>
-      <i className='icon'>
+    <div className="bar">
+      <i className="icon">
         <IconLink />
       </i>
-      <span className='link'>webrow.se/i#r23736</span>
-      <i className='icon'>
-        <IconCopy/>
+      <span className="link">webrow.se/i#r23736</span>
+      <i
+        className={`icon ${copied ? "copy" : ""}`}
+        onAnimationEnd={() => setCopied(false)}
+        onClick={handleCopy}>
+        <IconCopy />
       </i>
     </div>
   </Styles>
-};
+}
 
-export default CopyInviteLink;
+export default CopyInviteLink
