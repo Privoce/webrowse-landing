@@ -6,10 +6,11 @@
  * @description: #
  */
 
-import React from 'react';
-import styled from 'styled-components';
-import Logo from '../images/logo.png';
-import CopyInviteLink from '../components/CopyInviteLink';
+import React from 'react'
+import styled from 'styled-components'
+import Logo from '../images/logo.png'
+import CopyInviteLink from '../components/CopyInviteLink'
+import Pic from '../images/features.png'
 
 const Styled = styled.section`
   min-height: 100vh;
@@ -18,17 +19,18 @@ const Styled = styled.section`
   background-image: url(https://static.nicegoodthings.com/project/ext/wb.right-top-blob.png), url(https://static.nicegoodthings.com/project/ext/wb.left-middle-blob.png);
   background-position: top right, left 232px;
   background-size: contain;
-  
+
   display: flex;
   flex-direction: column;
   position: absolute;
   height: 100%;
   //overflow: hidden;
   width: 100%;
-  
-  .header{
+
+  .header {
     display: flex;
     padding: 20px 90px;
+
     .logo {
       width: 203px;
     }
@@ -37,9 +39,11 @@ const Styled = styled.section`
   .bg {
     position: absolute;
     pointer-events: none;
+
     img {
       max-width: 100%;
     }
+
     &.blob {
       &.left {
         left: 0;
@@ -66,16 +70,74 @@ const Styled = styled.section`
       line-height: 80px;
     }
   }
+
   .main {
     position: relative;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-`;
+
+  .pic {
+    display: block;
+  }
+
+  .checkBar {
+    margin: 34px 0;
+    
+    color: #fff;
+    font-size: 24px;
+
+    .check {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+
+      &:checked + .square {
+        &:after {
+          position: absolute;
+          left: 4px;
+          top: 4px;
+          width: 11px;
+          height: 24px;
+          display: table;
+          border: 2px solid #fff;
+          border-top: 0;
+          border-left: 0;
+          transform: rotate(45deg) scale(1) translate(-50%, -50%);
+          opacity: 1;
+          transition: all .2s cubic-bezier(.12, .4, .29, 1.46) .1s;
+          content: '';
+        }
+      }
+    }
+
+    .square {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      margin-right: 14px;
+    }
+
+    .label {
+
+    }
+  }
+`
 
 const Started = () => {
   return <Styled>
-    <div className="header">
-      <img className='logo' src={Logo} alt="Webrowse" />
+    <div className='header'>
+      <img className='logo' src={Logo} alt='Webrowse' />
     </div>
 
     <div className='main'>
@@ -84,9 +146,18 @@ const Started = () => {
       </div>
 
       <CopyInviteLink />
+
+      <img src={Pic} alt='Webrowse' />
+
+      <div className='checkBar'>
+        <label className='check'>
+          <input className='input' type={'checkbox'} />
+          <span className='square' />
+          <span className='label'>Hide Tutorial on Next Launch</span>
+        </label>
+      </div>
     </div>
-
   </Styled>
-};
+}
 
-export default Started;
+export default Started
