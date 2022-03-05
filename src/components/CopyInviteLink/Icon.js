@@ -25,8 +25,8 @@ const Link = <svg width="1em" height="1em" viewBox="0 0 25 24" fill="none" xmlns
 </svg>
 
 const Copy = <svg width="1em" height="1em" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M14.2273 1H3.5C2.39543 1 1.5 1.89543 1.5 3V14.1818" stroke="currentColor" stroke-width="2"/>
-    <rect x="6.22727" y="5.72728" width="15.2727" height="15.2727" rx="1" stroke="currentColor" stroke-width="2"/>
+    <path d="M14.2273 1H3.5C2.39543 1 1.5 1.89543 1.5 3V14.1818" stroke="currentColor" strokeWidth="2"/>
+    <rect x="6.22727" y="5.72728" width="15.2727" height="15.2727" rx="1" stroke="currentColor" strokeWidth="2"/>
   </svg>
 ;
 

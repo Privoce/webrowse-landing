@@ -6,7 +6,7 @@
  * @description: #
  */
 
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import Logo from '../images/logo.png'
 import CopyInviteLink from '../components/CopyInviteLink'
@@ -23,8 +23,6 @@ const Styled = styled.section`
   display: flex;
   flex-direction: column;
   position: absolute;
-  height: 100%;
-  //overflow: hidden;
   width: 100%;
 
   .header {
@@ -77,14 +75,19 @@ const Styled = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    &__checked {
+      gap: 100px;
+    }
   }
 
   .pic {
     display: block;
+    width: 850px;
   }
 
   .checkBar {
-    margin: 34px 0;
+    padding: 34px 0;
     
     color: #fff;
     font-size: 24px;
@@ -135,25 +138,38 @@ const Styled = styled.section`
 `
 
 const Started = () => {
+  const [checked, setChecked] = useState(true);
+
+  const handleChange = (e) => {
+    const {checked} = e.target;
+    setChecked(checked);
+  };
+
   return <Styled>
     <div className='header'>
       <img className='logo' src={Logo} alt='Webrowse' />
     </div>
 
-    <div className='main'>
+    <div className={`main ${checked ? 'main__checked' : ''}`}>
       <div className='text'>
         <h2 className='title'>Let’s Get Started!</h2>
       </div>
 
       <CopyInviteLink />
 
-      <img src={Pic} alt='Webrowse' />
+      {
+        !checked && <img className='pic' src={Pic} alt='Webrowse' />
+      }
 
       <div className='checkBar'>
         <label className='check'>
-          <input className='input' type={'checkbox'} />
+          <input checked={checked} onChange={handleChange} className='input' type={'checkbox'} />
           <span className='square' />
-          <span className='label'>Hide Tutorial on Next Launch</span>
+          <span className='label'>
+            {
+              checked ? 'Show Tutorial' : 'Hide Tutorial on Next Launch'
+            }
+          </span>
         </label>
       </div>
     </div>

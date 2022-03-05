@@ -21,6 +21,19 @@ const AniBubbles = keyframes`
   }
 `
 
+const AniFadeOut = keyframes`
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  100% {
+    opacity: 0; 
+  }
+`;
+
+
 const Styles = styled.div`
   display: flex;
   justify-content: center;
@@ -83,6 +96,46 @@ const Styles = styled.div`
       border-radius: 20px;
     }
   }
+  
+  .iconCopyWrap {
+    position: relative;
+  }
+  
+  .copied {
+    .tipBar {
+      animation: ${AniFadeOut} 1s ease;
+      animation-direction: alternate;
+
+      position: absolute;
+      left: 50%;
+      top: 40px;
+      min-width: 320px;
+      transform: translateX(-50%);
+      background: #616161;
+      height: 48px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &Text {
+        margin-left: 10px;
+        font-size: 24px;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 10px solid #616161;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        top: -20px;
+        left: 50%;
+        margin-left: -10px;
+      }
+    }
+  }
 `
 
 const copyToClipboard = (txt) => {
@@ -116,12 +169,19 @@ const CopyInviteLink = () => {
         <IconLink />
       </i>
       <span className="link">{link}</span>
-      <i
-        className={`icon ${copied ? "copy" : ""}`}
+      <div
+        className={`icon ${copied ? "copied" : ""} iconCopyWrap`}
         onAnimationEnd={() => setCopied(false)}
         onClick={handleCopy}>
         <IconCopy />
-      </i>
+        {
+          copied &&
+          <div className='tipBar'>
+            <IconLink />
+            <span className='tipBarText'>Link Copied to Clipboard</span>
+          </div>
+        }
+      </div>
     </div>
   </Styles>
 }
