@@ -173,7 +173,7 @@ const Started = () => {
       <img className='logo' src={Logo} alt='Webrowse' />
     </div>
 
-    <div className={`main ${show ? 'main__checked' : ''}`}>
+    <div className={`main ${show && !force ? 'main__checked' : ''}`}>
       <div className='text'>
         <h2 className='title'>Let’s Get Started!</h2>
       </div>
