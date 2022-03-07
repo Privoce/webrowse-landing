@@ -1,59 +1,50 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import Logo from '../images/logo.blue.png';
+import Pic from '../images/bg1.png';
+
 import styled from 'styled-components';
+
 const StyledTip = styled.section`
   position: relative;
   width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
+  min-height: 100vh;
+  padding-bottom: 20px;
+  
   font-size: 100px;
   color:#fff;
-  font-weight: 800;
-  background: #E7F1FF;
-  padding: 106px 0 100px 0;
+  background: rgba(231, 241, 255, 1);
+  
   .header{
-    grid-row: 2;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    .title{
-      color: #056CF2;
-      font-style: normal;
-      font-weight: 800;
-      font-size: 36px;
-      line-height: 139.8%;
-      padding-left: 80px;
-      background-image: url('https://static.nicegoodthings.com/project/ext/webrowse.logo.v2.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      margin-bottom: .2em;
+    padding: 20px 90px;
+    .logo {
+      width: 203px;  
     }
-    .sub_title{
-      margin-top: 22px;
-      color:  #606368;
-      font-weight: normal;
-      font-size: 24px;
-      line-height: 139.8%;
+  }
+  .text {
+    margin-top: 27px;
+    text-align: center;
+    font-weight: 700;
+    
+    .title {
+      font-size: 64px;
+      color: rgba(5, 108, 242, 1);
+      line-height: 80px;
+    }
+    .desc {
+      margin-bottom: 37px;
+      font-size: 24px; 
+      line-height: 30px;
+      color: rgba(0, 0, 0, 1);
     }
   }
   .content{
-    margin-top: 86px;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #056CF2;
-    .pic{
-      width: 345px;
-      margin-bottom: 30px;
-    }
-    .welcome{
-      display: flex;
-      flex-direction: column;
-    align-items: center;
-    font-size: 40px;
-    font-weight: normal;
-    line-height: 1.5;
+    .pic {
+      width: 782px;
     }
   }
   .arrow{
@@ -65,27 +56,21 @@ const StyledTip = styled.section`
   }
 `;
 export default function Guiding() {
-  const [name, setName] = useState(null)
-  useEffect(() => {
-    document.title = "Login Success - Webrowse";
-    const un = new URLSearchParams(location.search).get('name');
-    setName(decodeURI(un))
-  }, [])
+
   return (
     <StyledTip>
       <img className="arrow" src="https://static.nicegoodthings.com/project/ext/webrowse.logined.line.arrow.png" alt="arrow" />
       <div className="header">
-        <h1 className="title">Webrowse</h1>
-        <h2 className="sub_title">
-          Sync tabs with your teammates!
-        </h2>
+        <img className='logo' src={Logo} alt="Webrowse" />
       </div>
+
+      <div className='text'>
+        <h2 className='title'>Getting Started</h2>
+        <p className='desc'>Open the extension to get started</p>
+      </div>
+
       <div className="content">
-        <img className="pic" src="https://static.nicegoodthings.com/works/vera/webrowse.logined.png" alt="logined" />
-        <ul className="welcome">
-          <li className="words">{name ? `Welcome, ${name}!` : `Welcome!`}</li>
-          <li className="words">You can now re-open the extension.</li>
-        </ul>
+        <img className="pic" src={Pic} alt="logined" />
       </div>
     </StyledTip>
   )
