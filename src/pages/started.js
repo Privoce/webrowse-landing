@@ -137,7 +137,8 @@ const Styled = styled.section`
   }
 `
 
-const _show = localStorage.getItem('show');
+const localStorage = typeof window !== `undefined` ? window.localStorage : null;
+const _show = localStorage?.getItem('show');
 
 const Started = () => {
   const [show, setShow] = useState(true);
@@ -156,11 +157,11 @@ const Started = () => {
       }
     }
 
-    localStorage.setItem('show', tmp);
+    localStorage?.setItem('show', tmp);
   };
 
   useEffect(() => {
-    const show = localStorage.getItem('show') === '1'
+    const show = localStorage?.getItem('show') === '1'
     setShow(show);
   }, []);
 
