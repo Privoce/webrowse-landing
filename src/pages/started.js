@@ -149,7 +149,7 @@ const Started = () => {
 
     if (checked) {
       if (_show === null)  {
-        tmp = '0';
+        tmp = '1';
       } else {
         tmp = _show === '1' ? '0' : '1';
       }
