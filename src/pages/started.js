@@ -137,20 +137,38 @@ const Styled = styled.section`
   }
 `
 
+const _show = window.localStorage.getItem('show');
+
 const Started = () => {
-  const [checked, setChecked] = useState(true);
+  const [show, setShow] = useState(true);
 
   const handleChange = (e) => {
     const {checked} = e.target;
-    setChecked(checked);
+
+    let tmp = _show;
+
+    if (checked) {
+      if (_show === null)  {
+        tmp = '0';
+      } else {
+        tmp = _show === '1' ? '0' : '1';
+      }
+    }
+
+    window.localStorage.setItem('show', tmp);
   };
+
+  useEffect(() => {
+    const show = window.localStorage.getItem('show') === '1'
+    setShow(show);
+  }, []);
 
   return <Styled>
     <div className='header'>
       <img className='logo' src={Logo} alt='Webrowse' />
     </div>
 
-    <div className={`main ${checked ? 'main__checked' : ''}`}>
+    <div className={`main ${show ? 'main__checked' : ''}`}>
       <div className='text'>
         <h2 className='title'>Let’s Get Started!</h2>
       </div>
@@ -158,16 +176,16 @@ const Started = () => {
       <CopyInviteLink />
 
       {
-        !checked && <img className='pic' src={Pic} alt='Webrowse' />
+        !show && <img className='pic' src={Pic} alt='Webrowse' />
       }
 
       <div className='checkBar'>
         <label className='check'>
-          <input checked={checked} onChange={handleChange} className='input' type={'checkbox'} />
+          <input onChange={handleChange} className='input' type={'checkbox'} />
           <span className='square' />
           <span className='label'>
             {
-              checked ? 'Show Tutorial' : 'Hide Tutorial on Next Launch'
+              show ? 'Show Tutorial' : 'Hide Tutorial on Next Launch'
             }
           </span>
         </label>
