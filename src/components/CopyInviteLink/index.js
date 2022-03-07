@@ -154,8 +154,8 @@ const CopyInviteLink = () => {
   const [link, setLink] = useState('')
 
   useEffect(() => {
-    let _link = new URLSearchParams(location.search).get('link');
-    setLink(decodeURIComponent(_link));
+    let invite = new URLSearchParams(location.search).get('invite');
+    setLink(`https://webrow.se/i#${invite}`);
   });
 
   const handleCopy = () => {
