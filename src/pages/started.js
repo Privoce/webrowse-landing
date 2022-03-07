@@ -137,7 +137,7 @@ const Styled = styled.section`
   }
 `
 
-const _show = window.localStorage.getItem('show');
+const _show = localStorage.getItem('show');
 
 const Started = () => {
   const [show, setShow] = useState(true);
@@ -156,11 +156,11 @@ const Started = () => {
       }
     }
 
-    window.localStorage.setItem('show', tmp);
+    localStorage.setItem('show', tmp);
   };
 
   useEffect(() => {
-    const show = window.localStorage.getItem('show') === '1'
+    const show = localStorage.getItem('show') === '1'
     setShow(show);
   }, []);
 
