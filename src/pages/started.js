@@ -141,6 +141,7 @@ const _show = window.localStorage.getItem('show');
 
 const Started = () => {
   const [show, setShow] = useState(true);
+  const [force, setForce] = useState(false)
 
   const handleChange = (e) => {
     const {checked} = e.target;
@@ -163,6 +164,10 @@ const Started = () => {
     setShow(show);
   }, []);
 
+  const handleForce = () => {
+    setForce(true);
+  };
+
   return <Styled>
     <div className='header'>
       <img className='logo' src={Logo} alt='Webrowse' />
@@ -176,14 +181,21 @@ const Started = () => {
       <CopyInviteLink />
 
       {
-        !show && <img className='pic' src={Pic} alt='Webrowse' />
+        (!show || force) && <img className='pic' src={Pic} alt='Webrowse' />
       }
 
       <div className='checkBar'>
         <label className='check'>
-          <input onChange={handleChange} className='input' type={'checkbox'} />
-          <span className='square' />
-          <span className='label'>
+          {
+            !show && <>
+              <input onChange={handleChange} className='input' type={'checkbox'} />
+              <span className='square' />
+            </>
+          }
+          <span
+            className='label'
+            onClick={handleForce}
+          >
             {
               show ? 'Show Tutorial' : 'Hide Tutorial on Next Launch'
             }
