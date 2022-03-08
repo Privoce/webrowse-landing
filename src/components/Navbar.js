@@ -76,7 +76,7 @@ const Navbar = ({ curr = "home", updateUser = null }) => {
               href="https://chat.webrow.se/"
               target="_blank"
             >
-              Discord
+              Community
             </a>
             <a className={`link`} href="/blog/" target="_blank">
               Blog
