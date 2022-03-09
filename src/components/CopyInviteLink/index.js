@@ -159,9 +159,31 @@ const CopyInviteLink = () => {
   });
 
   const handleCopy = () => {
+    const message = {
+      source: 'webrow.se',
+      payload: {},
+      event: 'copy',
+    };
+
+    // 发送消息
+    window.postMessage(message,"*");
     copyToClipboard(link);
     setCopied(true);
   }
+
+  useEffect(() => {
+    window.addEventListener('message', (ev) => {
+      const {
+        source,
+        event,
+      } = ev.data || {};
+
+      // 监听来自 webrowse.ext 的消息 且 event = copied
+      if (!(source === 'webrowse.ext' && event === 'copied')) return;
+
+      setCopied(true);
+    });
+  }, []);
 
   return <Styles>
     <div className="bar">
