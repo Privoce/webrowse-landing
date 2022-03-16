@@ -15,11 +15,27 @@ import MediaPlayer from "./components/MediaPlayer";
 
 const client = AgoraRTC.createClient({ codec: 'h264', mode: 'rtc' });
 
+/**
+ * 随机生成uid
+ * @returns {number}
+ */
+const genUid = () => {
+  const soup = '123456789';
+  const length = 9;
+  const soupLength = soup.length
+  const id = []
+  for (let i = 0; i < length; i++) {
+    id[i] = soup.charAt(Math.random() * soupLength)
+  }
+
+  return +id.join('');
+}
+
 const Voice = ({users = []}) => {
   const { user: localUser } = {user: {intId: 1}};
 
   const params = new URLSearchParams(location.search)
-  const uid = +params.get('uid') || 1;
+  const uid = genUid() || +params.get('uid') || 1;
   const cid = params.get('cid') || 'test';
 
   const {
