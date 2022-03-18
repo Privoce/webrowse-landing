@@ -20,6 +20,7 @@ import {
   UPDATE_JOIN_STATE,
   UPDATE_USERS,
   UPDATE_CLIENT,
+  UPDATE_STATUS,
 } from "./reducer"
 import { JoinRoom } from "./components/Icon"
 
@@ -44,6 +45,7 @@ const genUid = () => {
 const Main = ({ users = [] }) => {
   const { dispatch, state } = useContext(VoiceContext)
 
+  const { status } = state || {}
   const { user: localUser } = { user: { intId: 1 } }
 
   const params = new URLSearchParams(location.search)
@@ -58,12 +60,6 @@ const Main = ({ users = [] }) => {
     remoteUsers,
     volumes,
   } = useAgora(client, uid)
-
-  // console.log(localVideoTrack.audioTrack.getVolumeLevel())
-  console.log(
-    localVideoTrack, localAudioTrack?.getVolumeLevel(), "haha", users,
-    client,
-  )
 
   useEffect(() => {
     dispatch({
@@ -105,6 +101,20 @@ const Main = ({ users = [] }) => {
     })
   }, [remoteUsers])
 
+  const handleJoin = async () => {
+    dispatch({
+      type: UPDATE_STATUS,
+      payload: "connecting",
+    })
+
+    await join(cid, uid);
+
+    dispatch({
+      type: UPDATE_JOIN_STATE,
+      payload: true,
+    });
+  }
+
   return (
     <StyledWrapper>
       <header className="header">
@@ -122,15 +132,14 @@ const Main = ({ users = [] }) => {
           :
           <div className="joinWrap">
             <button
+              disabled={status === "connecting"}
               className="button"
-              onClick={() => {
-                join(cid, uid)
-              }}
+              onClick={handleJoin}
             >
               <div className="inner">
                 <JoinRoom />
               </div>
-              Join
+              {status === "connecting" ? "connecting" : "Join"}
             </button>
           </div>
       }

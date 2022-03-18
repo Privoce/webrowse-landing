@@ -14,6 +14,7 @@ const initValue = {
   localVideoTrack: null,
   localAudioTrack: null,
   client: null,
+  status: 'normal',
 }
 
 const UPDATE_USERS = "UPDATE_USERS"
@@ -22,6 +23,7 @@ const UPDATE_LOCAL_AUDIO_TRACK = "UPDATE_LOCAL_AUDIO_TRACK"
 const UPDATE_JOIN_STATE = "UPDATE_JOIN_STATE"
 const LEAVE = "LEAVE"
 const UPDATE_CLIENT = "UPDATE_CLIENT"
+const UPDATE_STATUS = "UPDATE_STATUS"
 
 const reducer = (state, action) => {
   const {localAudioTrack, localVideoTrack, client} = state;
@@ -65,11 +67,17 @@ const reducer = (state, action) => {
         ...state,
         users: [],
         joinState: false,
+        status: 'leave',
       }
     case UPDATE_CLIENT:
       return {
         ...state,
         client: action.payload,
+      }
+    case UPDATE_STATUS:
+      return {
+        ...state,
+        status: action.payload,
       }
     default:
       return state
@@ -80,7 +88,6 @@ const VoiceContext = createContext(initValue)
 
 const ContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, initValue, val => val)
-  console.log(state, "sb")
   return (<VoiceContext.Provider value={{ state, dispatch }}>
     {props.children}
   </VoiceContext.Provider>)
@@ -97,5 +104,6 @@ export {
   UPDATE_JOIN_STATE,
   LEAVE,
   UPDATE_CLIENT,
+  UPDATE_STATUS,
 }
 
