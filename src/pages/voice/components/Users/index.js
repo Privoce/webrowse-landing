@@ -13,23 +13,18 @@ import { VoiceContext } from "../../reducer"
 
 const Users = () => {
   const { state } = useContext(VoiceContext)
-  const { localVideoTrack, localAudioTrack, joinState, users } = state
-
-  console.log(users, "users1")
+  const { localVideoTrack, users } = state
 
   return <StyledWrapper>
     <ul className={`users ${users.length > 1 ? 'usersMore': ''}`}>
-      {
-        (joinState && localVideoTrack) &&
-        <li>
-          <MediaPlayer videoTrack={localVideoTrack} audioTrack={undefined} />
-        </li>
-      }
+      <li>
+        <MediaPlayer videoTrack={localVideoTrack} audioTrack={undefined} />
+      </li>
       {
         users?.map(user =>
           <li key={user.uid} className="user">
             {
-              user.hasVideo ?
+              (user.hasVideo || user.hasAudio) ?
                 <MediaPlayer videoTrack={user.videoTrack} audioTrack={user.audioTrack} />
                 :
                 <>

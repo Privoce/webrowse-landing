@@ -20,6 +20,7 @@ const StyledWrap = styled.div`
     border: none;
     background: none;
     cursor: pointer;
+
     &:disabled {
       opacity: 0.3;
     }
@@ -64,18 +65,19 @@ const Buttons = () => {
     }
   }
 
-  console.log(leave);
-
   const handleLeave = () => {
     dispatch({
       type: LEAVE,
-    });
+    })
   }
 
   useEffect(() => {
-    localVideoTrack?.setEnabled(videoEnabled)
-    localAudioTrack?.setEnabled(audioEnabled)
-  }, [videoEnabled, audioEnabled])
+    localVideoTrack?.setMuted(!videoEnabled)
+  }, [videoEnabled])
+
+  useEffect(() => {
+    localAudioTrack?.setMuted(!audioEnabled)
+  }, [audioEnabled])
 
   return <StyledWrap>
     <button
