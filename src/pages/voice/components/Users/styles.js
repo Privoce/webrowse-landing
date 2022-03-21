@@ -36,6 +36,10 @@ const StyledWrapper = styled.div`
     background-color: gray;
     border-radius: 8px;
     overflow: hidden;
+    .pic {
+      width: 100%;
+      height: 100%;
+    }
   }
   .name {
     color: #fff;

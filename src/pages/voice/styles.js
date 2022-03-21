@@ -14,6 +14,7 @@ const StyledWrapper = styled.section`
   height: 100vh;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #19181D;
 
   .header {
     display: flex;

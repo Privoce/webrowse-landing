@@ -26,11 +26,13 @@ const Users = () => {
             {
               (user.hasVideo || user.hasAudio) ?
                 <MediaPlayer videoTrack={user.videoTrack} audioTrack={user.audioTrack} />
-                :
+                : null
+/*
                 <>
-                  <div className="avatar" />
-                  <div className="name">{user.uid}</div>
+                  <div className="avatar"><img src={user.photo} className="pic" alt="" /></div>
+                  <div className="name">{user.username}</div>
                 </>
+*/
             }
           </li>
         )

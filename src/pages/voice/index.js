@@ -6,14 +6,15 @@
  * @description: #
  */
 
-import React from "react";
-import ContextProvider from "./reducer";
-import Main from './main';
+import React from "react"
+import ContextProvider from "./reducer"
+import Main from "./Main"
 
 const Index = () => {
-  return <ContextProvider>
-    <Main />
-  </ContextProvider>
-};
 
-export default Index;
+  return <ContextProvider>
+    <Main/>
+  </ContextProvider>
+}
+
+export default Index

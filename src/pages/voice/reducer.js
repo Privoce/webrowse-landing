@@ -8,15 +8,21 @@
 
 import React, { createContext, useReducer } from "react"
 
+/**
+ * status enums ['disconnected', 'connecting', 'connected', 'leave']
+ * @type {{localAudioTrack: null, localVideoTrack: null, joinState: boolean, client: null, users: *[], status: string}}
+ */
 const initValue = {
   users: [],
   joinState: false,
   localVideoTrack: null,
   localAudioTrack: null,
   client: null,
-  status: 'normal',
+  status: "disconnected",
+  devices: [],
 }
 
+console.log("init", "haha")
 const UPDATE_USERS = "UPDATE_USERS"
 const UPDATE_LOCAL_VIDEO_TRACK = "UPDATE_LOCAL_VIDEO_TRACK"
 const UPDATE_LOCAL_AUDIO_TRACK = "UPDATE_LOCAL_AUDIO_TRACK"
@@ -24,9 +30,11 @@ const UPDATE_JOIN_STATE = "UPDATE_JOIN_STATE"
 const LEAVE = "LEAVE"
 const UPDATE_CLIENT = "UPDATE_CLIENT"
 const UPDATE_STATUS = "UPDATE_STATUS"
+const UPDATE_PERMISSION_STATE = "UPDATE_PERMISSION_STATE"
+const UPDATE_DEVICES = "UPDATE_DEVICES"
 
 const reducer = (state, action) => {
-  const {localAudioTrack, localVideoTrack, client} = state;
+  const { localAudioTrack, localVideoTrack, client } = state
   switch (action.type) {
     case UPDATE_USERS:
       return {
@@ -53,21 +61,21 @@ const reducer = (state, action) => {
 
     case LEAVE:
       (async function leave() {
-      if (localAudioTrack) {
-        localAudioTrack.stop();
-        localAudioTrack.close();
-      }
-      if (localVideoTrack) {
-        localVideoTrack.stop();
-        localVideoTrack.close();
-      }
-      await client?.leave();
-    })();
+        if (localAudioTrack) {
+          localAudioTrack.stop()
+          localAudioTrack.close()
+        }
+        if (localVideoTrack) {
+          localVideoTrack.stop()
+          localVideoTrack.close()
+        }
+        await client?.leave()
+      })()
       return {
         ...state,
         users: [],
         joinState: false,
-        status: 'leave',
+        status: "leave",
       }
     case UPDATE_CLIENT:
       return {
@@ -78,6 +86,18 @@ const reducer = (state, action) => {
       return {
         ...state,
         status: action.payload,
+      }
+
+    case UPDATE_PERMISSION_STATE:
+      return {
+        ...state,
+        permissionState: action.payload,
+      }
+
+    case UPDATE_DEVICES:
+      return {
+        ...state,
+        devices: action.payload,
       }
     default:
       return state
@@ -105,5 +125,7 @@ export {
   LEAVE,
   UPDATE_CLIENT,
   UPDATE_STATUS,
+  UPDATE_PERMISSION_STATE,
+  UPDATE_DEVICES,
 }
 

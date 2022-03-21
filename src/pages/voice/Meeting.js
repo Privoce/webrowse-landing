@@ -1,7 +1,7 @@
 /**
  * @author: laoona
- * @date:  2022-03-01
- * @time: 15:12
+ * @date:  2022-03-21
+ * @time: 19:06
  * @contact: laoona.com
  * @description: #
  */
@@ -21,6 +21,7 @@ import {
   UPDATE_USERS,
   UPDATE_CLIENT,
   UPDATE_STATUS,
+  LEAVE,
 } from "./reducer"
 import { JoinRoom } from "./components/Icon"
 
@@ -42,8 +43,10 @@ const genUid = () => {
   return +id.join("")
 }
 
-const Main = ({ users = [] }) => {
+const Meeting = () => {
   const { dispatch, state } = useContext(VoiceContext)
+  const [users, setUsers] = useState([])
+  const [currentUser, setCurrentUser] = useState({})
 
   const { status } = state || {}
   const { user: localUser } = { user: { intId: 1 } }
@@ -58,7 +61,6 @@ const Main = ({ users = [] }) => {
     join,
     joinState,
     remoteUsers,
-    volumes,
   } = useAgora(client, uid)
 
   useEffect(() => {
@@ -95,11 +97,78 @@ const Main = ({ users = [] }) => {
   }, [joinState])
 
   useEffect(() => {
+    const message = {
+      source: "webrow.se/voice",
+      payload: {
+        status: state?.status,
+      },
+      event: "connect",
+    }
+
+    // 向扩展发送连接消息
+    window.postMessage(message, "*")
+  }, [state?.status])
+
+  useEffect(() => {
     dispatch({
       type: UPDATE_USERS,
       payload: remoteUsers,
     })
+
+    const message = {
+      source: "webrow.se/voice",
+      payload: {
+        remoteUsers: remoteUsers.map(item => ({uid: item.uid})),
+      },
+      event: "remote_users",
+    }
+
+    // 向扩展发送连接消息
+    window?.postMessage(message, "*")
   }, [remoteUsers])
+
+  useEffect(() => {
+    const handleMessage = async (ev) => {
+      const {
+        source,
+        event,
+        payload,
+      } = ev.data || {}
+
+      console.log("user message", ev.data)
+
+      // 监听来自 webrowse.ext 的消息
+      if (!(source === "webrowse.ext")) return
+
+      switch (event) {
+        case "webrows_users":
+          const users = payload?.users || []
+          const currentUser = payload?.currentUser || {}
+
+          setUsers(users)
+          setCurrentUser(currentUser)
+
+          if (!state?.joinState && state?.status === 'disconnected') {
+            await handleJoin();
+          }
+          break;
+        case "leave":
+          dispatch({
+            type: LEAVE,
+          })
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    window.addEventListener("message", handleMessage)
+
+    return () => {
+      window.removeEventListener("message", handleMessage)
+    }
+  }, [state?.status])
 
   const handleJoin = async () => {
     dispatch({
@@ -107,12 +176,17 @@ const Main = ({ users = [] }) => {
       payload: "connecting",
     })
 
-    await join(cid, uid);
+    await join(cid, uid)
 
     dispatch({
       type: UPDATE_JOIN_STATE,
       payload: true,
-    });
+    })
+
+    dispatch({
+      type: UPDATE_STATUS,
+      payload: "connected",
+    })
   }
 
   return (
@@ -148,4 +222,4 @@ const Main = ({ users = [] }) => {
   )
 }
 
-export default Main
+export default Meeting
