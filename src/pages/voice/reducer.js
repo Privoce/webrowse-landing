@@ -9,7 +9,7 @@
 import React, { createContext, useReducer } from "react"
 
 /**
- * status enums ['disconnected', 'connecting', 'connected', 'leave']
+ * status enums ['disconnected', 'will-join', 'connecting', 'connected', 'leave']
  * @type {{localAudioTrack: null, localVideoTrack: null, joinState: boolean, client: null, users: *[], status: string}}
  */
 const initValue = {
@@ -20,9 +20,9 @@ const initValue = {
   client: null,
   status: "disconnected",
   devices: [],
+  permissionState: undefined, // enums ['dismissed', 'denied', 'allow', 'complete']
 }
 
-console.log("init", "haha")
 const UPDATE_USERS = "UPDATE_USERS"
 const UPDATE_LOCAL_VIDEO_TRACK = "UPDATE_LOCAL_VIDEO_TRACK"
 const UPDATE_LOCAL_AUDIO_TRACK = "UPDATE_LOCAL_AUDIO_TRACK"

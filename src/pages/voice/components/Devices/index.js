@@ -5,20 +5,30 @@
  * @contact: laoona.com
  * @description: #
  */
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext, useRef } from "react"
 import StyledDevices from "./styles"
 import Selector from "./Selector"
-import { Mic, Speaker } from "../Icon"
-import { VoiceContext } from "../../reducer"
+import { Audio, AudioClose, Mic, Speaker } from "../Icon"
+import { VoiceContext, UPDATE_PERMISSION_STATE, UPDATE_STATUS } from "../../reducer"
+import MediaPlayer from "../MediaPlayer"
+import AgoraRTC from "agora-rtc-sdk-ng"
+import Button from "../RoomFooter/Button"
 
 const Devices = (
   {
     devices = [], access = () => {
   },
   }) => {
-  const { state } = useContext(VoiceContext)
+  let timer = useRef(null);
+
+  const { state, dispatch } = useContext(VoiceContext)
   const [audioInputValue, setAudioInputValue] = useState("")
   const [audioOutputValue, setAudioOutputValue] = useState("")
+
+  const [audioTrack, setAudioTrack] = useState(null)
+  const [videoTrack, setVideoTrack] = useState(null)
+  const [level, setLevel] = useState(0)
+
 
   const permissionStatus = state?.permissionState
 
@@ -29,6 +39,46 @@ const Devices = (
     const audioOutput = devices.find(item => item.deviceId === "default" && item.kind === "audioinput")?.deviceId
     setAudioOutputValue(audioOutput)
   }, [devices])
+
+  useEffect(() => {
+    if (!audioInputValue) return
+
+    let microphoneTrack, cameraTrack;
+    (async () => {
+      [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks(
+        { microphoneId: audioInputValue }, {})
+      setAudioTrack(microphoneTrack)
+      setVideoTrack(cameraTrack)
+
+      timer = setInterval(() => {
+        const level = microphoneTrack?.getVolumeLevel();
+        console.log("local stream audio level", level);
+        setLevel(level);
+      }, 200);
+    })()
+
+    return () => {
+      microphoneTrack = null
+      cameraTrack = null
+      clearInterval(timer);
+    }
+  }, [audioInputValue, audioOutputValue])
+
+  const handleJoinMeeting = () => {
+    dispatch({
+      type: UPDATE_PERMISSION_STATE,
+      payload: "complete",
+    })
+
+    dispatch({
+      type: UPDATE_STATUS,
+      payload: "will-join",
+    })
+
+    audioTrack?.close();
+    videoTrack?.close();
+  }
+  console.log(permissionStatus, "denied")
 
   const devicesList = (devices = []) => {
     if (!devices.length) return null
@@ -51,26 +101,45 @@ const Devices = (
         }}
       /></>
   }
+  const renderTestPlayer = () => {
+    return <div className="playerWrap">
+      <MediaPlayer videoTrack={videoTrack} audioTrack={null} />
+      <div className="buttons">
+        <Button label={null} volumeLevel={level}/>
+      </div>
+    </div>
+  }
+
   return <StyledDevices>
     <div className="modal">
-      <h3 className="title">Privoce Daily Meeting</h3>
+      <div>
 
-      {devicesList(devices)}
+        <h3 className="title">Privoce Daily Meeting</h3>
 
-      <div className="statusText">
-        {
-          permissionStatus === "allow" ? "In order for others to hear you, your browser will request microphone" +
-            " access." : "We don’t" +
-            " have access to your Microphone and Mic."
+        {permissionStatus === "allow" && renderTestPlayer()}
+
+        {devicesList(devices)}
+        <div className="statusText">
+          {
+            permissionStatus === "allow" ? "In order for others to hear you, your browser will request microphone" +
+              " access." : "We don’t" +
+              " have access to your Microphone and Mic."
+          }
+        </div>
+
+        <div className="descText">
+          Warning: Voice only works in one tab, Make sure do not close the tab you started Voice with, once you close
+          the
+          tab, you have to restart again.
+        </div>
+      </div>
+      <div>
+
+        {permissionStatus === "allow" ?
+          <button className="button" onClick={handleJoinMeeting}>Join Meeting</button> :
+          <button className="button" onClick={access}>Request access</button>
         }
       </div>
-
-      <div className="descText">
-        Warning: Voice only works in one tab, Make sure do not close the tab you started Voice with, once you close the
-        tab, you have to restart again.
-      </div>
-
-      <button className="button" onClick={access}>Request access</button>
     </div>
   </StyledDevices>
 }

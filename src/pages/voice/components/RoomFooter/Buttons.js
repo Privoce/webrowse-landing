@@ -10,6 +10,7 @@ import React, { useContext, useState, useEffect } from "react"
 import styled from "styled-components"
 import { VoiceContext, LEAVE } from "../../reducer"
 import { Video, Audio, VideoClose, AudioClose, Exit } from "../Icon"
+// import Button from "./Button"
 
 const StyledWrap = styled.div`
   .buttonMain {
@@ -92,6 +93,11 @@ const Buttons = () => {
       </div>
     </button>
 
+{/*
+    <Button
+      onClick={() => handleEnabled("audio")}
+    />
+*/}
     <button
       onClick={() => handleEnabled("audio")}
       className={"button"}

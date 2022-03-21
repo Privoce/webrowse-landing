@@ -71,7 +71,7 @@ const Main = () => {
         class: "view-voice",
       }}>
     </Helmet>
-    {permissionState === "allow" ? <Meeting /> : <Devices access={accessDevices} />}
+    {permissionState === "complete" ? <Meeting /> : <Devices devices={devices} access={accessDevices} />}
   </>
 }
 

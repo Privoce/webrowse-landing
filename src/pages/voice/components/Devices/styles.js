@@ -17,6 +17,9 @@ const StyledDevices = styled.section`
   justify-content: center;
 
   .modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 32px 16px;
     box-sizing: border-box;
     width: 412px;
@@ -64,6 +67,23 @@ const StyledDevices = styled.section`
     margin: 32px auto 0;
     border-radius: 50px;
     cursor: pointer;
+  }
+  .playerWrap {
+    position: relative;
+    height: 240px;
+    margin: 0 -16px;
+    background-color: #ccc;
+    margin-bottom: 16px;
+    .player {
+      width: 100%;
+      height: 240px;
+    }
+    .buttons {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 16px;
+    }
   }
 `
 

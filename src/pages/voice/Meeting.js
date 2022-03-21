@@ -106,8 +106,16 @@ const Meeting = () => {
     }
 
     // 向扩展发送连接消息
-    window.postMessage(message, "*")
+    window?.postMessage(message, "*")
   }, [state?.status])
+
+  useEffect(() => {
+    (async () => {
+      if (state?.status === 'will-join') {
+        await handleJoin()
+      }
+    })();
+  }, [state?.status]);
 
   useEffect(() => {
     dispatch({
