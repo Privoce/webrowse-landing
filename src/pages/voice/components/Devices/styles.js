@@ -72,7 +72,7 @@ const StyledDevices = styled.section`
     position: relative;
     height: 240px;
     margin: 0 -16px;
-    background-color: #ccc;
+    background-color: rgba(25, 24, 29, 1);
     margin-bottom: 16px;
     .player {
       width: 100%;

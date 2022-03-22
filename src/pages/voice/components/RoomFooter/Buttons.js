@@ -8,7 +8,7 @@
 
 import React, { useContext, useState, useEffect } from "react"
 import styled from "styled-components"
-import { VoiceContext, LEAVE } from "../../reducer"
+import { VoiceContext, LEAVE, UPDATE_DEVICES_ENABLED } from "../../reducer"
 import { Video, Audio, VideoClose, AudioClose, Exit } from "../Icon"
 // import Button from "./Button"
 
@@ -54,16 +54,24 @@ const StyledWrap = styled.div`
 
 const Buttons = () => {
   const { state, dispatch } = useContext(VoiceContext) || {}
-  const { localVideoTrack, localAudioTrack, leave, joinState } = state
-  const [videoEnabled, setVideoEnabled] = useState(true)
-  const [audioEnabled, setAudioEnabled] = useState(true)
+  const {
+    localVideoTrack,
+    localAudioTrack,
+    videoEnabled,
+    audioEnabled,
+    joinState
+  } = state
 
   const handleEnabled = (type = "video") => {
-    if (type === "video") {
-      setVideoEnabled(v => !v)
-    } else {
-      setAudioEnabled(v => !v)
-    }
+    const enabled = type === 'video' ? videoEnabled : audioEnabled;
+
+    dispatch({
+      type: UPDATE_DEVICES_ENABLED,
+      payload: {
+        devices: type,
+        enabled: !enabled,
+      }
+    })
   }
 
   const handleLeave = () => {

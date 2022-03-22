@@ -21,6 +21,8 @@ const initValue = {
   status: "disconnected",
   devices: [],
   permissionState: undefined, // enums ['dismissed', 'denied', 'allow', 'complete']
+  videoEnabled: true,
+  audioEnabled: true,
 }
 
 const UPDATE_USERS = "UPDATE_USERS"
@@ -32,6 +34,7 @@ const UPDATE_CLIENT = "UPDATE_CLIENT"
 const UPDATE_STATUS = "UPDATE_STATUS"
 const UPDATE_PERMISSION_STATE = "UPDATE_PERMISSION_STATE"
 const UPDATE_DEVICES = "UPDATE_DEVICES"
+const UPDATE_DEVICES_ENABLED = "UPDATE_DEVICES_ENABLED"
 
 const reducer = (state, action) => {
   const { localAudioTrack, localVideoTrack, client } = state
@@ -99,6 +102,18 @@ const reducer = (state, action) => {
         ...state,
         devices: action.payload,
       }
+
+    case UPDATE_DEVICES_ENABLED:
+      const {
+        devices = '',
+        enabled = undefined,
+      } = action.payload;
+
+      return {
+        ...state,
+        [`${devices}Enabled`]: enabled,
+      }
+
     default:
       return state
   }
@@ -127,5 +142,6 @@ export {
   UPDATE_STATUS,
   UPDATE_PERMISSION_STATE,
   UPDATE_DEVICES,
+  UPDATE_DEVICES_ENABLED,
 }
 

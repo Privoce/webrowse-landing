@@ -9,7 +9,12 @@ import React, { useState, useEffect, useContext, useRef } from "react"
 import StyledDevices from "./styles"
 import Selector from "./Selector"
 import { Camera, Mic, Speaker } from "../Icon"
-import { VoiceContext, UPDATE_PERMISSION_STATE, UPDATE_STATUS } from "../../reducer"
+import {
+  VoiceContext,
+  UPDATE_DEVICES_ENABLED,
+  UPDATE_PERMISSION_STATE,
+  UPDATE_STATUS,
+} from "../../reducer"
 import MediaPlayer from "../MediaPlayer"
 import AgoraRTC from "agora-rtc-sdk-ng"
 import Button from "../RoomFooter/Button"
@@ -31,6 +36,7 @@ const Devices = (
   const [level, setLevel] = useState(0)
 
   const permissionStatus = state?.permissionState
+  const { videoEnabled, audioEnabled } = state || {}
 
   useEffect(() => {
     const audioInput = devices.find(item => item.kind === "audioinput")?.deviceId
@@ -79,6 +85,9 @@ const Devices = (
       type: UPDATE_STATUS,
       payload: "will-join",
     })
+
+    audioTrack?.close()
+    videoTrack?.close()
   }
   console.log(permissionStatus, "permissionStatus")
 
@@ -119,13 +128,19 @@ const Devices = (
       <MediaPlayer videoTrack={videoTrack} audioTrack={null} />
       <div className="buttons">
         <Button
-          // onClick={() => setDisabled(false)}
+          onClick={() => dispatch({
+            type: UPDATE_DEVICES_ENABLED,
+            payload: { devices: "video", enabled: !videoEnabled }
+          })}
           type="cam"
-          label={null} disabled={false} />
+          label={null} disabled={!videoEnabled} />
 
         <Button
-          // onClick={() => setDisabled(false)}
-          label={null} volumeLevel={level} disabled={false} />
+          onClick={() => dispatch({
+            type: UPDATE_DEVICES_ENABLED,
+            payload: { devices: "audio", enabled: !audioEnabled }
+          })}
+          label={null} volumeLevel={level} disabled={!audioEnabled} />
       </div>
     </div>
   }
