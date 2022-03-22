@@ -8,7 +8,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react"
 import StyledDevices from "./styles"
 import Selector from "./Selector"
-import { Audio, AudioClose, Mic, Speaker } from "../Icon"
+import { Camera, Mic, Speaker } from "../Icon"
 import { VoiceContext, UPDATE_PERMISSION_STATE, UPDATE_STATUS } from "../../reducer"
 import MediaPlayer from "../MediaPlayer"
 import AgoraRTC from "agora-rtc-sdk-ng"
@@ -19,25 +19,28 @@ const Devices = (
     devices = [], access = () => {
   },
   }) => {
-  let timer = useRef(null);
+  let timer = useRef(null)
 
   const { state, dispatch } = useContext(VoiceContext)
   const [audioInputValue, setAudioInputValue] = useState("")
   const [audioOutputValue, setAudioOutputValue] = useState("")
+  const [videoInputValue, setVideoInputValue] = useState("")
 
   const [audioTrack, setAudioTrack] = useState(null)
   const [videoTrack, setVideoTrack] = useState(null)
   const [level, setLevel] = useState(0)
 
-
   const permissionStatus = state?.permissionState
 
   useEffect(() => {
-    const audioInput = devices.find(item => item.deviceId === "default" && item.kind === "audioinput")?.deviceId
+    const audioInput = devices.find(item => item.kind === "audioinput")?.deviceId
     setAudioInputValue(audioInput)
 
-    const audioOutput = devices.find(item => item.deviceId === "default" && item.kind === "audioinput")?.deviceId
+    const audioOutput = devices.find(item => item.kind === "audioinput")?.deviceId
     setAudioOutputValue(audioOutput)
+
+    const videoInput = devices.find(item => item.kind === "videoinput")?.deviceId
+    setVideoInputValue(videoInput)
   }, [devices])
 
   useEffect(() => {
@@ -51,18 +54,18 @@ const Devices = (
       setVideoTrack(cameraTrack)
 
       timer = setInterval(() => {
-        const level = microphoneTrack?.getVolumeLevel();
-        console.log("local stream audio level", level);
-        setLevel(level);
-      }, 200);
+        const level = microphoneTrack?.getVolumeLevel()
+        console.log("local stream audio level", level)
+        setLevel(level)
+      }, 200)
     })()
 
     return () => {
       microphoneTrack = null
       cameraTrack = null
-      clearInterval(timer);
+      clearInterval(timer)
     }
-  }, [audioInputValue, audioOutputValue])
+  }, [audioInputValue])
 
   const handleJoinMeeting = () => {
     dispatch({
@@ -75,14 +78,23 @@ const Devices = (
       payload: "will-join",
     })
 
-    audioTrack?.close();
-    videoTrack?.close();
+    audioTrack?.close()
+    videoTrack?.close()
   }
-  console.log(permissionStatus, "denied")
+  console.log(permissionStatus, "permissionStatus")
 
   const devicesList = (devices = []) => {
     if (!devices.length) return null
     return <>
+      <Selector
+        value={videoInputValue}
+        icon={<Camera />}
+        data={devices.filter(item => item.kind === "videoinput")}
+        onChange={(v) => {
+          setVideoInputValue(v)
+        }}
+      />
+      <div className="space" />
       <Selector
         value={audioInputValue}
         icon={<Mic />}
@@ -102,10 +114,19 @@ const Devices = (
       /></>
   }
   const renderTestPlayer = () => {
+    // const [disabled, setDisabled] = useState(false)
+
     return <div className="playerWrap">
       <MediaPlayer videoTrack={videoTrack} audioTrack={null} />
       <div className="buttons">
-        <Button label={null} volumeLevel={level}/>
+        <Button
+          // onClick={() => setDisabled(false)}
+          type="cam"
+          label={null} disabled={false} />
+
+        <Button
+          // onClick={() => setDisabled(false)}
+          label={null} volumeLevel={level} disabled={false} />
       </div>
     </div>
   }

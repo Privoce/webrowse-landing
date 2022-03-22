@@ -5,7 +5,7 @@
  * @contact: laoono.com
  * @description: #
  */
-import { Audio, AudioClose } from "../Icon"
+import { Audio, AudioClose, Video, VideoClose } from "../Icon"
 import React from "react"
 import styled from "styled-components"
 
@@ -59,13 +59,23 @@ const StyledButton = styled.div`
   }
 `
 
+const iconMap = new Map([
+  ['mic', [<Audio/>, <AudioClose/>]],
+  ['cam', [<Video/>, <VideoClose/>]],
+])
+const textMap = new Map([
+  ['mic', 'Mic'],
+  ['cam', 'Cam']
+])
+
 const Button = (
   {
     onClick = () => {
     },
-    label = "Mic",
-    audioEnabled = true,
+    label = true,
+    disabled = false,
     volumeLevel = 0,
+    type = 'mic',
   }) => {
   return <StyledButton>
     <button
@@ -74,10 +84,14 @@ const Button = (
     >
       <div className={"buttonInner"}>
         <div className={"buttonIcon"}>
-          {audioEnabled ? <Audio /> : <AudioClose />}
+          {
+            iconMap.get(type)?.[!disabled ? 0 : 1]
+          }
           <span style={{height: `${volumeLevel * 100}px`}} className="level"/>
         </div>
-        { label && <div className={"text"}>{label}</div>}
+        { label && <div className={"text"}>{
+          type.replace(type[0], type[0].toUpperCase())
+        }</div>}
       </div>
     </button>
   </StyledButton>

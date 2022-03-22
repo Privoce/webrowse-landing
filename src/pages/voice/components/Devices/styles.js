@@ -83,6 +83,7 @@ const StyledDevices = styled.section`
       left: 50%;
       transform: translateX(-50%);
       bottom: 16px;
+      display: flex;
     }
   }
 `

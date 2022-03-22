@@ -44,15 +44,14 @@ const Main = () => {
       setPermissionStatus(status)
     })
   }
+
   useEffect(() => {
     accessDevices()
   }, [])
 
   useEffect(() => {
-    dispatch({})
-  }, [devices])
+    if (permissionStatus === undefined) return;
 
-  useEffect(() => {
     dispatch?.({
       type: UPDATE_PERMISSION_STATE,
       payload: permissionStatus,
