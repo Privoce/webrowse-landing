@@ -14,6 +14,7 @@ import {
   UPDATE_DEVICES_ENABLED,
   UPDATE_PERMISSION_STATE,
   UPDATE_STATUS,
+  UPDATE_DEVICES_ID,
 } from "../../reducer"
 import MediaPlayer from "../MediaPlayer"
 import AgoraRTC from "agora-rtc-sdk-ng"
@@ -54,8 +55,11 @@ const Devices = (
 
     let microphoneTrack, cameraTrack;
     (async () => {
+
       [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks(
-        { microphoneId: audioInputValue }, {})
+        { microphoneId: audioInputValue },
+        {cameraId: videoInputValue})
+
       setAudioTrack(microphoneTrack)
       setVideoTrack(cameraTrack)
 
@@ -65,6 +69,22 @@ const Devices = (
         setLevel(level)
       }, 200)
     })()
+
+    dispatch({
+      type: UPDATE_DEVICES_ID,
+      payload: {
+        type: 'camera',
+        id: videoInputValue,
+      }
+    })
+
+    dispatch({
+      type: UPDATE_DEVICES_ID,
+      payload: {
+        type: 'microphone',
+        id: audioInputValue,
+      }
+    })
 
     return () => {
       microphoneTrack = null

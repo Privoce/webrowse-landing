@@ -41,14 +41,15 @@ export default function useAgora(client) {
     if (!client) return;
 
     (async () => {
-      console.log(await AgoraRTC.getMicrophones(true), 'haha', client);
+      // console.log(await AgoraRTC.getMicrophones(true), 'haha', client);
       const devices = await AgoraRTC.getDevices();
       setDevices(devices);
     })();
 
   }, [client]);
 
-  const join = useCallback(async function (channel, intId) {
+  const join = useCallback(async function (
+    channel, intId, audioConfig, videoConfig) {
 
     if (!client || !intId) return;
     client.enableAudioVolumeIndicator();
@@ -56,7 +57,8 @@ export default function useAgora(client) {
     setChannel(channel);
 
     const token = await getToken(intId, channel);
-    const [microphoneTrack, cameraTrack] = await createLocalTracks();
+    const [microphoneTrack, cameraTrack] = await createLocalTracks(
+      audioConfig, videoConfig);
 
     await client.join(APPID, channel, token || null, +intId);
     await client.publish([microphoneTrack, cameraTrack]);

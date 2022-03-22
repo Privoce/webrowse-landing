@@ -23,6 +23,8 @@ const initValue = {
   permissionState: undefined, // enums ['dismissed', 'denied', 'allow', 'complete']
   videoEnabled: true,
   audioEnabled: true,
+  cameraId: undefined,
+  microphoneId: undefined,
 }
 
 const UPDATE_USERS = "UPDATE_USERS"
@@ -35,6 +37,7 @@ const UPDATE_STATUS = "UPDATE_STATUS"
 const UPDATE_PERMISSION_STATE = "UPDATE_PERMISSION_STATE"
 const UPDATE_DEVICES = "UPDATE_DEVICES"
 const UPDATE_DEVICES_ENABLED = "UPDATE_DEVICES_ENABLED"
+const UPDATE_DEVICES_ID = "UPDATE_DEVICES_ID"
 
 const reducer = (state, action) => {
   const { localAudioTrack, localVideoTrack, client } = state
@@ -114,6 +117,17 @@ const reducer = (state, action) => {
         [`${devices}Enabled`]: enabled,
       }
 
+    case UPDATE_DEVICES_ID:
+      const {
+        type = '',
+        id = undefined,
+      } = action.payload;
+
+      return {
+        ...state,
+        [`${type}Id`]: id,
+      }
+
     default:
       return state
   }
@@ -143,5 +157,6 @@ export {
   UPDATE_PERMISSION_STATE,
   UPDATE_DEVICES,
   UPDATE_DEVICES_ENABLED,
+  UPDATE_DEVICES_ID
 }
 

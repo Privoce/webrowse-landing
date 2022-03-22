@@ -48,7 +48,7 @@ const Meeting = () => {
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState({})
 
-  const { status } = state || {}
+  const { status, cameraId, microphoneId } = state || {}
   const { user: localUser } = { user: { intId: 1 } }
 
   const params = new URLSearchParams(location.search)
@@ -112,10 +112,10 @@ const Meeting = () => {
   useEffect(() => {
     (async () => {
       if (state?.status === 'will-join') {
-        await handleJoin()
+        await handleJoin({microphoneId}, {cameraId})
       }
     })();
-  }, [state?.status]);
+  }, [state?.status, cameraId, microphoneId]);
 
   useEffect(() => {
     dispatch({
@@ -157,7 +157,7 @@ const Meeting = () => {
           setCurrentUser(currentUser)
 
           if (!state?.joinState && state?.status === 'disconnected') {
-            await handleJoin();
+            await handleJoin({microphoneId}, {cameraId});
           }
           break;
         case "leave":
@@ -178,13 +178,13 @@ const Meeting = () => {
     }
   }, [state?.status])
 
-  const handleJoin = async () => {
+  const handleJoin = async (audioConfig, videoConfig) => {
     dispatch({
       type: UPDATE_STATUS,
       payload: "connecting",
     })
 
-    await join(cid, uid)
+    await join(cid, uid, audioConfig, videoConfig)
 
     dispatch({
       type: UPDATE_JOIN_STATE,
@@ -216,7 +216,8 @@ const Meeting = () => {
             <button
               disabled={status === "connecting"}
               className="button"
-              onClick={handleJoin}
+              onClick={() => handleJoin({microphoneId},
+                {cameraId})}
             >
               <div className="inner">
                 <JoinRoom />
