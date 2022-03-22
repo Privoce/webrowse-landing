@@ -44,7 +44,7 @@ const Devices = (
   }, [devices])
 
   useEffect(() => {
-    if (!audioInputValue) return
+    if (!audioInputValue || !videoInputValue) return
 
     let microphoneTrack, cameraTrack;
     (async () => {
@@ -64,8 +64,10 @@ const Devices = (
       microphoneTrack = null
       cameraTrack = null
       clearInterval(timer)
+      audioTrack?.close()
+      videoTrack?.close()
     }
-  }, [audioInputValue])
+  }, [audioInputValue, videoInputValue])
 
   const handleJoinMeeting = () => {
     dispatch({
@@ -77,9 +79,6 @@ const Devices = (
       type: UPDATE_STATUS,
       payload: "will-join",
     })
-
-    audioTrack?.close()
-    videoTrack?.close()
   }
   console.log(permissionStatus, "permissionStatus")
 
