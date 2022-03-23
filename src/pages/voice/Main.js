@@ -20,13 +20,8 @@ const Main = () => {
 
   const accessDevices = () => {
     AgoraRTC.getDevices()
-      .then(() => {
-
-        (async () => {
-          const devices = await AgoraRTC.getDevices()
-          setDevices(devices)
-        })()
-
+      .then((devices) => {
+        setDevices(devices)
         setPermissionStatus("allow")
       }).catch((e) => {
       let status = "denied"
@@ -50,7 +45,7 @@ const Main = () => {
   }, [])
 
   useEffect(() => {
-    if (permissionStatus === undefined) return;
+    if (permissionStatus === undefined) return
 
     dispatch?.({
       type: UPDATE_PERMISSION_STATE,
