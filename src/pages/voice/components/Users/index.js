@@ -11,29 +11,29 @@ import StyledWrapper from "./styles"
 import MediaPlayer from "../MediaPlayer"
 import { VoiceContext } from "../../reducer"
 
-const Users = () => {
+const Users = ({extUsers}) => {
   const { state } = useContext(VoiceContext)
-  const { localVideoTrack, users } = state
+  const { localVideoTrack, users, currentUser } = state
 
   return <StyledWrapper>
-    <ul className={`users ${users.length > 1 ? 'usersMore': ''}`}>
-      <li>
+    <ul className={`users ${users.length > 1 ? "usersMore" : ""}`}>
+      <li className="user">
         <MediaPlayer videoTrack={localVideoTrack} audioTrack={undefined} />
+        <div className="info">
+          <div className="avatar"><img src={currentUser.photo} className="pic" alt="" /></div>
+          {/*<div className="name">{user.username}</div>*/}
+        </div>
       </li>
       {
         users?.map(user =>
           <li key={user.uid} className="user">
-            {
-              (user.hasVideo || user.hasAudio) ?
-                <MediaPlayer videoTrack={user.videoTrack} audioTrack={user.audioTrack} />
-                : null
-/*
-                <>
-                  <div className="avatar"><img src={user.photo} className="pic" alt="" /></div>
-                  <div className="name">{user.username}</div>
-                </>
-*/
-            }
+            {/*(user.hasVideo || user.hasAudio) ?*/}
+            <MediaPlayer videoTrack={user.videoTrack} audioTrack={user.audioTrack} />
+            {/*:*/}
+            <div className="info">
+              <div className="avatar"><img src={extUsers?.[user.uid]?.photo} className="pic" alt="" /></div>
+              {/*<div className="name">{user.username}</div>*/}
+            </div>
           </li>
         )
       }

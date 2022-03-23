@@ -22,6 +22,7 @@ import {
   UPDATE_CLIENT,
   UPDATE_STATUS,
   LEAVE,
+  UPDATE_CURRENT_USR,
 } from "./reducer"
 import { JoinRoom } from "./components/Icon"
 
@@ -155,6 +156,10 @@ const Meeting = () => {
 
           setUsers(users)
           setCurrentUser(currentUser)
+          dispatch({
+            type: UPDATE_CURRENT_USR,
+            payload: currentUser
+          })
 
           if (!state?.joinState && state?.status === 'disconnected') {
             await handleJoin({microphoneId}, {cameraId});
@@ -208,7 +213,7 @@ const Meeting = () => {
 
       {
         state?.joinState ? <>
-            <Users />
+            <Users extUsers={users} />
             <RoomFooter />
           </>
           :

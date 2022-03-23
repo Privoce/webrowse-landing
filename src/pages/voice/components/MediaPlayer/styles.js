@@ -12,6 +12,7 @@ const StyledWrapper = styled.div`
   .player {
     width: 640px;
     height: 480px;
+    background-color: #000;
   }
 `;
 

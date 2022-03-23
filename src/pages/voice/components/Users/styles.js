@@ -29,12 +29,19 @@ const StyledWrapper = styled.div`
     }
   }
   .user {
+    position: relative;
+  }
+  .info {
+    position: absolute; 
+    bottom: 0;
+    right: 0;
   }
   .avatar {
     width: 80px;
     height: 80px;
-    background-color: gray;
-    border-radius: 8px;
+    background-color: #333;
+    opacity: 0.6;
+    //border-radius: 8px;
     overflow: hidden;
     .pic {
       width: 100%;

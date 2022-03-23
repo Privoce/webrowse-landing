@@ -25,6 +25,7 @@ const initValue = {
   audioEnabled: true,
   cameraId: undefined,
   microphoneId: undefined,
+  currentUser: {}, // 当前扩展登录的用户
 }
 
 const UPDATE_USERS = "UPDATE_USERS"
@@ -38,6 +39,7 @@ const UPDATE_PERMISSION_STATE = "UPDATE_PERMISSION_STATE"
 const UPDATE_DEVICES = "UPDATE_DEVICES"
 const UPDATE_DEVICES_ENABLED = "UPDATE_DEVICES_ENABLED"
 const UPDATE_DEVICES_ID = "UPDATE_DEVICES_ID"
+const UPDATE_CURRENT_USR = "UPDATE_CURRENT_USR"
 
 const reducer = (state, action) => {
   const { localAudioTrack, localVideoTrack, client } = state
@@ -128,6 +130,11 @@ const reducer = (state, action) => {
         [`${type}Id`]: id,
       }
 
+    case UPDATE_CURRENT_USR:
+      return {
+        ...state,
+        currentUser: action.payload,
+      }
     default:
       return state
   }
@@ -157,6 +164,7 @@ export {
   UPDATE_PERMISSION_STATE,
   UPDATE_DEVICES,
   UPDATE_DEVICES_ENABLED,
-  UPDATE_DEVICES_ID
+  UPDATE_DEVICES_ID,
+  UPDATE_CURRENT_USR,
 }
 
