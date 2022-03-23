@@ -40,7 +40,7 @@ const StyledWrapper = styled.div`
     width: 80px;
     height: 80px;
     background-color: #333;
-    opacity: 0.6;
+    opacity: 0.75;
     //border-radius: 8px;
     overflow: hidden;
     .pic {

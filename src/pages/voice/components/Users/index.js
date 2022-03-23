@@ -11,9 +11,9 @@ import StyledWrapper from "./styles"
 import MediaPlayer from "../MediaPlayer"
 import { VoiceContext } from "../../reducer"
 
-const Users = ({extUsers}) => {
+const Users = () => {
   const { state } = useContext(VoiceContext)
-  const { localVideoTrack, users, currentUser } = state
+  const { localVideoTrack, users, currentUser, extUsers } = state
 
   return <StyledWrapper>
     <ul className={`users ${users.length > 1 ? "usersMore" : ""}`}>
@@ -31,7 +31,8 @@ const Users = ({extUsers}) => {
             <MediaPlayer videoTrack={user.videoTrack} audioTrack={user.audioTrack} />
             {/*:*/}
             <div className="info">
-              <div className="avatar"><img src={extUsers?.[user.uid]?.photo} className="pic" alt="" /></div>
+              <div className="avatar">
+                <img src={extUsers.find(item => item.intUid === user.uid)?.photo} className="pic" alt="" /></div>
               {/*<div className="name">{user.username}</div>*/}
             </div>
           </li>

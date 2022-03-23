@@ -7,7 +7,11 @@
  */
 
 import React, { useEffect, useState, useContext } from "react"
-import { UPDATE_PERMISSION_STATE, VoiceContext } from "./reducer"
+import {
+  LEAVE,
+  UPDATE_CURRENT_USR, UPDATE_PERMISSION_STATE, VoiceContext,
+  UPDATE_EXT_USERS,
+} from "./reducer"
 import Meeting from "./Meeting"
 import Devices from "./components/Devices"
 import AgoraRTC from "agora-rtc-sdk-ng"
@@ -42,6 +46,53 @@ const Main = () => {
 
   useEffect(() => {
     accessDevices()
+  }, [])
+
+  useEffect(() => {
+    const handleMessage = async (ev) => {
+      const {
+        source,
+        event,
+        payload,
+      } = ev.data || {}
+
+      console.log("user message", ev.data)
+
+      // 监听来自 webrowse.ext 的消息
+      if (!(source === "webrowse.ext")) return
+
+      switch (event) {
+        case "webrows_users":
+          const users = payload?.users || []
+          const currentUser = payload?.currentUser || {}
+
+          dispatch({
+            type: UPDATE_CURRENT_USR,
+            payload: currentUser,
+          })
+
+          dispatch({
+            type: UPDATE_EXT_USERS,
+            payload: users,
+          })
+
+          break
+        case "leave":
+          dispatch({
+            type: LEAVE,
+          })
+          break
+
+        default:
+          break
+      }
+    }
+
+    window.addEventListener("message", handleMessage)
+
+    return () => {
+      window.removeEventListener("message", handleMessage)
+    }
   }, [])
 
   useEffect(() => {

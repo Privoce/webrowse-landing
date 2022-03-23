@@ -21,8 +21,6 @@ import {
   UPDATE_USERS,
   UPDATE_CLIENT,
   UPDATE_STATUS,
-  LEAVE,
-  UPDATE_CURRENT_USR,
 } from "./reducer"
 import { JoinRoom } from "./components/Icon"
 
@@ -46,14 +44,11 @@ const genUid = () => {
 
 const Meeting = () => {
   const { dispatch, state } = useContext(VoiceContext)
-  const [users, setUsers] = useState([])
-  const [currentUser, setCurrentUser] = useState({})
 
-  const { status, cameraId, microphoneId } = state || {}
-  const { user: localUser } = { user: { intId: 1 } }
+  const { status, cameraId, microphoneId, currentUser } = state || {}
 
   const params = new URLSearchParams(location.search)
-  const uid = genUid() || +params.get("uid") || 1
+  const uid = currentUser?.intUid || genUid() || +params.get("uid") || 1
   const cid = params.get("cid") || "test"
 
   const {
@@ -136,52 +131,11 @@ const Meeting = () => {
     window?.postMessage(message, "*")
   }, [remoteUsers])
 
-  useEffect(() => {
-    const handleMessage = async (ev) => {
-      const {
-        source,
-        event,
-        payload,
-      } = ev.data || {}
-
-      console.log("user message", ev.data)
-
-      // 监听来自 webrowse.ext 的消息
-      if (!(source === "webrowse.ext")) return
-
-      switch (event) {
-        case "webrows_users":
-          const users = payload?.users || []
-          const currentUser = payload?.currentUser || {}
-
-          setUsers(users)
-          setCurrentUser(currentUser)
-          dispatch({
-            type: UPDATE_CURRENT_USR,
-            payload: currentUser
-          })
-
-          if (!state?.joinState && state?.status === 'disconnected') {
-            await handleJoin({microphoneId}, {cameraId});
-          }
-          break;
-        case "leave":
-          dispatch({
-            type: LEAVE,
-          })
-          break;
-
-        default:
-          break;
-      }
-    }
-
-    window.addEventListener("message", handleMessage)
-
-    return () => {
-      window.removeEventListener("message", handleMessage)
-    }
-  }, [state?.status])
+/*
+  if (!state?.joinState && state?.status === 'disconnected') {
+    await handleJoin({microphoneId}, {cameraId});
+  }
+*/
 
   const handleJoin = async (audioConfig, videoConfig) => {
     dispatch({
@@ -213,7 +167,7 @@ const Meeting = () => {
 
       {
         state?.joinState ? <>
-            <Users extUsers={users} />
+            <Users />
             <RoomFooter />
           </>
           :

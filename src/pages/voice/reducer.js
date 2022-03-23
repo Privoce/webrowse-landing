@@ -26,6 +26,7 @@ const initValue = {
   cameraId: undefined,
   microphoneId: undefined,
   currentUser: {}, // 当前扩展登录的用户
+  extUsers: [], // 当前扩展 Webrowse 用户列表
 }
 
 const UPDATE_USERS = "UPDATE_USERS"
@@ -40,6 +41,7 @@ const UPDATE_DEVICES = "UPDATE_DEVICES"
 const UPDATE_DEVICES_ENABLED = "UPDATE_DEVICES_ENABLED"
 const UPDATE_DEVICES_ID = "UPDATE_DEVICES_ID"
 const UPDATE_CURRENT_USR = "UPDATE_CURRENT_USR"
+const UPDATE_EXT_USERS = "UPDATE_EXT_USERS"
 
 const reducer = (state, action) => {
   const { localAudioTrack, localVideoTrack, client } = state
@@ -135,6 +137,12 @@ const reducer = (state, action) => {
         ...state,
         currentUser: action.payload,
       }
+
+    case UPDATE_EXT_USERS:
+      return {
+        ...state,
+        extUsers: action.payload,
+      }
     default:
       return state
   }
@@ -166,5 +174,6 @@ export {
   UPDATE_DEVICES_ENABLED,
   UPDATE_DEVICES_ID,
   UPDATE_CURRENT_USR,
+  UPDATE_EXT_USERS,
 }
 
