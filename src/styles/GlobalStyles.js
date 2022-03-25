@@ -71,5 +71,19 @@ body {
   background-color: #19181D;
 }
 
+.textLineClamp-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.view-voice {
+  background-color: #fff;
+}
+
 `;
 export default GlobalStyles;
