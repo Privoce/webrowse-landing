@@ -9,7 +9,7 @@
 import React, { useEffect, useState, useContext } from "react"
 
 import AgoraRTC from "agora-rtc-sdk-ng"
-import useAgora from "../hooks/useAgora"
+import useAgora from "../../hooks/useAgora"
 import RoomFooter from "./components/RoomFooter"
 import StyledWrapper from "./styles"
 import Users from "./components/Users"
