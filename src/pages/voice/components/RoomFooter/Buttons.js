@@ -60,7 +60,7 @@ const Buttons = () => {
     videoEnabled,
     audioEnabled,
     joinState
-  } = state
+  } = state || {}
 
   const handleEnabled = (type = "video") => {
     const enabled = type === 'video' ? videoEnabled : audioEnabled;
