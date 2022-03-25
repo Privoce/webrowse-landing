@@ -23,8 +23,9 @@ import {
   UPDATE_STATUS,
 } from "./reducer"
 import { JoinRoom } from "./components/Icon"
+import { isBrowser } from "../../utils"
 
-const client = AgoraRTC.createClient({ codec: "h264", mode: "rtc" })
+const client = AgoraRTC?.createClient?.({ codec: "h264", mode: "rtc" })
 
 /**
  * 随机生成uid
@@ -47,7 +48,7 @@ const Meeting = () => {
 
   const { status, cameraId, microphoneId, currentUser } = state || {}
 
-  const params = new URLSearchParams(location.search)
+  const params = new URLSearchParams(isBrowser() ? window.location.search : '')
   const uid = currentUser?.intUid || genUid() || +params.get("uid") || 1
   const cid = params.get("cid") || "test"
 
