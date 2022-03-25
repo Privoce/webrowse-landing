@@ -76,7 +76,7 @@ export const Camera = () => <svg t="1647908454696" className="icon" viewBox="0 0
   <path d="M304 352a48 48 0 1 0 0.032 96.032A48 48 0 0 0 304 352" p-id="3820" fill="currentColor" fillOpacity="0.5"></path>
 </svg>
 
-export default function() {
+export default function Icon () {
   return <></>
 }
 
