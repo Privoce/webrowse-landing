@@ -46,7 +46,7 @@ const genUid = () => {
 const Meeting = () => {
   const { dispatch, state } = useContext(VoiceContext)
 
-  const { status, cameraId, microphoneId, currentUser } = state || {}
+  const { status, cameraId, microphoneId, currentUser, users } = state || {}
 
   const params = new URLSearchParams(isBrowser() ? window.location.search : '')
   const uid = currentUser?.intUid || genUid() || +params.get("uid") || 1
@@ -119,18 +119,20 @@ const Meeting = () => {
       type: UPDATE_USERS,
       payload: remoteUsers,
     })
+  }, [remoteUsers])
 
+  useEffect(() => {
     const message = {
       source: "webrow.se/voice",
       payload: {
-        remoteUsers: remoteUsers.map(item => ({uid: item.uid})),
+        remoteUsers: users.map(item => ({uid: item.uid})),
       },
       event: "remote_users",
     }
 
-    // 向扩展发送连接消息
+    // 向扩展发送 remote_users 消息
     window?.postMessage(message, "*")
-  }, [remoteUsers])
+  }, [users])
 
 /*
   if (!state?.joinState && state?.status === 'disconnected') {
