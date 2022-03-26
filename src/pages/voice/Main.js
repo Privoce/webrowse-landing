@@ -6,11 +6,12 @@
  * @description: #
  */
 
-import React, { useEffect, useState, useContext } from "react"
+import React, { useEffect, useState, useContext, useRef } from "react"
 import {
   LEAVE,
   UPDATE_CURRENT_USR, UPDATE_PERMISSION_STATE, VoiceContext,
   UPDATE_EXT_USERS,
+  UPDATE_STATUS,
 } from "./reducer"
 import Meeting from "./Meeting"
 import Devices from "./components/Devices"
@@ -21,6 +22,8 @@ const Main = () => {
   const { state, dispatch } = useContext(VoiceContext)
   const [permissionStatus, setPermissionStatus] = useState(undefined)
   const [devices, setDevices] = useState([])
+
+  const refDevices = useRef(null);
 
   const accessDevices = () => {
     AgoraRTC.getDevices()
@@ -82,7 +85,12 @@ const Main = () => {
             type: LEAVE,
           })
           break
-
+        case "join":
+          state?.permissionState === "complete" ? dispatch({
+            type: UPDATE_STATUS,
+            payload: 'will-join',
+          }): refDevices?.current?.join()
+          break;
         default:
           break
       }
@@ -93,7 +101,7 @@ const Main = () => {
     return () => {
       window.removeEventListener("message", handleMessage)
     }
-  }, [])
+  }, [state?.permissionState])
 
   useEffect(() => {
     if (permissionStatus === undefined) return
@@ -116,7 +124,9 @@ const Main = () => {
         class: "view-voice",
       }}>
     </Helmet>
-    {permissionState === "complete" ? <Meeting /> : <Devices devices={devices} access={accessDevices} />}
+    {permissionState === "complete" ? <Meeting /> : <Devices
+      ref={refDevices}
+      devices={devices} access={accessDevices} />}
   </>
 }
 

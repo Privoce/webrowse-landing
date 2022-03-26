@@ -5,7 +5,10 @@
  * @contact: laoona.com
  * @description: #
  */
-import React, { useState, useEffect, useContext, useRef } from "react"
+import React, {
+  useState, useEffect, useContext, useRef,
+  useImperativeHandle, forwardRef,
+} from "react"
 import StyledDevices from "./styles"
 import Selector from "./Selector"
 import { Camera, Mic, Speaker } from "../Icon"
@@ -24,7 +27,7 @@ const Devices = (
   {
     devices = [], access = () => {
   },
-  }) => {
+  }, ref) => {
   let timer = useRef(null)
 
   const { state, dispatch } = useContext(VoiceContext)
@@ -58,7 +61,7 @@ const Devices = (
 
       [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks(
         { microphoneId: audioInputValue },
-        {cameraId: videoInputValue})
+        { cameraId: videoInputValue })
 
       setAudioTrack(microphoneTrack)
       setVideoTrack(cameraTrack)
@@ -73,17 +76,17 @@ const Devices = (
     dispatch({
       type: UPDATE_DEVICES_ID,
       payload: {
-        type: 'camera',
+        type: "camera",
         id: videoInputValue,
-      }
+      },
     })
 
     dispatch({
       type: UPDATE_DEVICES_ID,
       payload: {
-        type: 'microphone',
+        type: "microphone",
         id: audioInputValue,
-      }
+      },
     })
 
     return () => {
@@ -109,7 +112,15 @@ const Devices = (
     audioTrack?.close()
     videoTrack?.close()
   }
+
   console.log(permissionStatus, "permissionStatus")
+
+  useImperativeHandle(ref, () => ({
+    join() {
+      handleJoinMeeting()
+    },
+  }))
+
 
   const devicesList = (devices = []) => {
     if (!devices.length) return null
@@ -142,15 +153,13 @@ const Devices = (
       /></>
   }
   const renderTestPlayer = () => {
-    // const [disabled, setDisabled] = useState(false)
-
     return <div className="playerWrap">
       <MediaPlayer videoTrack={videoTrack} audioTrack={null} />
       <div className="buttons">
         <Button
           onClick={() => dispatch({
             type: UPDATE_DEVICES_ENABLED,
-            payload: { devices: "video", enabled: !videoEnabled }
+            payload: { devices: "video", enabled: !videoEnabled },
           })}
           type="cam"
           label={null} disabled={!videoEnabled} />
@@ -158,7 +167,7 @@ const Devices = (
         <Button
           onClick={() => dispatch({
             type: UPDATE_DEVICES_ENABLED,
-            payload: { devices: "audio", enabled: !audioEnabled }
+            payload: { devices: "audio", enabled: !audioEnabled },
           })}
           label={null} volumeLevel={level} disabled={!audioEnabled} />
       </div>
@@ -199,4 +208,4 @@ const Devices = (
   </StyledDevices>
 }
 
-export default Devices
+export default forwardRef(Devices)
