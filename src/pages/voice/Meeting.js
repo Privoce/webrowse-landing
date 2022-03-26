@@ -24,6 +24,7 @@ import {
 } from "./reducer"
 import { JoinRoom } from "./components/Icon"
 import { isBrowser } from "../../utils"
+import Logo from '../../images/logo.png';
 
 const client = AgoraRTC?.createClient?.({ codec: "h264", mode: "rtc" })
 
@@ -160,7 +161,9 @@ const Meeting = () => {
   return (
     <StyledWrapper>
       <header className="header">
-        <h1 className="title">Webrowse</h1>
+        <h1 className="title">
+          <img className="logo" src={Logo} alt="" />
+        </h1>
         <h2 className="sub_title">
           Sync tabs with your teammates!
         </h2>
