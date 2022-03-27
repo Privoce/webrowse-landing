@@ -29,11 +29,15 @@ const StyledWrapper = styled.section`
       font-weight: 800;
       font-size: 36px;
       line-height: 139.8%;
-      padding-left: 60px;
-      background-image: url('https://static.nicegoodthings.com/project/ext/webrowse.logo.v2.png');
       background-size: contain;
       background-repeat: no-repeat;
       margin-bottom: 0;
+    }
+    
+    .logo {
+      width: 203px;  
+      height: 36px;
+      vertical-align: middle;
     }
 
     .sub_title {

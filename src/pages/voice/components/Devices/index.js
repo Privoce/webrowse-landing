@@ -113,14 +113,11 @@ const Devices = (
     videoTrack?.close()
   }
 
-  console.log(permissionStatus, "permissionStatus")
-
   useImperativeHandle(ref, () => ({
     join() {
       handleJoinMeeting()
     },
   }))
-
 
   const devicesList = (devices = []) => {
     if (!devices.length) return null

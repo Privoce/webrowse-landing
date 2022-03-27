@@ -24,6 +24,7 @@ import {
 } from "./reducer"
 import { JoinRoom } from "./components/Icon"
 import { isBrowser } from "../../utils"
+import Logo from "../../images/logo.png"
 
 const client = AgoraRTC?.createClient?.({ codec: "h264", mode: "rtc" })
 
@@ -48,7 +49,7 @@ const Meeting = () => {
 
   const { status, cameraId, microphoneId, currentUser, users } = state || {}
 
-  const params = new URLSearchParams(isBrowser() ? window.location.search : '')
+  const params = new URLSearchParams(isBrowser() ? window.location.search : "")
   const uid = currentUser?.intUid || genUid() || +params.get("uid") || 1
   const cid = params.get("cid") || "test"
 
@@ -108,11 +109,11 @@ const Meeting = () => {
 
   useEffect(() => {
     (async () => {
-      if (state?.status === 'will-join') {
-        await handleJoin({microphoneId}, {cameraId})
+      if (state?.status === "will-join") {
+        await handleJoin({ microphoneId }, { cameraId })
       }
-    })();
-  }, [state?.status, cameraId, microphoneId]);
+    })()
+  }, [state?.status, cameraId, microphoneId])
 
   useEffect(() => {
     dispatch({
@@ -122,23 +123,44 @@ const Meeting = () => {
   }, [remoteUsers])
 
   useEffect(() => {
+
+    const _users = users.map(({ uid, hasVideo, hasAudio }) => ({
+      uid,
+      hasVideo,
+      hasAudio,
+      current: false,
+    }))
+
+    if (state?.joinState) {
+      _users.unshift({
+        uid: currentUser?.intUid,
+        hasVideo: state?.videoEnabled,
+        hasAudio: state?.audioEnabled,
+        current: true,
+      })
+    }
+
     const message = {
       source: "webrow.se/voice",
       payload: {
-        remoteUsers: users.map(item => ({uid: item.uid})),
+        remoteUsers: _users,
       },
       event: "remote_users",
     }
 
     // 向扩展发送 remote_users 消息
     window?.postMessage(message, "*")
-  }, [users])
+  }, [
+    users, currentUser?.intUid, state?.joinState,
+    state?.videoEnabled,
+    state?.audioEnabled,
+  ])
 
-/*
-  if (!state?.joinState && state?.status === 'disconnected') {
-    await handleJoin({microphoneId}, {cameraId});
-  }
-*/
+  /*
+    if (!state?.joinState && state?.status === 'disconnected') {
+      await handleJoin({microphoneId}, {cameraId});
+    }
+  */
 
   const handleJoin = async (audioConfig, videoConfig) => {
     dispatch({
@@ -162,7 +184,9 @@ const Meeting = () => {
   return (
     <StyledWrapper>
       <header className="header">
-        <h1 className="title">Webrowse</h1>
+        <h1 className="title">
+          <img className="logo" src={Logo} alt="" />
+        </h1>
         <h2 className="sub_title">
           Sync tabs with your teammates!
         </h2>
@@ -178,8 +202,8 @@ const Meeting = () => {
             <button
               disabled={status === "connecting"}
               className="button"
-              onClick={() => handleJoin({microphoneId},
-                {cameraId})}
+              onClick={() => handleJoin({ microphoneId },
+                { cameraId })}
             >
               <div className="inner">
                 <JoinRoom />

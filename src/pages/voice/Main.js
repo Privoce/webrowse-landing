@@ -12,6 +12,7 @@ import {
   UPDATE_CURRENT_USR, UPDATE_PERMISSION_STATE, VoiceContext,
   UPDATE_EXT_USERS,
   UPDATE_STATUS,
+  UPDATE_DEVICES_ENABLED,
 } from "./reducer"
 import Meeting from "./Meeting"
 import Devices from "./components/Devices"
@@ -59,13 +60,11 @@ const Main = () => {
         payload,
       } = ev.data || {}
 
-      console.log("user message", ev.data)
-
       // 监听来自 webrowse.ext 的消息
       if (!(source === "webrowse.ext")) return
 
       switch (event) {
-        case "webrows_users":
+        case "webrowse_users":
           const users = payload?.users || []
           const currentUser = payload?.currentUser || {}
 
@@ -91,6 +90,21 @@ const Main = () => {
             payload: 'will-join',
           }): refDevices?.current?.join()
           break;
+
+        case "mute": {
+          const type = payload?.type;
+          const enabled = type === 'video' ?
+            state?.videoEnabled : state?.audioEnabled;
+
+          dispatch({
+            type: UPDATE_DEVICES_ENABLED,
+            payload: {
+              devices: type,
+              enabled: !enabled,
+            }
+          });
+        }
+          break;
         default:
           break
       }
@@ -101,7 +115,7 @@ const Main = () => {
     return () => {
       window.removeEventListener("message", handleMessage)
     }
-  }, [state?.permissionState])
+  }, [state?.permissionState, state?.videoEnabled, state?.audioEnabled])
 
   useEffect(() => {
     if (permissionStatus === undefined) return
