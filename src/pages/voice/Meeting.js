@@ -128,6 +128,7 @@ const Meeting = () => {
       uid,
       hasVideo,
       hasAudio,
+      current: false,
     }))
 
     if (state?.joinState) {
@@ -135,6 +136,7 @@ const Meeting = () => {
         uid: currentUser?.intUid,
         hasVideo: state?.videoEnabled,
         hasAudio: state?.audioEnabled,
+        current: true,
       })
     }
 
