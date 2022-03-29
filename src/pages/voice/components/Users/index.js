@@ -45,7 +45,7 @@ const Users = () => {
                         className="pic" alt="" />
                     </div>
                     :
-                    <div className="name">{user?.username}</div>
+                    <div className="name">{extUsers.find(item => item.intUid === user.uid)?.username}</div>
                 }
               </div>
             }
