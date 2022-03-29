@@ -33,14 +33,14 @@ const StyledWrapper = styled.div`
   }
   .info {
     position: absolute; 
-    bottom: 0;
-    right: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
   .avatar {
-    width: 80px;
-    height: 80px;
+    width: 160px;
+    height: 160px;
     background-color: #333;
-    opacity: 0.75;
     //border-radius: 8px;
     overflow: hidden;
     .pic {
@@ -50,9 +50,8 @@ const StyledWrapper = styled.div`
   }
   .name {
     color: #fff;
-    margin-top: 4px;
     text-align: center;
-    font-size: 14px;
+    font-size: 24px;
   }
   `;
 

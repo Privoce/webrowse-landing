@@ -19,22 +19,36 @@ const Users = () => {
     <ul className={`users ${users?.length > 1 ? "usersMore" : ""}`}>
       <li className="user">
         <MediaPlayer videoTrack={localVideoTrack} audioTrack={undefined} />
-        <div className="info">
-          <div className="avatar"><img src={currentUser?.photo} className="pic" alt="" /></div>
-          {/*<div className="name">{user.username}</div>*/}
-        </div>
+        {
+          localVideoTrack?.muted &&
+          <div className="info">
+            {
+              currentUser?.photo ?
+                <div className="avatar"><img src={currentUser?.photo} className="pic" alt="" /></div>
+                :
+                <div className="name">{currentUser?.username}</div>
+            }
+          </div>
+        }
       </li>
       {
         users?.map(user =>
           <li key={user.uid} className="user">
-            {/*(user.hasVideo || user.hasAudio) ?*/}
             <MediaPlayer videoTrack={user.videoTrack} audioTrack={user.audioTrack} />
-            {/*:*/}
-            <div className="info">
-              <div className="avatar">
-                <img src={extUsers.find(item => item.intUid === user.uid)?.photo} className="pic" alt="" /></div>
-              {/*<div className="name">{user.username}</div>*/}
-            </div>
+            {!(user.hasVideo) &&
+              <div className="info">
+                {
+                  extUsers.find(item => item.intUid === user.uid)?.photo ?
+                    <div className="avatar">
+                      <img
+                        src={extUsers.find(item => item.intUid === user.uid)?.photo}
+                        className="pic" alt="" />
+                    </div>
+                    :
+                    <div className="name">{user?.username}</div>
+                }
+              </div>
+            }
           </li>
         )
       }
