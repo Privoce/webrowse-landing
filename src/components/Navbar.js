@@ -7,7 +7,7 @@ import GuardConfig, { appId } from "../constants/guardConfig";
 import Logo from "../images/logo.png";
 
 const Navbar = ({ curr = "home", updateUser = null }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(undefined);
   const [guardVisible, setGuardVisible] = useState(false);
   // 及时地同步给父组件
   useEffect(() => {
@@ -36,6 +36,12 @@ const Navbar = ({ curr = "home", updateUser = null }) => {
   };
   const handleLogin = () => {
     setGuardVisible(true);
+  };
+  const handleOauth = (evt) => {
+    if (!user) {
+      evt.preventDefault();
+      alert("Please Login First");
+    }
   };
   return (
     <>
@@ -73,7 +79,8 @@ const Navbar = ({ curr = "home", updateUser = null }) => {
             </a>
             <a
               className={`link`}
-              href="https://chat.webrow.se/"
+              onClick={handleOauth}
+              href={`/oauth?uid=${user?.id}&uname=${user?.username}`}
               target="_blank"
             >
               Community
