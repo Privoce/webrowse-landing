@@ -9,6 +9,7 @@ const StyledContainer = styled.section`
   gap: 15px;
   font-size: 22px;
   font-weight: bold;
+  color: #fff;
   .err {
     color: red;
   }
@@ -24,7 +25,7 @@ const OAuthPage = () => {
       let uname = params.get("uname");
       try {
         const resp = await fetch(
-          `http://localhost:4000/rustchat/oauth/${uid}/${uname}`
+          `https://vera.nicegoodthings.com/rustchat/oauth/${uid}/${uname}`
         );
         const data = await resp.json();
         setLink(data.link);
