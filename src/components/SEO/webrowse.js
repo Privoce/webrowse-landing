@@ -1,20 +1,28 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-const defaultTitle = 'Webrowse - surf web together, share google chrome tabs';
-const defaultDescription = 'Turn any web app collaborative instantly. Create a shared workspace among your team with browser tabs synced in real time.'
-const defaultKeywords = 'web, chrome extension, collaboration, remote work'
-const defaultImage = 'https://static.nicegoodthings.com/project/ext/og.png';
+import React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+const defaultTitle = "Webrowse - sync tabs during remote teaching";
+const defaultDescription =
+  "Turn any web app collaborative instantly. Create a shared workspace among your team with browser tabs synced in real time.";
+const defaultKeywords = "web, chrome extension, collaboration, remote work";
+const defaultImage = "https://static.nicegoodthings.com/project/ext/og.png";
 const titleTemplate = "%s";
-const twitterUsername = '@privoce1'
-const SEO = ({ title = "", description = "", keywords = "", lang = 'en', image = "", article = false }) => {
+const twitterUsername = "@privoce1";
+const SEO = ({
+  title = "",
+  description = "",
+  keywords = "",
+  lang = "en",
+  image = "",
+  article = false,
+}) => {
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
     keywords: keywords || defaultKeywords,
     image: image || defaultImage,
     url: `https://webrow.se`,
-  }
+  };
 
   return (
     <Helmet
@@ -25,9 +33,11 @@ const SEO = ({ title = "", description = "", keywords = "", lang = 'en', image =
       <meta name="description" content={seo.description} />
       <meta name="keywords" content={seo.keywords} />
       <meta name="image" content={seo.image} />
-      <link rel="icon"
+      <link
+        rel="icon"
         type="image/png"
-        href="https://static.nicegoodthings.com/project/ext/webrowse.logo.png" />
+        href="https://static.nicegoodthings.com/project/ext/webrowse.logo.png"
+      />
       {seo.url && <meta property="og:url" content={seo.url} />}
       {article && <meta property="og:type" content="article" />}
       {seo.title && <meta property="og:title" content={seo.title} />}
@@ -45,8 +55,7 @@ const SEO = ({ title = "", description = "", keywords = "", lang = 'en', image =
       )}
       {seo.image && <meta name="twitter:image" content={seo.image} />}
       <script type="application/ld+json">
-        {
-          `{
+        {`{
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Webrowse",
@@ -65,17 +74,17 @@ const SEO = ({ title = "", description = "", keywords = "", lang = 'en', image =
     }`}
       </script>
     </Helmet>
-  )
-}
+  );
+};
 
-export default SEO
+export default SEO;
 
 SEO.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
   article: PropTypes.bool,
-}
+};
 
 SEO.defaultProps = {
   title: null,
@@ -83,4 +92,4 @@ SEO.defaultProps = {
   image: null,
   lang: `en`,
   article: false,
-}
+};

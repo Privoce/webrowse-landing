@@ -4,14 +4,17 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-const path = require(`path`)
+const path = require(`path`);
 
 module.exports = {
+  flags: {
+    PARALLEL_QUERY_RUNNING: false,
+  },
   siteMetadata: {
     title: "Webrowse",
     author: {
       name: `Webrowse`,
-      summary: `surf web together, share google chrome tabs`,
+      summary: `sync tabs during remote teaching`,
     },
     titleTemplate: "%s",
     description: "sync tabs with you teammates",
@@ -72,6 +75,6 @@ module.exports = {
           `gatsby-remark-smartypants`,
         ],
       },
-    }
+    },
   ],
-}
+};
