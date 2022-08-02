@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react"
+import styled from "styled-components"
 const StyledContainer = styled.section`
   width: 100vw;
   height: 100vh;
@@ -13,43 +13,43 @@ const StyledContainer = styled.section`
   .err {
     color: red;
   }
-`;
+`
 
 const OAuthPage = () => {
-  const [link, setLink] = useState(null);
-  const [err, setErr] = useState(null);
+  const [link, setLink] = useState(null)
+  const [err, setErr] = useState(null)
   useEffect(() => {
     const fetchLoginLink = async () => {
-      const params = new URLSearchParams(location.search);
-      let uid = params.get("uid");
-      let uname = params.get("uname");
+      const params = new URLSearchParams(location.search)
+      let uid = params.get("uid")
+      let uname = params.get("uname")
       try {
         const resp = await fetch(
-          `https://vera.nicegoodthings.com/rustchat/oauth/${uid}/${uname}`
-        );
-        const data = await resp.json();
-        setLink(data.link);
+          `https://vera.nicegoodthings.com/voce/oauth/${uid}/${uname}`
+        )
+        const data = await resp.json()
+        setLink(data.link)
       } catch (error) {
-        setErr("something error");
+        setErr("something error")
       }
-    };
+    }
 
-    fetchLoginLink();
-  }, []);
+    fetchLoginLink()
+  }, [])
   useEffect(() => {
     if (link) {
-      location.href = link;
+      location.href = link
     }
-  }, [link]);
+  }, [link])
 
   return (
     <StyledContainer>
       {/* <div className="title"> */}
-      Logining to Webrowse Rustchat
+      Logining to Webrowse VoceChat
       {/* </div> */}
       <div className="err">{err}</div>
     </StyledContainer>
-  );
-};
+  )
+}
 
-export default OAuthPage;
+export default OAuthPage
