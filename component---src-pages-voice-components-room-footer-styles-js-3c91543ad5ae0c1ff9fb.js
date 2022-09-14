@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkwebrowse_landing=self.webpackChunkwebrowse_landing||[]).push([[3615],{8599:function(e,t,n){n.r(t);var s=n(535).default.footer.withConfig({displayName:"styles__StyledWrapper",componentId:"sc-19oqb2v-0"})(["display:flex;align-items:center;justify-content:center;margin-bottom:10px;"]);t.default=s}}]);
+//# sourceMappingURL=component---src-pages-voice-components-room-footer-styles-js-3c91543ad5ae0c1ff9fb.js.map
