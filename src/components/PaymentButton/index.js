@@ -1,40 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import { AuthingGuard } from '@authing/react-ui-components'
-// 引入 css 文件
-import '@authing/react-ui-components/lib/index.min.css';
-import GuardConfig, { appId } from '../../constants/guardConfig';
+import { useGuard } from '@authing/guard-react'
+
 import { SubscriptionCreate } from '../../constants/APIs'
 export default function PaymentButton({ priceId = null, user, txt = "Start 14-day free trial" }) {
     const [subCreating, setSubCreating] = useState(false)
     const [currUser, setCurrUser] = useState(null);
-    const [guardVisible, setGuardVisible] = useState(false)
+    const guard = useGuard()
     useEffect(() => {
         setCurrUser(user)
     }, [user]);
-    const handleGuardLoad = async (authClient) => {
-        let currUser = await authClient.getCurrentUser();
-        console.log({ currUser });
-        // const { userInfo, session } = authingResp;
+    useEffect(() => {
         if (currUser) {
-            setGuardVisible(false);
-            setCurrUser(currUser);
+            guard.hide()
         }
-    };
-    const handleGuardLogin = async (user) => {
-        console.log('login', { user });
-        setCurrUser(user);
-        setGuardVisible(false);
-    };
-    const handleGuardClose = () => {
-        setGuardVisible(false);
-    };
-    const handleRegComplete = (user) => {
-        setCurrUser(user);
-        setGuardVisible(false);
-    };
+    }, [currUser])
+
+    useEffect(() => {
+        guard.start('#AUTHING_GUARD').then(userInfo => {
+            setCurrUser(userInfo)
+        })
+    }, [])
     const handlePayClick = async () => {
         if (!currUser) {
-            setGuardVisible(true)
+            guard.show()
             return
         }
         if (!priceId || subCreating) return;
@@ -63,18 +51,7 @@ export default function PaymentButton({ priceId = null, user, txt = "Start 14-da
     }
     return (
         <>
-            <AuthingGuard
-                visible={guardVisible}
-                onRegisterInfoCompleted={handleRegComplete}
-                // onRegister={handleReg}
-                onClose={handleGuardClose}
-                onLogin={handleGuardLogin}
-                onLoad={handleGuardLoad}
-                appId={appId}
-                config={GuardConfig}
-            />
             <button disabled={subCreating} className="btn" onClick={handlePayClick}>{subCreating ? 'Initialing' : txt}</button>
-
         </>
     )
 }

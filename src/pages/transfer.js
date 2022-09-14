@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useAuthing } from '@authing/react-ui-components';
+import { useGuard } from '@authing/guard-react'
+
 import { appId, GuardConfig } from '../constants/guardConfig';
 const StyledTip = styled.section`
   width: 100vw;
@@ -47,18 +48,16 @@ const Result = ({ children }) => (
 );
 const LandingUrl = 'https://webrow.se#howto';
 export default function WebrowseTransfer() {
+    const guard = useGuard()
     const [checkingLogin, setCheckingLogin] = useState(true)
     const [tip, setTip] = useState('');
-    const { authClient } = useAuthing({
-        appId,
-        appHost: GuardConfig.appHost
-    });
 
     useEffect(() => {
         const init = async () => {
             let rid = new URLSearchParams(location.search).get('r');
             let wid = new URLSearchParams(location.search).get('w');
             if (rid) {
+                const authClient = await guard.getAuthClient();
                 let user = await authClient.getCurrentUser();
                 if (user) {
                     // 把用户信息同步到webrowse扩展

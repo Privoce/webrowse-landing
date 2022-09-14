@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
 import styled, { keyframes } from 'styled-components';
-import { Helmet } from "react-helmet"
 
 const AniG = keyframes`
 0% {
@@ -131,23 +130,25 @@ export default function Window() {
   if (!data) return 'loading';
   const { title, tabs } = data;
   return (
-    <>
-      <Helmet title="workspace window landing page"></Helmet>
-      <StyledTip>
-        <div className="content">
-          <h1 className="title">{title}</h1>
-          <ul className="tabs" ref={tabsRef}>
-            {tabs.map(({ id, title, icon, url }) => {
-              return <li className="tab" key={id} title={title}>
-                <a className="link" href={url} target="_blank" style={{ backgroundImage: `url(${icon})` }}>{title}</a>
-              </li>
-            })}
-          </ul>
-          <button className="btn" onClick={handleOpenAll}>
-            open all
-          </button>
-        </div>
-      </StyledTip>
-    </>
+    <StyledTip>
+      <div className="content">
+        <h1 className="title">{title}</h1>
+        <ul className="tabs" ref={tabsRef}>
+          {tabs.map(({ id, title, icon, url }) => {
+            return <li className="tab" key={id} title={title}>
+              <a className="link" href={url} target="_blank" style={{ backgroundImage: `url(${icon})` }}>{title}</a>
+            </li>
+          })}
+        </ul>
+        <button className="btn" onClick={handleOpenAll}>
+          open all
+        </button>
+      </div>
+    </StyledTip>
+  )
+}
+export function Head() {
+  return (
+    <title>workspace window landing page</title>
   )
 }

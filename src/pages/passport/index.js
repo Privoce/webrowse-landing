@@ -7,13 +7,13 @@
  */
 
 import React from "react"
-import Passport from "./context"
+import Passport from "./_context"
 import Layout from './layout';
 
 export default function Container() {
   return (
     <Passport>
-      <Layout/>
+      <Layout />
     </Passport>
   )
 }

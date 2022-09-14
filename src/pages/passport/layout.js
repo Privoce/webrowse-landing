@@ -7,7 +7,7 @@
  */
 
 import React, { useContext, useEffect, useState } from "react"
-import { PassportContext, UPDATE_USER } from "./context"
+import { PassportContext, UPDATE_USER } from "./_context"
 import styled from "styled-components"
 import StyledDashboard from "./components/StyledDashboard"
 import Profile from "./components/Profile"

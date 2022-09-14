@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useContext } from "react"
 import styled from 'styled-components';
 import { AuthenticationClient } from "authing-js-sdk"
 import GuardConfig, { appId } from "../../../constants/guardConfig"
-import { PassportContext, UPDATE_USER } from "../context"
+import { PassportContext, UPDATE_USER } from "../_context"
 
 const StyledProfile = styled.div`
   display: flex;
@@ -73,7 +73,7 @@ const StyledProfile = styled.div`
 export default function Profile() {
   const [authing, setAuthing] = useState(null)
 
-  const {state, dispatch} = useContext(PassportContext);
+  const { state, dispatch } = useContext(PassportContext);
 
   const user = state?.user;
 

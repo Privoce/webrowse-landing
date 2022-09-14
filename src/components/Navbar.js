@@ -1,41 +1,26 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { AuthingGuard } from "@authing/react-ui-components";
-// 引入 css 文件
-import "@authing/react-ui-components/lib/index.min.css";
-import GuardConfig, { appId } from "../constants/guardConfig";
+import { useGuard } from '@authing/guard-react'
 import Logo from "../images/logo.png";
 
 const Navbar = ({ curr = "home", updateUser = null }) => {
+  const guard = useGuard()
   const [user, setUser] = useState(undefined);
-  const [guardVisible, setGuardVisible] = useState(false);
+  useEffect(() => {
+    guard.start('#AUTHING_GUARD').then(userInfo => {
+      setUser(userInfo)
+    })
+  }, [])
+
   // 及时地同步给父组件
   useEffect(() => {
-    updateUser && updateUser(user);
-  }, [user]);
-  const handleGuardLoad = async (authClient) => {
-    let currUser = await authClient.getCurrentUser();
-    console.log({ currUser });
-    // const { userInfo, session } = authingResp;
-    if (currUser) {
-      setGuardVisible(false);
-      setUser(currUser);
+    if (user) {
+      guard.hide();
+      updateUser && updateUser(user);
     }
-  };
-  const handleGuardLogin = async (user) => {
-    console.log("login", { user });
-    setUser(user);
-    setGuardVisible(false);
-  };
-  const handleGuardClose = () => {
-    setGuardVisible(false);
-  };
-  const handleRegComplete = (user) => {
-    setUser(user);
-    setGuardVisible(false);
-  };
+  }, [user]);
   const handleLogin = () => {
-    setGuardVisible(true);
+    guard.show()
   };
   const handleOauth = (evt) => {
     if (!user) {
@@ -45,16 +30,6 @@ const Navbar = ({ curr = "home", updateUser = null }) => {
   };
   return (
     <>
-      <AuthingGuard
-        visible={guardVisible}
-        onRegisterInfoCompleted={handleRegComplete}
-        // onRegister={handleReg}
-        onClose={handleGuardClose}
-        onLogin={handleGuardLogin}
-        onLoad={handleGuardLoad}
-        appId={appId}
-        config={GuardConfig}
-      />
       <NavStyles className="navbar">
         <div className="coupon">
           <div className="intro">
