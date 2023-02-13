@@ -38,6 +38,16 @@ const SEO = ({
         type="image/png"
         href="https://static.nicegoodthings.com/project/ext/webrowse.logo.png"
       />
+      <script
+  src="https://static.bridger.chat/sdk/v0.2.1/widget.js"
+  type="text/javascript"
+  async
+></script>
+<script type="text/javascript">
+  window.addEventListener('load', () => {
+    Bridger.initWidget({ id: '148215382948302848' });
+  });
+</script>
       {seo.url && <meta property="og:url" content={seo.url} />}
       {article && <meta property="og:type" content="article" />}
       {seo.title && <meta property="og:title" content={seo.title} />}
