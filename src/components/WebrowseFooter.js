@@ -128,7 +128,7 @@ export default function WebrowseFooter() {
       </StyledNewsletter>
       <StyledFooter>
         <div className="wrapper">
-          <div className="copyright">© 2021  Privoce. All rights reserved.</div>
+          <div className="copyright">© 2023  Privoce. All rights reserved.</div>
           <ul className="socials">
             {/* <li className="social">
                     <FaTwitter size={24} color="#787878" />
@@ -143,7 +143,18 @@ export default function WebrowseFooter() {
             </li>
           </ul>
         </div>
+        <script
+  src="https://static.bridger.chat/sdk/v0.2.1/widget.js"
+  type="text/javascript"
+  async
+></script>
+<script type="text/javascript">
+  window.addEventListener('load', () => {
+    Bridger.initWidget({ id: '148215382948302848' });
+  });
+</script>
       </StyledFooter>
+      
     </>
   )
 }
