@@ -143,11 +143,7 @@ export default function WebrowseFooter() {
             </li>
           </ul>
         </div>
-        <script
-  src="https://static.bridger.chat/sdk/v0.2.1/widget.js"
-  type="text/javascript"
-  async
-></script>
+       
 <script type="text/javascript">
   window.addEventListener('load', () => {
     Bridger.initWidget({ id: '148215382948302848' });
