@@ -172,17 +172,17 @@ const HomePage = () => {
         <div className="wrapper">
           <AnimateBrowser />
           <h2 className="header">
-            <span className="line">Browse websites together</span>
-            <span className="line">with your teammates</span>
+            <span className="line">Remote Browser SDK</span>
+            <span className="line">Run any app anywhere with WebAssembly</span>
           </h2>
           <p className="desc">
-            Webrowse helps your team to seamlessly collaborate in real time <br/>
-            via a shared browsing window during your online meetings.<br/>
-            Webrowse syncronizes your browser tabs that creates for an experience<br/>
-            that is more interactive, organized, and secure than screen sharing.
+            Webrowse remote browser SDK is a browser compiled to WASM (WebAssembly) <br/>
+            that can be embedded to your platform easily.<br/>
+            Webrowse also provide collaborative features so that multiple agents<br/>
+            can operate the browser simutaneouly.
           </p>
           <div className="download">
-            <a className="btn" target="_blank" href="https://chrome.google.com/webstore/detail/webrowse-sync-tabs-with-y/nnbkebemeehfhiimeghnkdocfbeogenn/related">Add to Chrome</a>
+            <a className="btn" target="_blank" href="https://calendly.com/hansu/han-meeting">Learn More</a>
             <a href="#links" className="links">Other Browsers Extensions</a>
           </div>
         </div>
