@@ -8,4 +8,5 @@
     Webrow.se
 </h1>
 
-sync tabs during remote teaching
+Remote browser SDK compliled to WebAssembly (WASM)
+Replace iframe with a true browser module!
