@@ -14,10 +14,10 @@ module.exports = {
     title: "Webrowse",
     author: {
       name: `Webrowse`,
-      summary: `sync tabs during remote teaching`,
+      summary: `Remote browser SDK, Replace iframe with a true browser module! WebAssembly browser.`,
     },
     titleTemplate: "%s",
-    description: "sync tabs with you teammates",
+    description: "Remote browser SDK, Replace iframe with a true browser module! WebAssembly browser.",
     siteUrl: "https://webrow.se",
     authorSite: "https://yangerxiao.com",
     image: "/image.tpl.png",
