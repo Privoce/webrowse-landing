@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
-const defaultTitle = "Webrowse - sync tabs during remote teaching";
+const defaultTitle = "Webrowse - Remote browser SDK, Replace iframe with a true browser module! WebAssembly browser.";
 const defaultDescription =
   "Turn any web app collaborative instantly. Create a shared workspace among your team with browser tabs synced in real time.";
-const defaultKeywords = "web, chrome extension, collaboration, remote work";
+const defaultKeywords = "browser SDK, webassembly, collaboration, remote browser";
 const defaultImage = "https://static.nicegoodthings.com/project/ext/og.png";
 const titleTemplate = "%s";
 const twitterUsername = "@privoce1";
