@@ -53,6 +53,9 @@
     "gh-pages": "^4.0.0",
     "prettier": "^2.7.1"
   },
+  "engines": {
+    "node": ">=16.0.0",
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/privoce/webrowse-landing"
