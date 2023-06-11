@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkwebrowse_landing=self.webpackChunkwebrowse_landing||[]).push([[1026],{9742:function(e,l,n){n.r(l);var a=n(7294),t=n(77),u=n(1903);l.default=()=>a.createElement(t.default,null,a.createElement(u.default,null))}}]);
+//# sourceMappingURL=component---src-pages-voice-index-js-ad6e435ca41676eb30e7.js.map

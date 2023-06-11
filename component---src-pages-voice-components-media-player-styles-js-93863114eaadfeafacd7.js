@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkwebrowse_landing=self.webpackChunkwebrowse_landing||[]).push([[3093],{1265:function(e,n,t){t.r(n);const d=t(3494).default.div.withConfig({displayName:"styles__StyledWrapper",componentId:"sc-1td5f2d-0"})([".player{width:640px;height:480px;background-color:#000;}"]);n.default=d}}]);
+//# sourceMappingURL=component---src-pages-voice-components-media-player-styles-js-93863114eaadfeafacd7.js.map
